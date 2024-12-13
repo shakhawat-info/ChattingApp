@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components{
+    .sign-InUp{
+        @apply w-full text-primarytxt bg-bgsecondery outline-none border-none py-4 rounded-[10px] pl-10 placeholder:text-clrthird font-ubuntu text-xs  font-medium tracking-[1.5px]
+    }
+    .boxIcon{
+        @apply absolute top-[25%] left-[10px] text-clrthird text-[23px]
+    }
+    .signInwith{
+        @apply w-[48px] h-[48px] rounded-full bg-bgsecondery grid place-items-center text-2xl
+    }
+    .link{
+        @apply relative text-brand after:content-[''] after:w-0 after:h-[2px] after:bg-brand after:absolute after:left-0 after:bottom-[-3px] after:duration-[.4s] cursor-pointer
+    }
+}
