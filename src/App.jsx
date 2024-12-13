@@ -1,5 +1,5 @@
 import { useState } from "react";
-import LoginSignup from "./assets/pages/Login-Reg/LoginSignup";
+import LoginSignup from "./assets/pages/LoginSignup";
 
 function App() {
   return (

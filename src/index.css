@@ -11,7 +11,7 @@
         @apply absolute top-[25%] left-[10px] text-clrthird text-[23px]
     }
     .signInwith{
-        @apply w-[48px] h-[48px] rounded-full bg-bgsecondery grid place-items-center text-2xl
+        @apply w-[48px] h-[48px] rounded-full bg-bgsecondery grid place-items-center text-2xl cursor-pointer
     }
     .link{
         @apply relative text-brand after:content-[''] after:w-0 after:h-[2px] after:bg-brand after:absolute after:left-0 after:bottom-[-3px] after:duration-[.4s] cursor-pointer
