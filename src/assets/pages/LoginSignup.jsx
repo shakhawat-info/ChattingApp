@@ -15,6 +15,7 @@ import { CiMail } from "react-icons/ci";
 
 // images
 import loginsignupIMG from "../images/chatting.jpg";
+import loginsignupIMG2 from "../images/cting.jpg";
 
 // metarial tailwind
 import { button, IconButton } from "@material-tailwind/react";
@@ -54,22 +55,22 @@ const LoginSignup = () => {
     <section className="overflow-x-hidden relative">
     <div className="container">
 
-      <div className=" flex justify-between h-screen md:px-[10px] px-0 " >
-        <div id="stars-container">
+      <div className=" flex justify-between h-screen md:px-[10px] px-0 lg:flex-row-reverse " >
+        <div id="stars-container md:hidden">
           <div id="stars"></div>
           <div id="stars2"></div>
           <div id="stars3"></div>
         </div>
-        <div className="lg:w-3/5 sm:w-2/5   flex-col justify-center items-center hidden md:flex">
-          <img src={loginsignupIMG} alt="loginsignupIMG" className="w-[60%] mx-auto rounded-md " />
-          <h1 className="font-aldrich text-primarytxt font-black text-center md:text-xl text-3xl md:mt-5 mt-[50px]  ">Welcome to the professional community.</h1>
-          <p className="font-ubuntu text-primarytxt text-md md:text-sm text-center font-semibold mt-2  ">Enjoy your life with your family and friends. Thank you for choosing us</p>
+        <div className="lg:w-3/5 sm:w-2/5   flex-col justify-center items-center hidden md:flex ">
+          <img src={loginsignupIMG2} alt="loginsignupIMG" className="w-[60%] mx-auto rounded-md " />
+          <h1 className="font-aldrich text-primarytxt md:text-bodybg font-black text-center md:text-xl text-3xl md:mt-5 mt-[50px]  ">Welcome to the professional community.</h1>
+          <p className="font-ubuntu text-primarytxt md:text-bodybg text-md md:text-sm text-center font-semibold mt-2  ">Enjoy your life with your family and friends. Thank you for choosing us</p>
         </div>
-        <div className="md:w-3/5 w-full bg-[rgba(29,29,29,0.6)] h-screen overflow-y-scroll ">
+        <div className="md:w-3/5 w-full bg-[rgba(29,29,29,0.99)] md:bg-transparent h-screen overflow-y-scroll md:shadow-[rgba(0,0,0,0.16)_0px_1px_4px]">
           {showLoginPage ? (
             <div className="h-full flex flex-col justify-around animate-showLogin ">
               <div className="p-5">
-                <h2 className="font-aldrich capitalize font-bold text-[36px] text-primarytxt  ">
+                <h2 className="font-aldrich capitalize font-bold text-[36px] text-primarytxt md:text-bodybg   ">
                   welcome back!
                 </h2>
                 <form action="#" className="flex flex-col gap-y-8 mt-9  ">
@@ -113,7 +114,7 @@ const LoginSignup = () => {
                   Forgot Password?
                 </h4>
                 <div className="flex justify-between mt-12">
-                  <span className="font-aldrich text-primarytxt text-[24px] font-semibold capitalize ">
+                  <span className="font-aldrich text-primarytxt md:text-bodybg text-[24px] font-semibold capitalize ">
                     sign in
                   </span>
                   <button
@@ -128,7 +129,7 @@ const LoginSignup = () => {
                 </div>
               </div>
               <div className="">
-                <h5 className="font-aldrich text-clrthird text-xl text-center   ">
+                <h5 className="font-aldrich text-clrthird  text-xl text-center   ">
                   sign in with
                 </h5>
                 <ul className="flex justify-center gap-x-10 mt-10  ">
@@ -159,8 +160,8 @@ const LoginSignup = () => {
             </div>
           ) : (
             <div className="h-full flex flex-col justify-around animate-showReg">
-            <div className="p-5 bg-bodybg ">
-              <h2 className="font-aldrich font-bold text-[36px] text-primarytxt  ">
+            <div className="p-5  ">
+              <h2 className="font-aldrich font-bold text-[36px] text-primarytxt md:text-bodybg  ">
                 Create an account!
               </h2>
               <form action="#" className="flex flex-col gap-y-8 mt-9  ">
@@ -236,7 +237,7 @@ const LoginSignup = () => {
                 <span className="link hover:after:w-full ">Privacy Policy</span>{" "}
               </h4>
               <div className="flex justify-between mt-12">
-                <span className="font-aldrich text-primarytxt text-[24px] font-semibold capitalize ">
+                <span className="font-aldrich text-primarytxt md:text-bodybg text-[24px] font-semibold capitalize ">
                   register
                 </span>
                 <button
