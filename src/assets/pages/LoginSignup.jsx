@@ -7,11 +7,13 @@ import { GoEyeClosed } from "react-icons/go";
 import { GoEye } from "react-icons/go";
 import { BiLogInCircle } from "react-icons/bi";
 
-// sign in with icons
+// sign in/up with icons
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
+import { SiNamecheap } from "react-icons/si";
+import { IoCalendarNumberOutline } from "react-icons/io5";
 
 // images
 import loginsignupIMG from "../images/chatting.jpg";
@@ -21,6 +23,8 @@ import loginsignupIMG2 from "../images/cting.jpg";
 import { button, IconButton } from "@material-tailwind/react";
 
 const LoginSignup = () => {
+
+  // Password Show/Hide 
   let [PassShowHide, setPassShowHide] = useState(true);
 
   let PasshowHide = () => {
@@ -31,6 +35,8 @@ const LoginSignup = () => {
     }
   };
 
+
+  // Confirm Password Show/Hide 
   let [ConfirmPass, setConfirmPass] = useState(true);
 
   let confirmPassword = () => {
@@ -41,6 +47,7 @@ const LoginSignup = () => {
     }
   };
 
+
   // login show hide option
   let [showLoginPage, setShowLoginPage] = useState(true);
 
@@ -50,6 +57,16 @@ const LoginSignup = () => {
   let signupShow = () => {
     setShowLoginPage(false);
   };
+
+
+  // login/signup Form Submition
+
+  let FormSubmit = (event)=>{
+    event.preventDefault();
+    console.log('form submited');
+  }
+
+
   return (
     <>
     <section className="overflow-x-hidden relative">
@@ -73,13 +90,14 @@ const LoginSignup = () => {
                 <h2 className="font-aldrich capitalize font-bold text-[36px] text-primarytxt md:text-bodybg   ">
                   welcome back!
                 </h2>
-                <form action="#" className="flex flex-col gap-y-8 mt-9  ">
+                <form action="#" className="flex flex-col gap-y-8 mt-9  " onSubmit={FormSubmit}>
                   <div className="relative   ">
                     <FaUser className="boxIcon   " />
                     <input
                       type="text"
                       placeholder="Username or Email"
                       className=" sign-InUp "
+                      required="required"
                     />
                   </div>
                   <div className="relative">
@@ -89,12 +107,14 @@ const LoginSignup = () => {
                         type="text"
                         placeholder="Password"
                         className=" sign-InUp "
+                        required="required"
                       />
                     ) : (
                       <input
                         type="password"
                         placeholder="Password"
                         className=" sign-InUp "
+                        required="required"
                       />
                     )}
                     <button
@@ -109,16 +129,15 @@ const LoginSignup = () => {
                       )}
                     </button>
                   </div>
-                </form>
-                <h4 className="font-aldrich text-brand mt-3 ml-auto text-[18px] link hover:after:w-full w-fit">
+                <h4 className="font-aldrich text-brand mt-[-20px] ml-auto text-[18px] link hover:after:w-full w-fit after:bottom-[5px] ">
                   Forgot Password?
                 </h4>
-                <div className="flex justify-between mt-12">
+                <div className="flex items-center justify-between ">
                   <span className="font-aldrich text-primarytxt md:text-bodybg text-[24px] font-semibold capitalize ">
                     sign in
                   </span>
                   <button
-                    type="button"
+                    type="submit"
                     className="w-[50px] h-[50px] grid place-items-center bg-brand text-[25px] rounded-full text-primarytxt "
                   >
                     <BiLogInCircle />
@@ -127,6 +146,7 @@ const LoginSignup = () => {
               <BiLogInCircle />
             </IconButton> */}
                 </div>
+                </form>
               </div>
               <div className="">
                 <h5 className="font-aldrich text-clrthird  text-xl text-center   ">
@@ -164,13 +184,32 @@ const LoginSignup = () => {
               <h2 className="font-aldrich font-bold text-[36px] text-primarytxt md:text-bodybg  ">
                 Create an account!
               </h2>
-              <form action="#" className="flex flex-col gap-y-8 mt-9  ">
+              <form action="#" className="flex flex-col gap-y-8 mt-9  " onSubmit={FormSubmit}>
+                <div className="relative   ">
+                  <SiNamecheap  className="boxIcon   "/>
+                  <input
+                    type="text"
+                    placeholder="Full Name"
+                    className=" sign-InUp "
+                    required="required"
+                  />
+                </div>
                 <div className="relative   ">
                   <FaUser className="boxIcon   " />
                   <input
-                    type="text"
+                    type="email"
                     placeholder="Username or Email"
                     className=" sign-InUp "
+                    required="required"
+                  />
+                </div>
+                <div className="relative   ">
+                  <IoCalendarNumberOutline className="boxIcon"/>
+                  <input
+                    type="date"
+                    placeholder="Username or Email"
+                    className=" sign-InUp "
+                    required="required"
                   />
                 </div>
                 <div className="relative">
@@ -180,12 +219,14 @@ const LoginSignup = () => {
                       type="text"
                       placeholder="Password"
                       className=" sign-InUp "
+                      required="required"
                     />
                   ) : (
                     <input
                       type="password"
                       placeholder="Password"
                       className=" sign-InUp "
+                      required="required"
                     />
                   )}
                   <button
@@ -207,12 +248,14 @@ const LoginSignup = () => {
                       type="text"
                       placeholder="Confirm password"
                       className=" sign-InUp "
+                      required="required"
                     />
                   ) : (
                     <input
                       type="password"
                       placeholder="Confirm password"
                       className=" sign-InUp "
+                      required="required"
                     />
                   )}
                   <button
@@ -227,8 +270,7 @@ const LoginSignup = () => {
                     )}
                   </button>
                 </div>
-              </form>
-              <h4 className="font-aldrich text-clrthird mt-3 text-[18px] ">
+              <h4 className="font-aldrich text-clrthird mt-[-20px] text-[18px] ">
                 By clicking the{" "}
                 <span className="link hover:after:w-full ">Register</span>{" "}
                 button, you agree to the{" "}
@@ -236,12 +278,12 @@ const LoginSignup = () => {
                 and{" "}
                 <span className="link hover:after:w-full ">Privacy Policy</span>{" "}
               </h4>
-              <div className="flex justify-between mt-12">
+              <div className="flex justify-between ">
                 <span className="font-aldrich text-primarytxt md:text-bodybg text-[24px] font-semibold capitalize ">
                   register
                 </span>
                 <button
-                  type="button"
+                  type="submit"
                   className="w-[50px] h-[50px] grid place-items-center bg-brand text-[25px] rounded-full text-primarytxt "
                 >
                   <BiLogInCircle />
@@ -250,6 +292,7 @@ const LoginSignup = () => {
             <BiLogInCircle />
           </IconButton> */}
               </div>
+              </form>
 
             </div>
             <div className="">
