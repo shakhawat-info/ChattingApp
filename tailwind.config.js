@@ -1,15 +1,3 @@
-// /** @type {import('tailwindcss').Config} */
-// export default {
-//   content: [
-//     "./index.html",
-//     "./src/**/*.{js,ts,jsx,tsx}",
-//   ],
-//   theme: {
-//     extend: {},
-//   },
-//   plugins: [],
-// }
-
 const withMT = require("@material-tailwind/react/utils/withMT");
 
 module.exports = withMT({
@@ -20,7 +8,7 @@ module.exports = withMT({
       center: true,
 
       // or have default horizontal padding
-      padding: '1rem',
+      padding: '5px',
 
       // default breakpoints but with 40px removed
       screens: {
