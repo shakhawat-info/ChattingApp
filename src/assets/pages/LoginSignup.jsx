@@ -67,7 +67,7 @@ const LoginSignup = () => {
         </div>
         <div className="md:w-3/5 w-full bg-[rgba(29,29,29,0.6)] h-screen overflow-y-scroll ">
           {showLoginPage ? (
-            <div className="h-full flex flex-col justify-around  ">
+            <div className="h-full flex flex-col justify-around animate-showLogin ">
               <div className="p-5">
                 <h2 className="font-aldrich capitalize font-bold text-[36px] text-primarytxt  ">
                   welcome back!
@@ -158,7 +158,7 @@ const LoginSignup = () => {
               </div>
             </div>
           ) : (
-            <div className="h-full flex flex-col justify-around">
+            <div className="h-full flex flex-col justify-around animate-showReg">
             <div className="p-5 bg-bodybg ">
               <h2 className="font-aldrich font-bold text-[36px] text-primarytxt  ">
                 Create an account!

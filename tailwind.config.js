@@ -40,6 +40,20 @@ module.exports = withMT({
         'primarytxt': '#ffffff',
         'brand': '#ff045c',
       },
+      animation: {
+        'showLogin': 'showLogin .6s linear ',
+        'showReg': 'showReg .6s linear ',
+      },
+      keyframes: {
+        showLogin: {
+          '0%': { transform: 'scaleX(0)' },
+          '100%': { transform: 'scaleX(1)' },
+        },
+        showReg: {
+          '0%': { transform: 'scale(0)' },
+          '100%': { transform: 'scale(1)' },
+        }
+      },
     },
     fontFamily: {
       'aldrich': ["Aldrich", 'sans-serif'],
