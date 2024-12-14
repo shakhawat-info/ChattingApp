@@ -14,7 +14,7 @@ import { FaApple } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 
 // images
-import loginsignupIMG from "../images/loginSignup.jpg";
+import loginsignupIMG from "../images/chatting.jpg";
 
 // metarial tailwind
 import { button, IconButton } from "@material-tailwind/react";
@@ -51,13 +51,23 @@ const LoginSignup = () => {
   };
   return (
     <>
-      <div className=" flex justify-between h-screen">
-        <div className="w-3/5">
-          <img src={loginsignupIMG} alt="loginsignupIMG" className="h-full" />
+    <section className="overflow-x-hidden relative">
+    <div className="container">
+
+      <div className=" flex justify-between h-screen md:px-[10px] px-0 " >
+        <div id="stars-container">
+          <div id="stars"></div>
+          <div id="stars2"></div>
+          <div id="stars3"></div>
         </div>
-        <div className="w-2/5   bg-bodybg ">
+        <div className="lg:w-3/5 sm:w-2/5   flex-col justify-center items-center hidden md:flex">
+          <img src={loginsignupIMG} alt="loginsignupIMG" className="w-[60%] mx-auto rounded-md " />
+          <h1 className="font-aldrich text-primarytxt font-black text-center md:text-xl text-3xl md:mt-5 mt-[50px]  ">Welcome to the professional community.</h1>
+          <p className="font-ubuntu text-primarytxt text-md md:text-sm text-center font-semibold mt-2  ">Enjoy your life with your family and friends. Thank you for choosing us</p>
+        </div>
+        <div className="md:w-3/5 w-full bg-[rgba(29,29,29,0.6)] h-screen overflow-y-scroll ">
           {showLoginPage ? (
-            <div className="h-full flex flex-col justify-around">
+            <div className="h-full flex flex-col justify-around  ">
               <div className="p-5">
                 <h2 className="font-aldrich capitalize font-bold text-[36px] text-primarytxt  ">
                   welcome back!
@@ -136,7 +146,7 @@ const LoginSignup = () => {
                   </li>
                 </ul>
                 <h3 className="text-center font-ubuntu text-clrthird font-bold mt-10  ">
-                  You don't have an account ? Please{" "}
+                  You don't have any account ? Please{" "}
                   <span
                     className="text-brand link hover:after:w-full   "
                     onClick={signupShow}
@@ -273,6 +283,9 @@ const LoginSignup = () => {
           )}
         </div>
       </div>
+    </div>
+
+    </section>
     </>
   );
 };
