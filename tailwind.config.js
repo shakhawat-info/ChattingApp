@@ -31,6 +31,7 @@ module.exports = withMT({
       animation: {
         'showLogin': 'showLogin .6s linear ',
         'showReg': 'showReg .6s linear ',
+        'showMenu': 'showMenu .3s linear ',
       },
       keyframes: {
         showLogin: {
@@ -40,8 +41,15 @@ module.exports = withMT({
         showReg: {
           '0%': { transform: 'scale(0)' },
           '100%': { transform: 'scale(1)' },
-        }
+        },
+        showMenu: {
+          '0%': { left: '-100%' },
+          '100%': { left: '0%' },
+        },
       },
+      gridTemplateColumns: {
+        'home': '10% 85% 5%',
+      }
     },
     fontFamily: {
       'aldrich': ["Aldrich", 'sans-serif'],

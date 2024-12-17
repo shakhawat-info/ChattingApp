@@ -101,17 +101,24 @@
 
 /* menu start */
 .menuListIcon{
-  @apply text-2xl
+  @apply text-2xl text-brand
 }
 .menulist{
-  @apply flex items-center gap-x-2 capitalize font-ubuntu text-[16px] cursor-pointer
+  @apply flex items-center gap-x-2 capitalize font-ubuntu text-xl cursor-pointer hover:bg-clrthird/20 p-1
 }
 
 .menuListBox{
-  @apply flex flex-col gap-y-3
+  @apply flex flex-col gap-y-4
 }
 /* menu end */
 
+/* Friendreq start */
+.frndRedhead{
+  @apply flex items-center justify-center gap-x-4 cursor-pointer capitalize hover:bg-clrthird/15 p-2 hover:text-brand font-ubuntu text-xl bg-clrthird/10 rounded-[50px]   
+}
+
+
+/* Friendreq end */
 
 
 }
