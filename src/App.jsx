@@ -5,7 +5,7 @@ import Home from "./assets/pages/Home";
 function App() {
   return (
     <>
-      {/* <LoginSignup /> */}
+      <LoginSignup />
       <Home/>
     </>
   );

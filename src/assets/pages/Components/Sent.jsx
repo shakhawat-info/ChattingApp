@@ -7,7 +7,7 @@ const Sent = (props) => {
       <img
         src={props.profile}
         alt="profile"
-        className="w-[60px] h-[60px] rounded-full"
+        className="w-[60px] h-[60px] rounded-full object-cover"
       />
       <div className="w-full">
         <h3 className="flex justify-between font-ubuntu font-bold lg:text-xl text-md  ">
