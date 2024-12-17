@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // components
 import Requests from "./Requests";
 import Add from "./Add";
+import Sent from "./Sent";
 
 // icons
 import { RiUserReceivedLine } from "react-icons/ri";
@@ -24,26 +25,29 @@ const Friendreq = () => {
   };
 
   // add function
-  let addActive = ()=>{
+  let addActive = () => {
     setRequests(false);
     setAddfrnd(true);
     setReqsent(false);
-  }
+  };
 
   // sent function
-  let sentActive = ()=>{
+  let sentActive = () => {
     setRequests(false);
     setAddfrnd(false);
     setReqsent(true);
-  }
+  };
   return (
     <div className="   ">
       <div className="flex justify-between lg:gap-x-[10%] gap-x-[5%]  border-clrthird/10 border rounded-[50px]    ">
         {/* requests */}
         <div className="w-full">
           {requests ? (
-            <h2 className="frndRedhead bg-brand text-primarytxt hover:bg-brand hover:text-primarytxt" onClick={ReqActive}>
-              <RiUserReceivedLine className="lg:text-2xl" /> <span>requests</span>
+            <h2
+              className="frndRedhead bg-brand text-primarytxt hover:bg-brand hover:text-primarytxt"
+              onClick={ReqActive}
+            >
+              <RiUserReceivedLine className="text-2xl" /> <span>requests</span>
             </h2>
           ) : (
             <h2 className="frndRedhead" onClick={ReqActive}>
@@ -54,48 +58,73 @@ const Friendreq = () => {
 
         {/* add */}
         <div className="w-full">
-          {
-            addfrnd ?
-          <h2 className="frndRedhead bg-brand text-primarytxt hover:bg-brand hover:text-primarytxt" onClick={addActive}>
-            <AiOutlineUserAdd className="text-2xl" />
-            <span>add</span>
-          </h2>
-          :
-          <h2 className="frndRedhead" onClick={addActive}>
-            <AiOutlineUserAdd className="text-2xl" />
-            <span>add</span>
-          </h2>
-          }
+          {addfrnd ? (
+            <h2
+              className="frndRedhead bg-brand text-primarytxt hover:bg-brand hover:text-primarytxt"
+              onClick={addActive}
+            >
+              <AiOutlineUserAdd className="text-2xl" />
+              <span>add</span>
+            </h2>
+          ) : (
+            <h2 className="frndRedhead" onClick={addActive}>
+              <AiOutlineUserAdd className="text-2xl" />
+              <span>add</span>
+            </h2>
+          )}
         </div>
 
         {/* view sent request */}
         <div className="w-full">
-          {reqsent?
-          <h2 className="frndRedhead bg-brand text-primarytxt hover:bg-brand hover:text-primarytxt" onClick={sentActive}>
-            <RiUserShared2Line className="text-2xl" />
-            <span>view sent <span className="lg:inline-block hidden">request</span></span>
-          </h2>
-          :
-          <h2 className="frndRedhead" onClick={sentActive}>
-            <RiUserShared2Line className="text-2xl" />
-            <span>view sent <span className="lg:inline-block hidden">request</span></span>
-          </h2>
-          }
+          {reqsent ? (
+            <h2
+              className="frndRedhead bg-brand text-primarytxt hover:bg-brand hover:text-primarytxt"
+              onClick={sentActive}
+            >
+              <RiUserShared2Line className="text-2xl" />
+              <span>
+                view sent{" "}
+                <span className="lg:inline-block hidden">request</span>
+              </span>
+            </h2>
+          ) : (
+            <h2 className="frndRedhead" onClick={sentActive}>
+              <RiUserShared2Line className="text-2xl" />
+              <span>
+                view sent{" "}
+                <span className="lg:inline-block hidden">request</span>
+              </span>
+            </h2>
+          )}
         </div>
       </div>
-      {requests &&
-      <div className="mt-2 lg:mx-[23%] flex flex-col gap-y-2 ">
-        <Requests profile={profile} name="Md. Shakhawat Hossain" mutual="3" />
-        <Requests profile={profile} name="Md. Shakhawat Hossain" mutual="38" />
-        <Requests profile={profile} name="Md. Shakhawat Hossain" mutual="75" />
-      </div>
-      }
-      {addfrnd &&
-      <div className="mt-2 lg:mx-[23%] flex flex-col gap-y-2 ">
-        <Add profile={tanvir} name="Tanvir Musa" mutual="917"/>
-        <Add profile={profile} name="Md.Shakhawat Hossain" mutual="91"/>
-      </div>
-      }
+      {requests && (
+        <div className="mt-2 lg:mx-[23%] flex flex-col gap-y-2 ">
+          <Requests profile={profile} name="Md. Shakhawat Hossain" mutual="3" />
+          <Requests
+            profile={profile}
+            name="Md. Shakhawat Hossain"
+            mutual="38"
+          />
+          <Requests
+            profile={profile}
+            name="Md. Shakhawat Hossain"
+            mutual="75"
+          />
+        </div>
+      )}
+      {addfrnd && (
+        <div className="mt-2 lg:mx-[23%] flex flex-col gap-y-2 ">
+          <Add profile={tanvir} name="Tanvir Musa" mutual="917" />
+          <Add profile={profile} name="Md.Shakhawat Hossain" mutual="91" />
+        </div>
+      )}
+      {reqsent && (
+        <div className="mt-2 lg:mx-[23%] flex flex-col gap-y-2 ">
+          <Sent profile={profile} name="Md.Shakhawat Hossain" mutual="91" />
+          <Sent profile={tanvir} name="Tanvir Musa" mutual="917" />
+        </div>
+      )}
     </div>
   );
 };

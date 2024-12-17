@@ -27,7 +27,7 @@ const Menu = (props) => {
         </ul>
         <ul className='menuListBox mt-5 gap-y-5'>
             <li className="menulist"><PiMessengerLogoThin className='menuListIcon'/><span>Message</span></li>
-            <li className="menulist"><AiOutlineUsergroupAdd className='menuListIcon' /><span>friend requests</span></li>
+            <li className="menulist" onClick={props.frndRequest}><AiOutlineUsergroupAdd className='menuListIcon' /><span>friend requests</span></li>
             <li className="menulist"><IoVideocamOutline className='menuListIcon'/><span>video</span></li>
             <li className="menulist"><GrGroup className='menuListIcon'/><span>groups</span></li>
             <li className='menulist'><AiOutlineSave className='menuListIcon' /><span>saved post</span></li>
