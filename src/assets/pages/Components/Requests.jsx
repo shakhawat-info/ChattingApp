@@ -5,7 +5,7 @@ const Requests = (props) => {
       <div className="flex gap-x-5 items-center">
         <img src={props.profile} alt="profile" className="w-[60px] h-[60px] rounded-full" />
         <div className="w-full">
-          <h3 className="flex justify-between font-ubuntu font-bold text-xl  ">
+          <h3 className="flex justify-between font-ubuntu font-bold lg:text-xl text-md  ">
             <span>{props.name}</span> <span className="font-medium text-clrthird/50  ">1 d</span>
           </h3>
           <h5 className="font-medium font-ubuntu text-sm text-clrthird/80  "><span className="mr-2">{props.mutual}</span>mutual friends</h5>

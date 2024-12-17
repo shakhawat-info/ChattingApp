@@ -19,7 +19,7 @@ import { PiMessengerLogoThin } from "react-icons/pi";
 const Menu = (props) => {
 
   return (
-    <div className='py-5 px-2 bg-primarytxt h-screen  w-full overflow-y-scroll animate-showMenu absolute top-0 left-0 shadow-[rgba(0,0,0,0.1)_2.4px_0px_0px] '>
+    <div className='py-5 px-2 bg-primarytxt h-screen  lg:w-full w-1/2 overflow-y-scroll animate-showMenu absolute top-0 left-0 shadow-[rgba(0,0,0,0.1)_2.4px_0px_0px] '>
       <button type='button' onClick={props.hide} className='absolute top-0 right-0 py-2 px-5  text-primarytxt rounded-bl-[10px]   '><TfiClose className='menuListIcon' /></button>
         <ul className='menuListBox border-b-[1px] border-b-solid border-b-bodybg/10 pb-3 mt-4   '>
             <li className='menulist'><GoHome className='menuListIcon'/><span>news feed</span></li>

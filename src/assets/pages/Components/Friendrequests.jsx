@@ -38,12 +38,12 @@ const Friendreq = () => {
   }
   return (
     <div className="   ">
-      <div className="flex justify-between gap-x-[10%]  border-clrthird/10 border rounded-[50px]    ">
+      <div className="flex justify-between lg:gap-x-[10%] gap-x-[5%]  border-clrthird/10 border rounded-[50px]    ">
         {/* requests */}
         <div className="w-full">
           {requests ? (
             <h2 className="frndRedhead bg-brand text-primarytxt hover:bg-brand hover:text-primarytxt" onClick={ReqActive}>
-              <RiUserReceivedLine className="text-2xl" /> <span>requests</span>
+              <RiUserReceivedLine className="lg:text-2xl" /> <span>requests</span>
             </h2>
           ) : (
             <h2 className="frndRedhead" onClick={ReqActive}>
@@ -73,25 +73,25 @@ const Friendreq = () => {
           {reqsent?
           <h2 className="frndRedhead bg-brand text-primarytxt hover:bg-brand hover:text-primarytxt" onClick={sentActive}>
             <RiUserShared2Line className="text-2xl" />
-            <span>view sent request</span>
+            <span>view sent <span className="lg:inline-block hidden">request</span></span>
           </h2>
           :
           <h2 className="frndRedhead" onClick={sentActive}>
             <RiUserShared2Line className="text-2xl" />
-            <span>view sent request</span>
+            <span>view sent <span className="lg:inline-block hidden">request</span></span>
           </h2>
           }
         </div>
       </div>
       {requests &&
-      <div className="mt-2 mx-[23%] flex flex-col gap-y-2 ">
+      <div className="mt-2 lg:mx-[23%] flex flex-col gap-y-2 ">
         <Requests profile={profile} name="Md. Shakhawat Hossain" mutual="3" />
         <Requests profile={profile} name="Md. Shakhawat Hossain" mutual="38" />
         <Requests profile={profile} name="Md. Shakhawat Hossain" mutual="75" />
       </div>
       }
       {addfrnd &&
-      <div className="mt-2 mx-[23%] flex flex-col gap-y-2 ">
+      <div className="mt-2 lg:mx-[23%] flex flex-col gap-y-2 ">
         <Add profile={tanvir} name="Tanvir Musa" mutual="917"/>
         <Add profile={profile} name="Md.Shakhawat Hossain" mutual="91"/>
       </div>

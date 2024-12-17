@@ -10,7 +10,7 @@ const Add = (props) => {
           className="w-[60px] h-[60px] rounded-full"
         />
         <div className="w-full">
-          <h3 className="flex justify-between font-ubuntu font-bold text-xl  ">
+          <h3 className="flex justify-between font-ubuntu font-bold lg:text-xl text-md  ">
             <span>{props.name}</span>{" "}
             <span className="font-medium text-clrthird/50  ">1 d</span>
           </h3>

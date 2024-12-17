@@ -14,22 +14,18 @@ const Home = () => {
   };
 
   // Menu Hide ..
-  let HideBtn = ()=>{
+  let HideBtn = () => {
     setShow(false);
-  }
+  };
   return (
     <section>
-      <Nav show={ShowBtn}  />
-      <div className="grid grid-cols-home h-screen grid-rows-none">
-        <div className=" relative ">
-        {show && (
-            <Menu hide={HideBtn} />
-          )}
-          </div>
-        <div className="p-2 border border-brand">
-          <Friendreq/>
+      <Nav show={ShowBtn} />
+      <div className="lg:grid block lg:grid-cols-home h-screen grid-rows-none">
+        <div className=" relative ">{show && <Menu hide={HideBtn} />}</div>
+        <div className="p-2 lg:border border-brand border-none">
+          <Friendreq />
         </div>
-        <div className=" "></div>
+        <div className=""></div>
       </div>
     </section>
   );
