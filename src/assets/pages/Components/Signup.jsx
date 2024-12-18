@@ -59,7 +59,7 @@ const Signup = () => {
 
   return (
     <>
-    <section className="overflow-x-hidden relative">
+    <section className="overflow-x-hidden absolute top-0 left-0 w-full animate-showReg">
     <div className="container">
 
       <div className=" flex justify-between h-screen md:px-[10px] px-0 lg:flex-row-reverse " >
@@ -74,7 +74,7 @@ const Signup = () => {
           <p className="font-ubuntu text-primarytxt md:text-bodybg text-md md:text-sm text-center font-semibold mt-2  ">Enjoy your life with your family and friends. Thank you for choosing us</p>
         </div>
         <div className="md:w-3/5 w-full bg-[rgba(29,29,29,0.99)] md:bg-transparent h-screen overflow-y-scroll md:shadow-[rgba(0,0,0,0.16)_0px_1px_4px]">
-            <div className="h-full flex flex-col justify-around animate-showReg">
+            <div className="h-full flex flex-col justify-around ">
             <div className="p-5  ">
               <h2 className="font-aldrich font-bold text-[36px] text-primarytxt md:text-bodybg  ">
                 Create an account!

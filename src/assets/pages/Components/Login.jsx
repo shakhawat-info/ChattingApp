@@ -40,7 +40,7 @@ const Login = () => {
 
   return (
     <>
-      <section className="overflow-x-hidden relative">
+      <section className="overflow-x-hidden absolute top-0 right-0 w-full animate-showLogin">
         <div className="container">
           <div className=" flex justify-between h-screen md:px-[10px] px-0 lg:flex-row-reverse ">
             <div id="stars-container md:hidden">

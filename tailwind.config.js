@@ -29,18 +29,18 @@ module.exports = withMT({
         'brand': '#ff045c',
       },
       animation: {
-        'showLogin': 'showLogin .6s linear ',
-        'showReg': 'showReg .6s linear ',
+        'showLogin': 'showLogin .4s linear ',
+        'showReg': 'showReg .4s linear ',
         'showMenu': 'showMenu .3s linear ',
       },
       keyframes: {
         showLogin: {
-          '0%': { transform: 'scaleX(0)' },
-          '100%': { transform: 'scaleX(1)' },
+          '0%': { right: '-3%', opacity: '0' },
+          '100%': { right: '0%' , opacity: '1' },
         },
         showReg: {
-          '0%': { transform: 'scale(0)' },
-          '100%': { transform: 'scale(1)' },
+          '0%': { left: '-3%', opacity: '0' },
+          '100%': { left: '0%' , opacity: '1' },
         },
         showMenu: {
           '0%': { left: '-100%' },
