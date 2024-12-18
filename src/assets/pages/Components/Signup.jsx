@@ -210,7 +210,7 @@ const Signup = () => {
                 </ul>
               <h3 className="text-center font-ubuntu text-clrthird font-bold mt-10 ">
                 Do you have an account already? Please{" "}
-                <Link to="/Login"
+                <Link to="/"
                   className="text-brand link hover:after:w-full "
                 >
                   login
