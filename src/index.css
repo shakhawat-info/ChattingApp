@@ -8,8 +8,15 @@
   ::-webkit-scrollbar {
     display: none;
   }
+  input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
+}
   /* common css end */
   /* signup lodin page start */
+
   .sign-InUp{
     @apply w-full text-primarytxt md:text-clrthird bg-bgsecondery md:bg-primarytxt outline-none border-none py-4 rounded-[10px] pl-10 placeholder:text-clrthird font-ubuntu text-xs  font-medium tracking-[1.5px] md:border-[1px] md:border-clrthird md:border-solid
   }

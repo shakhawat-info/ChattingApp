@@ -17,10 +17,19 @@ import { CiMail } from "react-icons/ci";
 import loginsignupIMG2 from "../../images/cting.jpg";
 import { Link } from "react-router";
 
-
-
 const Login = () => {
-  // Password Show/Hide
+  // Name Function
+  let [email, setEmail] = useState("");
+  let [mailerr, setMailerr] = useState(false);
+
+  let username = (e) => {
+    setEmail(e.target.value);
+    setMailerr(false);
+  };
+
+  // Password Function
+
+  // pass show/hide
   let [PassShowHide, setPassShowHide] = useState(true);
 
   let PasshowHide = () => {
@@ -31,6 +40,12 @@ const Login = () => {
     }
   };
 
+  let [password , setPassword] = useState('');
+  let [passerror , setPasserror] = useState(false);
+  let passwordFn = (e)=>{
+    setPassword(e.target.value);
+    setPasserror(false);
+  }
 
   // login/signup Form Submition
   let FormSubmit = (event) => {
@@ -38,6 +53,15 @@ const Login = () => {
     console.log("form submited");
   };
 
+  // Login function
+  let Login = () => {
+    if (!email) {
+      setMailerr(true);
+    }
+    if(!password){
+      setPasserror(true)
+    }
+  };
   return (
     <>
       <section className="overflow-x-hidden absolute top-0 right-0 w-full animate-showLogin">
@@ -74,29 +98,29 @@ const Login = () => {
                     onSubmit={FormSubmit}
                   >
                     <div className="relative   ">
-                      <FaUser className="boxIcon   " />
+                      <FaUser className={`boxIcon ${mailerr && 'text-red-600'}`} />
                       <input
+                        onChange={username}
                         type="text"
                         placeholder="Username or Email"
-                        className=" sign-InUp "
-                        required="required"
+                        className={`sign-InUp ${mailerr && 'placeholder:text-red-600 '}`}
                       />
                     </div>
                     <div className="relative">
-                      <MdLockPerson className="boxIcon  " />
+                      <MdLockPerson className={`boxIcon ${passerror && 'text-red-600'}`} />
                       {PassShowHide ? (
                         <input
+                        onChange={passwordFn}
                           type="text"
                           placeholder="Password"
-                          className=" sign-InUp "
-                          required="required"
+                          className={`sign-InUp ${passerror && 'placeholder:text-red-600 '}`}
                         />
                       ) : (
                         <input
+                        onChange={passwordFn}
                           type="password"
                           placeholder="Password"
-                          className=" sign-InUp "
-                          required="required"
+                          className={`sign-InUp ${passerror && 'placeholder:text-red-600 '}`}
                         />
                       )}
                       <button
@@ -105,9 +129,9 @@ const Login = () => {
                         className="absolute top-0 right-[10px]  p-3 "
                       >
                         {PassShowHide ? (
-                          <GoEye className="text-clrthird text-[23px]" />
+                          <GoEye className={`text-clrthird text-[23px] ${passerror && 'text-red-600'}`} />
                         ) : (
-                          <GoEyeClosed className="text-clrthird text-[23px]" />
+                          <GoEyeClosed className={`text-clrthird text-[23px] ${passerror && 'text-red-600'}`} />
                         )}
                       </button>
                     </div>
@@ -119,6 +143,7 @@ const Login = () => {
                         sign in
                       </span>
                       <button
+                        onClick={Login}
                         type="submit"
                         className="w-[50px] h-[50px] grid place-items-center bg-brand text-[25px] rounded-full text-primarytxt "
                       >
@@ -148,8 +173,16 @@ const Login = () => {
                       <CiMail />
                     </li>
                   </ul>
-                  <h3 className="text-center font-ubuntu text-clrthird font-bold mt-10  ">You don't have any account ? Please{" "}
-                    <Link to="/Signup" className="text-brand link hover:after:w-full   " > create </Link>{" "}an account
+                  <h3 className="text-center font-ubuntu text-clrthird font-bold mt-10  ">
+                    You don't have any account ? Please{" "}
+                    <Link
+                      to="/Signup"
+                      className="text-brand link hover:after:w-full   "
+                    >
+                      {" "}
+                      create{" "}
+                    </Link>{" "}
+                    an account
                   </h3>
                 </div>
               </div>
