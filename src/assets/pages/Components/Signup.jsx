@@ -25,10 +25,10 @@ import { IoCalendarNumberOutline } from "react-icons/io5";
 // images
 // import loginsignupIMG from "../images/chatting.jpg";
 import loginsignupIMG2 from "../../images/cting.jpg";
-import { Link , useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Signup = () => {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   const auth = getAuth();
 
   // Name
@@ -100,75 +100,62 @@ const Signup = () => {
 
   // Form values
 
-  let [nameok, setNameok] = useState(false);
-  let [mailok, setMailok] = useState(false);
-  let [birthok, setBirthok] = useState(false);
-  let [passok, setPassok] = useState(false);
-  let [passconfirmok, setPassconfirmok] = useState(false);
   let [created, setCreated] = useState("");
   // SignupSubmit Function
   let SignupSubmit = () => {
     if (!name) {
       setNameerr(true);
-    } else {
-      setNameok(true);
     }
 
     if (!email) {
       setMailerr(true);
     } else {
       if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-        setMailok(true);
-      } else {
-        setMailerr(true);
+        setMailerr(false);
       }
     }
 
     if (!birth) {
       setBirtherr(true);
-    } else {
-      setBirthok(true);
     }
 
     if (!passVal) {
       setPasserr(true);
     } else {
       if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(passVal)) {
-        setPassok(true);
-      } else {
-        setPasserr(true);
+        setPasserr(false);
       }
     }
 
     if (!confpassVal || passVal !== confpassVal) {
       setConfirmpasserr(true);
-    } else {
-      setPassconfirmok(true);
     }
-    if (nameok && mailok && birthok && passok && passconfirmok) {
+    if (name && email && birth && passVal && confpassVal) {
       createUserWithEmailAndPassword(auth, email, passVal)
         .then((userCredential) => {
           // Signed up
           sendEmailVerification(auth.currentUser).then(() => {
             updateProfile(auth.currentUser, {
-              displayName: name, 
-              photoURL: ""
-            }).then(() => {
-              // Profile updated!
-              const user = userCredential.user;
-              setName('');
-              setEmail('');
-              setBirth('');
-              setPassVal('');
-              setConfpassVal();
-              setTimeout(()=>{
-                navigate("/")
-              },1500);
-              // ...
-            }).catch((error) => {
-              // An error occurred
-              // ...
-            });
+              displayName: name,
+              photoURL: "",
+            })
+              .then(() => {
+                // Profile updated!
+                const user = userCredential.user;
+                setName("");
+                setEmail("");
+                setBirth("");
+                setPassVal("");
+                setConfpassVal();
+                setTimeout(() => {
+                  navigate("/");
+                }, 1500);
+                // ...
+              })
+              .catch((error) => {
+                // An error occurred
+                // ...
+              });
           });
           setCreated(`created`);
         })
