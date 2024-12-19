@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
 // icons
 import { FaUser } from "react-icons/fa";
 import { MdLockPerson } from "react-icons/md";
@@ -20,13 +25,11 @@ import { IoCalendarNumberOutline } from "react-icons/io5";
 // images
 // import loginsignupIMG from "../images/chatting.jpg";
 import loginsignupIMG2 from "../../images/cting.jpg";
-import { Link } from "react-router";
+import { Link , useNavigate } from "react-router";
 
 const Signup = () => {
+  let navigate = useNavigate()
   const auth = getAuth();
-
-
-
 
   // Name
   let [name, setName] = useState("");
@@ -95,23 +98,20 @@ const Signup = () => {
     // console.log('form submited');
   };
 
+  // Form values
 
-// Form values
-
-let [nameok , setNameok] = useState(false);
-let [mailok , setMailok] = useState(false);
-let [birthok , setBirthok] = useState(false);
-let [passok , setPassok] = useState(false);
-let [passconfirmok , setPassconfirmok] = useState(false);
-let [created , setCreated] = useState('');
+  let [nameok, setNameok] = useState(false);
+  let [mailok, setMailok] = useState(false);
+  let [birthok, setBirthok] = useState(false);
+  let [passok, setPassok] = useState(false);
+  let [passconfirmok, setPassconfirmok] = useState(false);
+  let [created, setCreated] = useState("");
   // SignupSubmit Function
   let SignupSubmit = () => {
-
-
     if (!name) {
       setNameerr(true);
-    }else{
-      setNameok(true)
+    } else {
+      setNameok(true);
     }
 
     if (!email) {
@@ -126,7 +126,7 @@ let [created , setCreated] = useState('');
 
     if (!birth) {
       setBirtherr(true);
-    }else{
+    } else {
       setBirthok(true);
     }
 
@@ -142,20 +142,41 @@ let [created , setCreated] = useState('');
 
     if (!confpassVal || passVal !== confpassVal) {
       setConfirmpasserr(true);
-    }else{
-      setPassconfirmok(true)
+    } else {
+      setPassconfirmok(true);
     }
     if (nameok && mailok && birthok && passok && passconfirmok) {
       createUserWithEmailAndPassword(auth, email, passVal)
         .then((userCredential) => {
           // Signed up
-          const user = userCredential.user;
-          // ...
+          sendEmailVerification(auth.currentUser).then(() => {
+            updateProfile(auth.currentUser, {
+              displayName: name, 
+              photoURL: ""
+            }).then(() => {
+              // Profile updated!
+              const user = userCredential.user;
+              setName('');
+              setEmail('');
+              setBirth('');
+              setPassVal('');
+              setConfpassVal();
+              setTimeout(()=>{
+                useNavigate('/')
+              },1500);
+              // ...
+            }).catch((error) => {
+              // An error occurred
+              // ...
+            });
+          });
           setCreated(`created`);
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          console.log(errorCode);
+
           // ..
           setCreated(`Something Wrong , Try again.`);
         });
@@ -344,8 +365,9 @@ let [created , setCreated] = useState('');
                         )}
                       </button>
                     </div>
-                    <h5 className="text-green-500 flex items-center gap-x-1 font-ubuntu ">{created} </h5>
-                    {created && <h5>Sign Up Done , Please Login</h5> }
+                    <h5 className="text-green-500 flex items-center gap-x-1 font-ubuntu ">
+                      {created}{" "}
+                    </h5>
                     <h4 className="font-aldrich text-clrthird mt-[-20px] text-[18px] ">
                       By clicking the{" "}
                       <span className="link hover:after:w-full ">Register</span>{" "}
