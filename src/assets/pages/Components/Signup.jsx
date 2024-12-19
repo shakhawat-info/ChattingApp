@@ -162,7 +162,7 @@ const Signup = () => {
               setPassVal('');
               setConfpassVal();
               setTimeout(()=>{
-                useNavigate('/')
+                navigate("/")
               },1500);
               // ...
             }).catch((error) => {
