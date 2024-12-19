@@ -6,6 +6,7 @@ import { MdLockPerson } from "react-icons/md";
 import { GoEyeClosed } from "react-icons/go";
 import { GoEye } from "react-icons/go";
 import { BiLogInCircle } from "react-icons/bi";
+import { BiMessageSquareError } from "react-icons/bi";
 
 // sign in/up with icons
 import { FcGoogle } from "react-icons/fc";
@@ -79,7 +80,7 @@ const Login = () => {
                 className="w-[60%] mx-auto rounded-md "
               />
               <h1 className="font-aldrich text-primarytxt md:text-bodybg font-black text-center md:text-xl text-3xl md:mt-5 mt-[50px]  ">
-                Welcome to the professional community.
+                Welcome to the <span className="text-brand">'Ochigram'</span> (professional community).
               </h1>
               <p className="font-ubuntu text-primarytxt md:text-bodybg text-md md:text-sm text-center font-semibold mt-2  ">
                 Enjoy your life with your family and friends. Thank you for
@@ -98,40 +99,42 @@ const Login = () => {
                     onSubmit={FormSubmit}
                   >
                     <div className="relative   ">
-                      <FaUser className={`boxIcon ${mailerr && 'text-red-600'}`} />
+                      <FaUser className={`boxIcon ${mailerr && 'text-brand'}`} />
                       <input
                         onChange={username}
                         type="text"
                         placeholder="Username or Email"
-                        className={`sign-InUp ${mailerr && 'placeholder:text-red-600 '}`}
+                        className={`sign-InUp ${mailerr && 'placeholder:text-brand'}`}
                       />
+                      {mailerr && <p className="flex items-center gap-x-1 text-brand font-ubuntu text-[12px]  "><span>Username/E-mail is required</span><BiMessageSquareError /></p>}
                     </div>
                     <div className="relative">
-                      <MdLockPerson className={`boxIcon ${passerror && 'text-red-600'}`} />
+                      <MdLockPerson className={`boxIcon ${passerror && 'text-brand'}`} />
                       {PassShowHide ? (
                         <input
                         onChange={passwordFn}
                           type="text"
                           placeholder="Password"
-                          className={`sign-InUp ${passerror && 'placeholder:text-red-600 '}`}
+                          className={`sign-InUp ${passerror && 'placeholder:text-brand '}`}
                         />
                       ) : (
                         <input
                         onChange={passwordFn}
                           type="password"
                           placeholder="Password"
-                          className={`sign-InUp ${passerror && 'placeholder:text-red-600 '}`}
+                          className={`sign-InUp ${passerror && 'placeholder:text-brand '}`}
                         />
                       )}
+                      {passerror && <p className="flex items-center gap-x-1 text-brand font-ubuntu text-[12px]  "><span>Password is required</span><BiMessageSquareError /></p>}
                       <button
                         type="button"
                         onClick={PasshowHide}
                         className="absolute top-0 right-[10px]  p-3 "
                       >
                         {PassShowHide ? (
-                          <GoEye className={`text-clrthird text-[23px] ${passerror && 'text-red-600'}`} />
+                          <GoEye className={`text-clrthird text-[23px] ${passerror && 'text-brand'}`} />
                         ) : (
-                          <GoEyeClosed className={`text-clrthird text-[23px] ${passerror && 'text-red-600'}`} />
+                          <GoEyeClosed className={`text-clrthird text-[23px] ${passerror && 'text-brand'}`} />
                         )}
                       </button>
                     </div>

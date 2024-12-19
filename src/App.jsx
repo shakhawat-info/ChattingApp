@@ -1,6 +1,4 @@
 import { useState } from "react";
-import LoginSignup from "./assets/pages/LoginSignup";
-import Home from "./assets/pages/Home";
 import Login from "./assets/pages/Components/Login";
 import Signup from "./assets/pages/Components/Signup";
 

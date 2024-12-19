@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 // icons
 import { FaUser } from "react-icons/fa";
 import { MdLockPerson } from "react-icons/md";
 import { GoEyeClosed } from "react-icons/go";
 import { GoEye } from "react-icons/go";
 import { BiLogInCircle } from "react-icons/bi";
+import { BiMessageSquareError } from "react-icons/bi";
+import { IoCheckmarkDone } from "react-icons/io5";
 
 // sign in/up with icons
 import { FcGoogle } from "react-icons/fc";
@@ -20,9 +22,12 @@ import { IoCalendarNumberOutline } from "react-icons/io5";
 import loginsignupIMG2 from "../../images/cting.jpg";
 import { Link } from "react-router";
 
-// metarial tailwind
-
 const Signup = () => {
+  const auth = getAuth();
+
+
+
+
   // Name
   let [name, setName] = useState("");
   let [nameerr, setNameerr] = useState(false);
@@ -90,24 +95,71 @@ const Signup = () => {
     // console.log('form submited');
   };
 
+
+// Form values
+
+let [nameok , setNameok] = useState(false);
+let [mailok , setMailok] = useState(false);
+let [birthok , setBirthok] = useState(false);
+let [passok , setPassok] = useState(false);
+let [passconfirmok , setPassconfirmok] = useState(false);
+let [created , setCreated] = useState('');
   // SignupSubmit Function
   let SignupSubmit = () => {
+
+
     if (!name) {
       setNameerr(true);
+    }else{
+      setNameok(true)
     }
+
     if (!email) {
       setMailerr(true);
+    } else {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        setMailok(true);
+      } else {
+        setMailerr(true);
+      }
     }
+
     if (!birth) {
       setBirtherr(true);
+    }else{
+      setBirthok(true);
     }
+
     if (!passVal) {
       setPasserr(true);
+    } else {
+      if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(passVal)) {
+        setPassok(true);
+      } else {
+        setPasserr(true);
+      }
     }
-    if (!confirmpasserr) {
+
+    if (!confpassVal || passVal !== confpassVal) {
       setConfirmpasserr(true);
+    }else{
+      setPassconfirmok(true)
     }
-    console.log(name, email, birth, passVal, confpassVal);
+    if (nameok && mailok && birthok && passok && passconfirmok) {
+      createUserWithEmailAndPassword(auth, email, passVal)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          // ...
+          setCreated(`created`);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+          setCreated(`Something Wrong , Try again.`);
+        });
+    }
   };
   return (
     <>
@@ -126,7 +178,8 @@ const Signup = () => {
                 className="w-[60%] mx-auto rounded-md "
               />
               <h1 className="font-aldrich text-primarytxt md:text-bodybg font-black text-center md:text-xl text-3xl md:mt-5 mt-[50px]  ">
-                Welcome to the professional community.
+                Welcome to the <span className="text-brand">'Ochigram'</span>{" "}
+                (professional community).
               </h1>
               <p className="font-ubuntu text-primarytxt md:text-bodybg text-md md:text-sm text-center font-semibold mt-2  ">
                 Enjoy your life with your family and friends. Thank you for
@@ -156,40 +209,70 @@ const Signup = () => {
                           nameerr && "placeholder:text-red-600"
                         }`}
                       />
+                      {nameerr && (
+                        <p className="flex items-center gap-x-1 text-brand font-ubuntu text-[12px]  ">
+                          <span>Name is required</span>
+                          <BiMessageSquareError />
+                        </p>
+                      )}
                     </div>
                     <div className="relative   ">
-                      <FaUser className={`boxIcon  ${mailerr && 'text-red-600'}`}/>
+                      <FaUser
+                        className={`boxIcon  ${mailerr && "text-red-600"}`}
+                      />
                       <input
                         onChange={mailFunc}
                         type="email"
                         placeholder="Username or Email"
-                        className={`sign-InUp ${mailerr && 'placeholder:text-red-600'}`}
+                        className={`sign-InUp ${
+                          mailerr && "placeholder:text-red-600"
+                        }`}
                       />
+                      {mailerr && (
+                        <p className="flex items-center gap-x-1 text-brand font-ubuntu text-[12px]  ">
+                          <span>E-mail is required</span>
+                          <BiMessageSquareError />
+                        </p>
+                      )}
                     </div>
                     <div className="relative   ">
-                      <IoCalendarNumberOutline className={`boxIcon ${birtherr && 'text-red-600 '}`} />
+                      <IoCalendarNumberOutline
+                        className={`boxIcon ${birtherr && "text-red-600 "}`}
+                      />
                       <input
                         onChange={birthFunc}
                         type="date"
                         placeholder="Enter your birth date"
                         className=" sign-InUp "
                       />
+                      {birtherr && (
+                        <p className="flex items-center gap-x-1 text-brand font-ubuntu text-[12px]  ">
+                          <span>Birth date is required</span>
+                          <BiMessageSquareError />
+                        </p>
+                      )}
                     </div>
                     <div className="relative">
-                      <MdLockPerson className={`boxIcon ${passerr && 'text-red-600'}`} />
+                      <MdLockPerson
+                        className={`boxIcon ${passerr && "text-red-600"}`}
+                      />
                       {PassShowHide ? (
                         <input
                           onChange={passFunc}
                           type="text"
                           placeholder="Password"
-                          className={`sign-InUp ${passerr && 'placeholder:text-red-600'}`}
+                          className={`sign-InUp ${
+                            passerr && "placeholder:text-red-600"
+                          }`}
                         />
                       ) : (
                         <input
                           onChange={passFunc}
                           type="password"
                           placeholder="Password"
-                          className={`sign-InUp ${passerr && 'placeholder:text-red-600'}`}
+                          className={`sign-InUp ${
+                            passerr && "placeholder:text-red-600"
+                          }`}
                         />
                       )}
                       <button
@@ -198,28 +281,54 @@ const Signup = () => {
                         className="absolute top-0 right-[10px]  p-3 "
                       >
                         {PassShowHide ? (
-                          <GoEye className={`text-clrthird text-[23px] ${passerr && 'text-red-600'}`} />
+                          <GoEye
+                            className={`text-clrthird text-[23px] ${
+                              passerr && "text-red-600"
+                            }`}
+                          />
                         ) : (
-                          <GoEyeClosed className={`text-clrthird text-[23px] ${passerr && 'text-red-600'}`} />
+                          <GoEyeClosed
+                            className={`text-clrthird text-[23px] ${
+                              passerr && "text-red-600"
+                            }`}
+                          />
                         )}
                       </button>
+                      {passerr && (
+                        <p className="flex items-center gap-x-1 text-brand font-ubuntu text-[12px]  ">
+                          <span>Password is required</span>
+                          <BiMessageSquareError />
+                        </p>
+                      )}
                     </div>
                     <div className="relative">
-                      <MdLockPerson className={`boxIcon ${confirmpasserr && 'text-red-600'}`} />
+                      <MdLockPerson
+                        className={`boxIcon ${confirmpasserr && "text-brand"}`}
+                      />
                       {ConfirmPass ? (
                         <input
                           onChange={confirmPassFunc}
                           type="text"
                           placeholder="Confirm password"
-                          className={`sign-InUp ${confirmpasserr && 'placeholder:text-red-600'}`}
+                          className={`sign-InUp ${
+                            confirmpasserr && "placeholder:text-brand"
+                          }`}
                         />
                       ) : (
                         <input
                           onChange={confirmPassFunc}
                           type="password"
                           placeholder="Confirm password"
-                          className={`sign-InUp ${confirmpasserr && 'placeholder:text-red-600'}`}
+                          className={`sign-InUp ${
+                            confirmpasserr && "placeholder:text-brand"
+                          }`}
                         />
+                      )}
+                      {confirmpasserr && (
+                        <p className="flex items-center gap-x-1 text-brand font-ubuntu text-[12px]  ">
+                          <span>Password Confirmation is required</span>
+                          <BiMessageSquareError />
+                        </p>
                       )}
                       <button
                         type="button"
@@ -227,12 +336,16 @@ const Signup = () => {
                         className="absolute top-0 right-[10px]  p-3 "
                       >
                         {ConfirmPass ? (
-                          <GoEye className={`text-clrthird text-[23px] ${confirmpasserr && 'text-red-600'}`} />
+                          <GoEye className={`text-clrthird text-[23px]`} />
                         ) : (
-                          <GoEyeClosed className={`text-clrthird text-[23px] ${confirmpasserr && 'text-red-600'}`} />
+                          <GoEyeClosed
+                            className={`text-clrthird text-[23px]`}
+                          />
                         )}
                       </button>
                     </div>
+                    <h5 className="text-green-500 flex items-center gap-x-1 font-ubuntu ">{created} </h5>
+                    {created && <h5>Sign Up Done , Please Login</h5> }
                     <h4 className="font-aldrich text-clrthird mt-[-20px] text-[18px] ">
                       By clicking the{" "}
                       <span className="link hover:after:w-full ">Register</span>{" "}
