@@ -12,12 +12,12 @@ const Navbtm = () => {
   return (
     <div className="w-full">
     <ul className="flex justify-between">
-        <li className='NavbtmIcon'><GoHome /></li>
-        <li className='NavbtmIcon'><GoPeople /></li>
-        <li className='NavbtmIcon'><PiMessengerLogoThin /></li>
-        <li className='NavbtmIcon'><VscBell /></li>
-        <li className='NavbtmIcon'><PiVideoLight /></li>
-        <li className='NavbtmIcon'><RiStore2Line /></li>
+        <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><GoHome /></li>
+        <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><GoPeople /></li>
+        <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><PiMessengerLogoThin /></li>
+        <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><VscBell /></li>
+        <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><PiVideoLight /></li>
+        <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><RiStore2Line /></li>
     </ul>
 </div>
   )

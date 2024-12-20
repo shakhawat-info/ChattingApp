@@ -109,12 +109,15 @@
 
   /* home page start */
   .topIcon {
-    @apply w-[50px] h-[50px] bg-clrthird/10 grid place-items-center rounded-full text-xl cursor-pointer;
+    @apply w-[50px] h-[50px] bg-clrthird/10 grid place-items-center rounded-full text-xl cursor-pointer hover:text-primarytxt duration-[.4s] overflow-hidden ;  
+  }
+  .hoverEfct{
+    @apply after:absolute after:top-0 after:left-0 after:w-[0] after:h-[0] after:bg-brand after:z-[-1] after:duration-[.4s] after:rounded-full hover:after:w-full hover:after:h-full
   }
   /* home page end */
   /* Navbtm start */
   .NavbtmIcon {
-    @apply w-[50px] h-[50px] bg-clrthird/10 grid place-items-center rounded-full text-xl cursor-pointer;
+    @apply w-[45px] h-[45px] bg-clrthird/10 grid place-items-center rounded-full text-xl cursor-pointer duration-[.4s];
   }
   /* Navbtm end */
 }
