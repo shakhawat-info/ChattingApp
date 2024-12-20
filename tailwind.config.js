@@ -52,6 +52,10 @@ module.exports = withMT({
           '100%': { right: '-30%' },
         },
       },
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        'gridMenu': '1fr 1fr',
+      }
     },
     fontFamily: {
       'aldrich': ["Aldrich", 'sans-serif'],

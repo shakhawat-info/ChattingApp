@@ -122,7 +122,7 @@
   /* Navbtm end */
   /* Menu start */
   .menuBox{
-    @apply hover:bg-clrthird/5 rounded-md bg-[#fff] duration-[.4s] p-2
+    @apply hover:bg-clrthird/5 rounded-md bg-[#fff] duration-[.4s] p-2 cursor-pointer flex items-center
   }
   .menutxt{
     @apply font-ubuntu text-clrthird
