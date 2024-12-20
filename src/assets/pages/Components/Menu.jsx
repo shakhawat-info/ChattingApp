@@ -63,18 +63,18 @@ const Menu = ({ memu }) => {
         </div>
         <div className="grid grid-cols-gridMenu gap-2">
           <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< BiSolidVideos className="text-xl text-[#e37568] " /><span>reels</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< PiMessengerLogoThin className="text-xl" /><span>reels</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< MdGroups className="text-xl" /><span>reels</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< PiVideoLight className="text-xl" /><span>reels</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< IoVideocamOutline className="text-xl" /><span>reels</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< RiStore2Line className="text-xl" /><span>reels</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< ImFlag className="text-xl" /><span>reels</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< CiBookmarkCheck className="text-xl" /><span>reels</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< RiMemoriesFill className="text-xl" /><span>reels</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< BsCalendar4Event className="text-xl" /><span>reels</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< GoVerified className="text-xl" /><span>reels</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< FaEarthEurope className="text-xl" /><span>reels</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< CiInstagram className="text-xl" /><span>reels</span></div>
+          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< PiMessengerLogoThin className="text-xl text-[#4967f4] " /><span>messenger</span></div>
+          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< MdGroups className="text-xl text-[#45a7ee] " /><span>groups</span></div>
+          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< PiVideoLight className="text-xl text-[#72BAA9]" /><span>video</span></div>
+          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< IoVideocamOutline className="text-xl text-brand " /><span>live</span></div>
+          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< RiStore2Line className="text-xl text-[#1eaa2e]" /><span>marketplace</span></div>
+          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< ImFlag className="text-xl text-[#a96216] " /><span>pages</span></div>
+          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< CiBookmarkCheck className="text-xl text-[#3E5879] " /><span>saved</span></div>
+          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< RiMemoriesFill className="text-xl text-brand " /><span>memories</span></div>
+          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< BsCalendar4Event className="text-xl text-brand/60 " /><span>events</span></div>
+          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< GoVerified className="text-xl text-[#436850] " /><span>varified</span></div>
+          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< FaEarthEurope className="text-xl text-[#1ab14f] " /><span>public</span></div>
+          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< CiInstagram className="text-xl text-brand " /><span>instagram lite</span></div>
         </div>
       </div>
     </div>

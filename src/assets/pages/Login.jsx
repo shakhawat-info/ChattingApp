@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { Link , Navigate, useNavigate } from "react-router";
 // icons
 import { FaUser } from "react-icons/fa";
 import { MdLockPerson } from "react-icons/md";
@@ -16,9 +17,16 @@ import { CiMail } from "react-icons/ci";
 
 // images
 import loginsignupIMG2 from "../images/cting.jpg";
-import { Link } from "react-router";
+
 
 const Login = () => {
+  // Database
+  const auth = getAuth();
+
+  // Navigation
+  let navigate = useNavigate()
+
+
   // Name Function
   let [email, setEmail] = useState("");
   let [mailerr, setMailerr] = useState(false);
@@ -62,6 +70,23 @@ const Login = () => {
     if(!password){
       setPasserror(true)
     }
+    if(email && password){
+      signInWithEmailAndPassword(auth, email, password)
+       .then((userCredential) => {
+         // Signed in 
+         const user = userCredential.user;
+         // ...
+         navigate('/Home')
+         console.log('successful');
+         
+       })
+       .catch((error) => {
+         const errorCode = error.code;
+         const errorMessage = error.message;
+         console.log(errorCode);
+         
+       });
+    }
   };
   return (
     <>
@@ -94,7 +119,6 @@ const Login = () => {
                     welcome back!
                   </h2>
                   <form
-                    action="#"
                     className="flex flex-col gap-y-8 mt-9  "
                     onSubmit={FormSubmit}
                   >

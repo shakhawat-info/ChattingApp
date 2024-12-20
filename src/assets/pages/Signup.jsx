@@ -145,7 +145,12 @@ const Signup = () => {
                   Email: email,
                   Birth: birth ,
                   profile_picture : "https://ibb.co.com/yQGMQF7"
-                });
+                }).then(()=>{
+                  setCreated('Account created Successfull')
+                  navigate('/')
+                }).catch(()=>{
+                  setCreated('Account creation error!')
+                })
               });
             }).catch((error) => {
               // An error occurred
@@ -371,9 +376,6 @@ const Signup = () => {
                       >
                         <BiLogInCircle />
                       </button>
-                      {/* <IconButton className="w-[100px] h-[100px] grid place-items-center bg-brand text-[20px] rounded-full text-primarytxt ">
-            <BiLogInCircle />
-          </IconButton> */}
                     </div>
                   </form>
                 </div>
