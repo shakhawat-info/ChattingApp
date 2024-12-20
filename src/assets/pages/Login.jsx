@@ -15,7 +15,7 @@ import { FaApple } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 
 // images
-import loginsignupIMG2 from "../../images/cting.jpg";
+import loginsignupIMG2 from "../images/cting.jpg";
 import { Link } from "react-router";
 
 const Login = () => {

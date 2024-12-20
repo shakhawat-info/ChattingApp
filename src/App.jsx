@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Login from "./assets/pages/Components/Login";
-import Signup from "./assets/pages/Components/Signup";
+import Login from "./assets/pages/Login";
+import Signup from "./assets/pages/Signup";
+import Home from "./assets/pages/Home";
 
 import { BrowserRouter, Routes, Route } from "react-router";
 
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
+        <Route path="/Home" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );

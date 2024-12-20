@@ -31,7 +31,7 @@ module.exports = withMT({
       animation: {
         'showLogin': 'showLogin .4s linear ',
         'showReg': 'showReg .4s linear ',
-        'showMenu': 'showMenu .3s linear ',
+        'showMenu': 'showMenu .4s linear ',
       },
       keyframes: {
         showLogin: {
@@ -43,8 +43,8 @@ module.exports = withMT({
           '100%': { left: '0%' , opacity: '1' },
         },
         showMenu: {
-          '0%': { left: '-100%' },
-          '100%': { left: '0%' },
+          '0%': { right: '-20%' },
+          '100%': { right: '0%' },
         },
       },
       gridTemplateColumns: {

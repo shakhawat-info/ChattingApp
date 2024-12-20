@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  sendEmailVerification,
   updateProfile,
+  sendEmailVerification,
 } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 // icons
 import { FaUser } from "react-icons/fa";
 import { MdLockPerson } from "react-icons/md";
@@ -24,12 +25,13 @@ import { IoCalendarNumberOutline } from "react-icons/io5";
 
 // images
 // import loginsignupIMG from "../images/chatting.jpg";
-import loginsignupIMG2 from "../../images/cting.jpg";
+import loginsignupIMG2 from "../images/cting.jpg";
 import { Link, useNavigate } from "react-router";
 
 const Signup = () => {
   let navigate = useNavigate();
   const auth = getAuth();
+  const db = getDatabase();
 
   // Name
   let [name, setName] = useState("");
@@ -109,10 +111,8 @@ const Signup = () => {
 
     if (!email) {
       setMailerr(true);
-    } else {
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-        setMailerr(false);
-      }
+    } else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      setMailerr(false);
     }
 
     if (!birth) {
@@ -121,10 +121,8 @@ const Signup = () => {
 
     if (!passVal) {
       setPasserr(true);
-    } else {
-      if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(passVal)) {
-        setPasserr(false);
-      }
+    } else if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(passVal)) {
+      setPasserr(false);
     }
 
     if (!confpassVal || passVal !== confpassVal) {
@@ -133,39 +131,34 @@ const Signup = () => {
     if (name && email && birth && passVal && confpassVal) {
       createUserWithEmailAndPassword(auth, email, passVal)
         .then((userCredential) => {
-          // Signed up
-          sendEmailVerification(auth.currentUser).then(() => {
-            updateProfile(auth.currentUser, {
-              displayName: name,
-              photoURL: "",
-            })
-              .then(() => {
-                // Profile updated!
-                const user = userCredential.user;
-                setName("");
-                setEmail("");
-                setBirth("");
-                setPassVal("");
-                setConfpassVal();
-                setTimeout(() => {
-                  navigate("/");
-                }, 1500);
-                // ...
-              })
-              .catch((error) => {
-                // An error occurred
-                // ...
+          // Update Profile
+          const user = userCredential.user;
+          updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: "https://ibb.co.com/yQGMQF7",
+          }).then(() => {
+              // send Email
+              sendEmailVerification(auth.currentUser).then(() => {
+                // Send Signup data to Firebase Realtime database
+                set(ref(db, 'users/' + user.uid), {
+                  Name: name,
+                  Email: email,
+                  Birth: birth ,
+                  profile_picture : "https://ibb.co.com/yQGMQF7"
+                });
               });
-          });
-          setCreated(`created`);
-        })
-        .catch((error) => {
+            }).catch((error) => {
+              // An error occurred
+              // ...
+            });
+
+          // ...
+          console.log(user);
+        }).catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode);
-
           // ..
-          setCreated(`Something Wrong , Try again.`);
+          console.log(errorCode);
         });
     }
   };
