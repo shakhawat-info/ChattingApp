@@ -32,6 +32,7 @@ module.exports = withMT({
         'showLogin': 'showLogin .4s linear ',
         'showReg': 'showReg .4s linear ',
         'showMenu': 'showMenu .4s linear ',
+        'hideMenu': 'hideMenu .4s linear ',
       },
       keyframes: {
         showLogin: {
@@ -43,13 +44,14 @@ module.exports = withMT({
           '100%': { left: '0%' , opacity: '1' },
         },
         showMenu: {
-          '0%': { right: '-20%' },
+          '0%': { right: '-30%' },
           '100%': { right: '0%' },
         },
+        hideMenu: {
+          '0%': { right: '0%' },
+          '100%': { right: '-30%' },
+        },
       },
-      gridTemplateColumns: {
-        'home': '10% 85% 5%',
-      }
     },
     fontFamily: {
       'aldrich': ["Aldrich", 'sans-serif'],
