@@ -25,7 +25,7 @@ import profile from '../../images/profile.jpg';
 
 const Menu = ({ memu }) => {
   return (
-    <div className={`absolute top-0  w-[25%] bg-[#f3f4f5] mt-1  ${memu ? "animate-showMenu right-0" : "animate-hideMenu right-[-30%]"}  `}>
+    <div className={`absolute lg:top-0 top-[-12%] z-[2]  lg:w-[25%] w-full bg-[#f3f4f5] mt-1  ${memu ? "lg:animate-showMenu animate-showMenuSM right-0" : "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "}  `}>
       <div className="flex flex-col gap-y-2 p-2">
         <div className="flex justify-between ">
           <h3 className="flex items-center gap-x-2 border-l font-aldrich font-semibold text-lg cursor-pointer  ">
@@ -36,7 +36,7 @@ const Menu = ({ memu }) => {
             <BsSearch />
           </button>
         </div>
-        <div className="flex flex-col mt-5  menuBox items-start ">
+        <div className="flex flex-col mt-3  menuBox items-start ">
           <div className="flex justify-between items-center w-full pb-1">
             <img src={profile} alt="profile" className="w-[40px] h-[40px] rounded-full object-cover cursor-pointer " />
             <IoIosArrowDropdown className="text-3xl cursor-pointer" />

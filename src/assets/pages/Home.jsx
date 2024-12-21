@@ -18,12 +18,13 @@ const Home = () => {
   };
   return (
     <>
-      <nav className="px-5 py-3 shadow relative">
-        <div className="flex justify-between items-center  ">
-          <span className="font-aldrich text-3xl font-black capitalize text-brand   ">
+      <nav className="lg:px-5 px-2 lg:py-3 py-2 shadow relative z-[1]">
+        <div className="container">
+          <div className="flex justify-between items-center  ">
+            <span className="font-aldrich lg:text-3xl text-lg font-black capitalize text-brand   ">
             ochigram
-          </span>
-          <ul className="flex gap-x-3 ">
+            </span>
+            <ul className="flex gap-x-3 ">
             <li className="topIcon hoverEfct relative">
               <BsPlusSquare />
             </li>
@@ -33,15 +34,16 @@ const Home = () => {
             <li className="topIcon hoverEfct relative" onClick={MenuVisiblity}>
             <CgMenuRight />
             </li>
-          </ul>
-        </div>
-        <div className="flex justify-between w-full lg:absolute lg:top-[15px] lg:left-[50%] lg:translate-x-[-25%] lg:w-1/2 ">
-          <div className="w-[50%]">
+            </ul>
+          </div>
+          <div className="flex justify-between w-full lg:absolute lg:top-[15px] lg:left-[50%] lg:translate-x-[-25%] lg:w-1/2 ">
+          <div className="lg:w-[50%] w-full mt-2 lg:mt-0">
             <Navbtm />
+          </div>
           </div>
         </div>
       </nav>
-      <div className=" relative overflow-x-hidden h-screen ">
+      <div className=" relative z-[1] h-screen ">
         gsgsdfs
         <Menu memu={memu}/>
       </div>

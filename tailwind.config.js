@@ -12,7 +12,6 @@ module.exports = withMT({
 
       // default breakpoints but with 40px removed
       screens: {
-        xsm: '100%',
         sm: '600px',
         md: '728px',
         lg: '984px',
@@ -32,7 +31,9 @@ module.exports = withMT({
         'showLogin': 'showLogin .4s linear ',
         'showReg': 'showReg .4s linear ',
         'showMenu': 'showMenu .4s linear ',
+        'showMenuSM': 'showMenuSM .4s linear ',
         'hideMenu': 'hideMenu .4s linear ',
+        'hideMenuSM': 'hideMenuSM .4s linear ',
       },
       keyframes: {
         showLogin: {
@@ -47,9 +48,17 @@ module.exports = withMT({
           '0%': { right: '-30%' },
           '100%': { right: '0%' },
         },
+        showMenuSM: {
+          '0%': { right: '-110%' },
+          '100%': { right: '0%' },
+        },
         hideMenu: {
           '0%': { right: '0%' },
           '100%': { right: '-30%' },
+        },
+        hideMenuSM: {
+          '0%': { right: '0%' },
+          '100%': { right: '-110%' },
         },
       },
       gridTemplateColumns: {
