@@ -23,12 +23,12 @@ import { CiInstagram } from "react-icons/ci";
 // Images
 import profile from '../../images/profile.jpg';
 
-const Menu = ({ memu }) => {
+const Menu = ({ memu , menuClose }) => {
   return (
     <div className={`absolute lg:top-0 top-[-12%] z-[2]  lg:w-[25%] w-full bg-[#f3f4f5] mt-1  ${memu ? "lg:animate-showMenu animate-showMenuSM right-0" : "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "}  `}>
       <div className="flex flex-col gap-y-2 p-2">
         <div className="flex justify-between ">
-          <h3 className="flex items-center gap-x-2 border-l font-aldrich font-semibold text-lg cursor-pointer  ">
+          <h3 className="flex items-center gap-x-2 border-l font-aldrich font-semibold text-lg cursor-pointer  " onClick={menuClose} >
             <IoMdArrowBack />
             <span>Menu</span>
           </h3>
