@@ -44,8 +44,11 @@ const Home = () => {
         </div>
       </nav>
       <div className=" relative z-[1] h-screen ">
+        <div className="container">
+
         gsgsdfs
         <Menu memu={memu} menuClose={()=>setMenu(false)} />
+        </div>
       </div>
     </>
   );
