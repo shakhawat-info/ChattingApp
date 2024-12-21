@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Icons
 import { IoMdArrowBack } from "react-icons/io";
@@ -19,11 +19,46 @@ import { BsCalendar4Event } from "react-icons/bs";
 import { GoVerified } from "react-icons/go";
 import { FaEarthEurope } from "react-icons/fa6";
 import { CiInstagram } from "react-icons/ci";
+import { IoSettingsOutline } from "react-icons/io5";
+import { GoQuestion } from "react-icons/go";
+import { AiOutlineLogout } from "react-icons/ai";
+import { TiArrowSortedDown } from "react-icons/ti";
+import { TiArrowSortedUp } from "react-icons/ti";
+import { RiUserSettingsLine } from "react-icons/ri";
+import { FaRegCreditCard } from "react-icons/fa";
+import { AiOutlineSun } from "react-icons/ai";
+import { CiDark } from "react-icons/ci";
+import { CiWifiOn } from "react-icons/ci";
+import { GiLargePaintBrush } from "react-icons/gi";
 
 // Images
 import profile from '../../images/profile.jpg';
 
 const Menu = ({ memu , menuClose }) => {
+
+  // setting function
+  let [settingappear , setSettingappear] = useState(false);
+
+  let appearSetting = ()=>{
+    setSettingappear(prevState => !prevState);
+  }
+
+
+  // support function
+  let [support , setSupport] = useState(false);
+
+  let supportarear = ()=>{
+    setSupport(prevState => !prevState);
+  }
+
+  // logout function
+  let [logout , setLogout] = useState(false);
+
+  let logoutfn = ()=>{
+    setLogout(prevState => !prevState);
+  }
+
+
   return (
     <div className={`absolute lg:top-0 top-[-12%] z-[2]  lg:w-[25%] w-full bg-[#f3f4f5] mt-1  ${memu ? "lg:animate-showMenu animate-showMenuSM right-0" : "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "}  `}>
       <div className="flex flex-col gap-y-2 p-2">
@@ -75,6 +110,45 @@ const Menu = ({ memu , menuClose }) => {
           <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< GoVerified className="text-xl text-[#436850] " /><span>varified</span></div>
           <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< FaEarthEurope className="text-xl text-[#1ab14f] " /><span>public</span></div>
           <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< CiInstagram className="text-xl text-brand " /><span>instagram lite</span></div>
+        </div>
+        <div className={`border-t py-2 ${!settingappear ? 'h-[30px] overflow-hidden ' : 'h-auto'}`} onClick={appearSetting}>
+          <div className="flex justify-between items-center w-full">
+            <h3 className="flex items-center gap-x-2 font-ubuntu text-clrthird "><IoSettingsOutline className="text-xl"/><span>Settings & privacy</span></h3>
+            {!settingappear ? <TiArrowSortedDown className="text-xl"/> : <TiArrowSortedUp className="text-xl"/>}
+          </div>
+          <div className="flex flex-col mt-1 gap-y-2">
+            <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
+            <RiUserSettingsLine className="text-xl "/><span>Setting</span>
+            </div>
+            <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
+              <FaRegCreditCard className="text-xl "/><span>Orders & payments</span>
+            </div>
+            <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
+              <AiOutlineSun className="text-xl "/><span>Dark mode</span>
+            </div>
+            <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
+              <GiLargePaintBrush className="text-xl "/><span>Clear space</span>
+            </div>
+            <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
+              <CiWifiOn className="text-xl "/><span>Data saver</span>
+            </div>
+          </div>
+        </div>
+        <div className={`border-t py-2 ${!support ? 'h-[30px] overflow-hidden ' : 'h-[100px]'}`} onClick={supportarear} >
+          <div className="flex justify-between items-center w-full">
+            <h3 className="flex items-center gap-x-2 font-ubuntu text-clrthird "><GoQuestion className="text-xl"/><span>Help & support</span></h3>
+            {!support ? <TiArrowSortedDown className="text-xl"/> : <TiArrowSortedUp className="text-xl"/>}
+          </div>
+          <div className="menuBox">
+          </div>
+        </div>
+        <div className={`border-t py-2 ${!logout ? 'h-[30px] overflow-hidden ' : 'h-[100px]'} `} onClick={logoutfn} >
+          <div className="flex justify-between items-center w-full">
+            <h3 className="flex items-center gap-x-2 font-ubuntu text-clrthird "><AiOutlineLogout className="text-xl"/><span>Log out</span></h3>
+            {!logout ? <TiArrowSortedDown className="text-xl"/> : <TiArrowSortedUp className="text-xl"/>}
+          </div>
+          <div className="menuBox">
+          </div>
         </div>
       </div>
     </div>
