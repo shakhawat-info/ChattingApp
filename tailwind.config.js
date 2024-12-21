@@ -64,6 +64,7 @@ module.exports = withMT({
       gridTemplateColumns: {
         // Simple 16 column grid
         'gridMenu': '1fr 1fr',
+        'story': 'repeat(9 , 1fr)',
       }
     },
     fontFamily: {
