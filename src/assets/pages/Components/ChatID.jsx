@@ -6,7 +6,7 @@ const ChatID = ({profile , name}) => {
         <img src={profile} alt="profile" className='w-[50px] h-[50px] rounded-full object-cover  ' />
         <div className="">
           <p className="truncate text-[12px] lg:text-[16px] font-ubuntu text-clrthird w-[50px] lg:w-fit " >{name }</p>
-          <p className='text-clrthird/60  '>Hello sir ?</p>
+          <p className='text-clrthird/60  text-[12px] '>Hello sir ?</p>
           <span className='absolute top-[35%] right-[10px] bg-brand text-primarytxt w-[20px] h-[20px] text-[12px] font-ubuntu grid place-items-center rounded-full  '>34</span>
 
         </div>
