@@ -1,22 +1,99 @@
 import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
 
+// Icons
+import { FaPlus } from "react-icons/fa6";
 
+// images
+import profile from "../../images/profile.jpg";
 
-const Story = (props) => {
+// component
+import StoryItem from "./StoryItem";
+const Story = () => {
+
+  // Story slider function
+  const settings = {
+    className: "center",
+    // variableWidth: true,
+    // adaptiveHeight: true,
+    infinite: true,
+    slidesToShow: 7,
+    swipeToSlide: true,
+    arrows: false,
+    adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 6,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+    ],
+  };
+
   return (
-    <div className="relative mr-[7px] lg:h-[200px] h-[150px] rounded-md overflow-hidden shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px]">
-      <img
-        src={props.profile}
-        alt="profile"
-        className="w-[35px] h-[35px] rounded-full object-cover absolute top-1 left-1  "
-      />
-      <img
-        src={props.profile}
-        alt="profile"
-        className="w-full h-full object-cover "
-      />
-      <div className="absolute bottom-0 left-0 w-full h-[20px] bg-gradient-to-t from-[#ff045c]/50"></div>
-      <h4 className="absolute bottom-0 left-2 font-ubuntu text-primarytxt sm:text-[14px] ">{props.name}</h4>
+    <div className=" relative z-[1] h-screen ">
+      <div className="container">
+        <div className="flex lg:h-[200px] h-[150px] gap-x-2 ">
+          <div className="lg:min-w-[150px] min-w-[100px] lg:max-w-[150px] max-w-[100px]  rounded-md overflow-hidden relative  shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px] ">
+            <img
+              src={profile}
+              alt="profile"
+              className="w-full h-full object-cover "
+            />
+            <div className="absolute bottom-0 bg-primarytxt w-full text-center font-aldrich pb-2  pt-5  ">
+              <button
+                type="button"
+                className="mx-auto absolute top-[-17px] left-[40%] bg-brand lg:p-2 p-1 rounded-full text-primarytxt text-xl "
+              >
+                <FaPlus />
+              </button>
+              <h5 className="text-[12px] lg:text-xl  ">Create Story</h5>
+            </div>
+          </div>
+          <div className="w-full gap-x-2 overflow-x-hidden">
+            <Slider {...settings}>
+              <StoryItem name="Md. Shakhawat" profile={profile}/>
+              <StoryItem name="Md. Shakhawat" profile={profile}/>
+              <StoryItem name="Md. Shakhawat" profile={profile}/>
+              <StoryItem name="Md. Shakhawat" profile={profile}/>
+              <StoryItem name="Md. Shakhawat" profile={profile}/>
+              <StoryItem name="Md. Shakhawat" profile={profile}/>
+              <StoryItem name="Md. Shakhawat" profile={profile}/>
+              <StoryItem name="Md. Shakhawat" profile={profile}/>
+              <StoryItem name="Md. Shakhawat" profile={profile}/>
+              <StoryItem name="Md. Shakhawat" profile={profile}/>
+            </Slider>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

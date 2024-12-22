@@ -128,4 +128,10 @@
     @apply font-ubuntu text-clrthird
   }
    /* Menu end */
+
+   /* Friends start */
+   .frndBtn{
+    @apply py-2 px-5 rounded-md bg-clrthird/10 font-ubuntu flex items-center gap-x-2 
+   }
+   /* Friends end */
 }
