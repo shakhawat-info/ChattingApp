@@ -4,7 +4,7 @@ import React from "react";
 
 const Story = (props) => {
   return (
-    <div className="relative min-w-[150px] max-w-[150px] h-full rounded-md overflow-hidden">
+    <div className="relative mr-[7px] lg:h-[200px] h-[150px] rounded-md overflow-hidden shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px]">
       <img
         src={props.profile}
         alt="profile"
@@ -15,7 +15,8 @@ const Story = (props) => {
         alt="profile"
         className="w-full h-full object-cover "
       />
-      <h4 className="absolute bottom-2 left-2 ">{props.name}</h4>
+      <div className="absolute bottom-0 left-0 w-full h-[20px] bg-gradient-to-t from-[#ff045c]/50"></div>
+      <h4 className="absolute bottom-0 left-2 font-ubuntu text-primarytxt sm:text-[14px] ">{props.name}</h4>
     </div>
   );
 };

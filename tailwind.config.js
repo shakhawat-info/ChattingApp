@@ -12,11 +12,11 @@ module.exports = withMT({
 
       // default breakpoints but with 40px removed
       screens: {
-        sm: '600px',
-        md: '728px',
-        lg: '984px',
-        xl: '1240px',
-        '2xl': '1496px',
+        sm: '500px',
+        md: '700px',
+        lg: '900px',
+        xl: '1100px',
+        '2xl': '1300px',
       },
     },
     extend: {

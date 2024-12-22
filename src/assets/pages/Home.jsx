@@ -26,34 +26,36 @@ const Home = () => {
   // Story slider function
   const settings = {
     className: "center",
+    // variableWidth: true,
+    // adaptiveHeight: true,
     infinite: true,
-    slidesToShow: 8,
+    slidesToShow: 7,
     swipeToSlide: true,
     arrows: false,
     adaptiveHeight: true,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1300,
         settings: {
-          slidesToShow: 10,
+          slidesToShow: 6,
           infinite: true,
           dots: true,
         },
       },
       {
-        breakpoint: 800,
+        breakpoint: 1100,
         settings: {
           slidesToShow: 5,
         },
       },
       {
-        breakpoint: 700,
+        breakpoint: 900,
         settings: {
           slidesToShow: 4,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 700,
         settings: {
           slidesToShow: 3,
         },
@@ -117,17 +119,17 @@ const Home = () => {
                 <h5 className="text-[12px] lg:text-xl  ">Create Story</h5>
               </div>
             </div>
-            <div className="w-full h-full gap-x-2 overflow-x-hidden">
+            <div className="w-full gap-x-2 overflow-x-hidden">
               <Slider {...settings}>
-                <Story profile={profile} name="Md. Shakhawat" stry={profile} />
-                <Story profile={profile} name="Md. Shakhawat" stry={profile} />
-                <Story profile={profile} name="Md. Shakhawat" stry={profile} />
-                <Story profile={profile} name="Md. Shakhawat" stry={profile} />
-                <Story profile={profile} name="Md. Shakhawat" stry={profile} />
-                <Story profile={profile} name="Md. Shakhawat" stry={profile} />
-                <Story profile={profile} name="Md. Shakhawat" stry={profile} />
-                <Story profile={profile} name="Md. Shakhawat" stry={profile} />
-                <Story profile={profile} name="Md. Shakhawat" stry={profile} />
+                <Story profile={profile} name="Md. Shakhawat" stry={profile}  />
+                <Story profile={profile} name="Md. Shakhawat" stry={profile}  />
+                <Story profile={profile} name="Md. Shakhawat" stry={profile}  />
+                <Story profile={profile} name="Md. Shakhawat" stry={profile}  />
+                <Story profile={profile} name="Md. Shakhawat" stry={profile}  />
+                <Story profile={profile} name="Md. Shakhawat" stry={profile}  />
+                <Story profile={profile} name="Md. Shakhawat" stry={profile}  />
+                <Story profile={profile} name="Md. Shakhawat" stry={profile}  />
+                <Story profile={profile} name="Md. Shakhawat" stry={profile}  />
               </Slider>
             </div>
           </div>

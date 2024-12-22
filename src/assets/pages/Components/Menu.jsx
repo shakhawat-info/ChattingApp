@@ -30,6 +30,11 @@ import { AiOutlineSun } from "react-icons/ai";
 import { CiDark } from "react-icons/ci";
 import { CiWifiOn } from "react-icons/ci";
 import { GiLargePaintBrush } from "react-icons/gi";
+import { LiaHandsHelpingSolid } from "react-icons/lia";
+import { CiInboxIn } from "react-icons/ci";
+import { FcAbout } from "react-icons/fc";
+import { GoReport } from "react-icons/go";
+import { AiOutlineSafety } from "react-icons/ai";
 
 // Images
 import profile from '../../images/profile.jpg';
@@ -39,7 +44,7 @@ const Menu = ({ memu , menuClose }) => {
   // setting function
   let [settingappear , setSettingappear] = useState(false);
 
-  let appearSetting = ()=>{
+  let appearSetting = (e)=>{
     setSettingappear(prevState => !prevState);
   }
 
@@ -60,7 +65,7 @@ const Menu = ({ memu , menuClose }) => {
 
 
   return (
-    <div className={`absolute lg:top-0 top-[-12%] z-[2]  lg:w-[25%] w-full bg-[#f3f4f5] mt-1  ${memu ? "lg:animate-showMenu animate-showMenuSM right-0" : "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "}  `}>
+    <div className={` overflow-y-scroll h-screen absolute lg:top-[-5px] top-[-15%] z-[2]  lg:w-[25%] w-full bg-[#f3f4f5] mt-1  ${memu ? "lg:animate-showMenu animate-showMenuSM right-0" : "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "}  `}>
       <div className="flex flex-col gap-y-2 p-2">
         <div className="flex justify-between ">
           <h3 className="flex items-center gap-x-2 border-l font-aldrich font-semibold text-lg cursor-pointer  " onClick={menuClose} >
@@ -111,8 +116,8 @@ const Menu = ({ memu , menuClose }) => {
           <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< FaEarthEurope className="text-xl text-[#1ab14f] " /><span>public</span></div>
           <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< CiInstagram className="text-xl text-brand " /><span>instagram lite</span></div>
         </div>
-        <div className={`border-t py-2 ${!settingappear ? 'h-[30px] overflow-hidden ' : 'h-auto'}`} onClick={appearSetting}>
-          <div className="flex justify-between items-center w-full">
+        <div className={`border-t py-2 ${!settingappear ? 'h-[30px] overflow-hidden ' : 'h-auto'}`} >
+          <div className="flex justify-between items-center w-full" onClick={appearSetting}>
             <h3 className="flex items-center gap-x-2 font-ubuntu text-clrthird "><IoSettingsOutline className="text-xl"/><span>Settings & privacy</span></h3>
             {!settingappear ? <TiArrowSortedDown className="text-xl"/> : <TiArrowSortedUp className="text-xl"/>}
           </div>
@@ -134,18 +139,32 @@ const Menu = ({ memu , menuClose }) => {
             </div>
           </div>
         </div>
-        <div className={`border-t py-2 ${!support ? 'h-[30px] overflow-hidden ' : 'h-[100px]'}`} onClick={supportarear} >
-          <div className="flex justify-between items-center w-full">
+        <div className={`border-t py-2 ${!support ? 'h-[30px] overflow-hidden ' : 'h-auto'}`}  >
+          <div className="flex justify-between items-center w-full" onClick={supportarear}>
             <h3 className="flex items-center gap-x-2 font-ubuntu text-clrthird "><GoQuestion className="text-xl"/><span>Help & support</span></h3>
             {!support ? <TiArrowSortedDown className="text-xl"/> : <TiArrowSortedUp className="text-xl"/>}
           </div>
-          <div className="menuBox">
+          <div className="flex flex-col mt-1 gap-y-2">
+            <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
+            <LiaHandsHelpingSolid className="text-xl "/><span>Help</span>
+            </div>
+            <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
+              <CiInboxIn className="text-xl "/><span>Support inbox</span>
+            </div>
+            <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
+              <FcAbout className="text-xl "/><span>About</span>
+            </div>
+            <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
+              <GoReport className="text-xl "/><span>Report & problem</span>
+            </div>
+            <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
+              <AiOutlineSafety className="text-xl "/><span>Safety</span>
+            </div>
           </div>
         </div>
         <div className={`border-t py-2 ${!logout ? 'h-[30px] overflow-hidden ' : 'h-[100px]'} `} onClick={logoutfn} >
-          <div className="flex justify-between items-center w-full">
+          <div className="cursor-pointer w-full">
             <h3 className="flex items-center gap-x-2 font-ubuntu text-clrthird "><AiOutlineLogout className="text-xl"/><span>Log out</span></h3>
-            {!logout ? <TiArrowSortedDown className="text-xl"/> : <TiArrowSortedUp className="text-xl"/>}
           </div>
           <div className="menuBox">
           </div>
