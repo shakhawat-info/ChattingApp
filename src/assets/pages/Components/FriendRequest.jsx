@@ -11,8 +11,8 @@ const FriendRequest = ({profile , name , time , mutual}) => {
           <h5 className='font-aldrich  '>{name}</h5>
           <p className="font-ubuntu text-clrthird ">{mutual} <span>mutual</span></p>
           <div className="flex gap-x-3">
-            <button type='button' className='font-ubuntu duration-[.4s] text-clrthird py-1 lg:px-5 px-2 lg:text-lg text-[15px] bg-clrthird/10 rounded-md hover:bg-brand hover:text-primarytxt capitalize font-medium   '>confirm</button>
-            <button type='button' className='font-ubuntu duration-[.4s] text-clrthird py-1 lg:px-5 px-2 lg:text-lg text-[15px] bg-clrthird/10 rounded-md hover:bg-brand hover:text-primarytxt capitalize font-medium   '>delete</button>
+            <button type='button' className='font-ubuntu duration-[.4s]  py-1 lg:px-5 px-2 lg:text-lg text-[15px] rounded-md bg-brand text-primarytxt capitalize font-medium   '>confirm</button>
+            <button type='button' className='font-ubuntu duration-[.4s] text-clrthird py-1 lg:px-5 px-2 lg:text-lg text-[15px] bg-clrthird/10 rounded-md   capitalize font-medium   '>delete</button>
           </div>
         </div>
     </div>

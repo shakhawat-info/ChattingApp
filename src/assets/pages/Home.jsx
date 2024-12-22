@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <>
       {/* Nav Start */}
-        <Nav menu={MenuVisiblity} friends={()=> navigate('/friends')} home={()=> navigate('/')} />
+        <Nav menu={MenuVisiblity} friends={()=> navigate('/friends')} home={()=> navigate('/home')} message={()=> navigate('/message')} />
       {/* Nav Start */}
 
       {/* Menu start */}

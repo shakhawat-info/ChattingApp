@@ -9,7 +9,7 @@ const ViewSent = ({profile , name , time , mutual}) => {
       <h5 className='font-aldrich  '>{name}</h5>
       <p className="font-ubuntu text-clrthird ">{mutual} <span>mutual</span></p>
       <div className="flex gap-x-3">
-        <button type='button' className='font-ubuntu duration-[.4s] lg:text-lg text-[15px] text-clrthird py-1 px-2 lg:px-5 bg-clrthird/10 rounded-md hover:bg-brand hover:text-primarytxt capitalize font-medium   '>cancel</button>
+        <button type='button' className='font-ubuntu duration-[.4s] lg:text-lg text-[15px]  py-1 px-2 lg:px-5  rounded-md bg-brand text-primarytxt capitalize font-medium   '>cancel</button>
       </div>
     </div>
     </div>

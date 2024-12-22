@@ -15,7 +15,7 @@ import { PiVideoLight } from "react-icons/pi";
 import { RiStore2Line } from "react-icons/ri";
 
 
-const Nav = ({menu , friends , home}) => {
+const Nav = ({menu , friends , home , message}) => {
 
 
   return (
@@ -43,7 +43,7 @@ const Nav = ({menu , friends , home}) => {
              <ul className="flex justify-between">        
               <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={home}><GoHome /></li>
               <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={friends}><GoPeople /></li>
-              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><PiMessengerLogoThin /></li>
+              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={message}><PiMessengerLogoThin /></li>
               <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><VscBell /></li>
               <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><PiVideoLight /></li>
               <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><RiStore2Line /></li>

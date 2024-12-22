@@ -56,7 +56,7 @@ const Friends = () => {
 
   return (
     <>
-    <Nav menu={MenuVisiblity} home={()=> navigate('/home')} />
+    <Nav menu={MenuVisiblity} friends={()=> navigate('/friends')} home={()=> navigate('/home')} message={()=> navigate('/message')} />
     <Menu memu={memu} menuClose={() => setMenu(false)}/>
     {/* Friends Start */}
     <section>
