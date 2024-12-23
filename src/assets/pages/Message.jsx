@@ -106,7 +106,7 @@ const settings = {
       <Nav menu={MenuVisiblity} friends={()=> navigate('/friends')} home={()=> navigate('/home')} message={()=> navigate('/message')} />
       <Menu memu={memu} menuClose={() => setMenu(false)} />
     
-    <section>
+    <section className='h-screen overflow-scroll'>
         <div className="container">
             {/* message option setting start */}
             <div className="flex justify-between ">
