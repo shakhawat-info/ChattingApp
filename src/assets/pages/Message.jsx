@@ -99,7 +99,10 @@ const settings = {
     ],
   };
 
-
+const ChatBobbles = {
+  ...settings,
+  centerPadding: "5px",
+}
 
   return (
     <>
@@ -107,7 +110,7 @@ const settings = {
       <Menu memu={memu} menuClose={() => setMenu(false)} />
     
     <section className='h-screen overflow-scroll'>
-        <div className="container">
+        <div className="container relative">
             {/* message option setting start */}
             <div className="flex justify-between ">
                 <h3 className='font-aldrich font-medium text-lg   '>Messages</h3>
@@ -120,19 +123,19 @@ const settings = {
 
             {/* messages ID start */}
             <div className="lg:hidden">
-                <Slider {...settings}>
-                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
-                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
-                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
-                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
-                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
-                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
-                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
-                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
-                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
-                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
-                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
-                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
+                <Slider {...ChatBobbles}>
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="" nameWidth="50px" smsimg="flex-col"  />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="" nameWidth="50px" smsimg="flex-col"  />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="" nameWidth="50px" smsimg="flex-col"  />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="" nameWidth="50px" smsimg="flex-col"  />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="" nameWidth="50px" smsimg="flex-col"  />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="" nameWidth="50px" smsimg="flex-col"  />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="" nameWidth="50px" smsimg="flex-col"  />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="" nameWidth="50px" smsimg="flex-col"  />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="" nameWidth="50px" smsimg="flex-col"  />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="" nameWidth="50px" smsimg="flex-col"  />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="" nameWidth="50px" smsimg="flex-col"  />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="" nameWidth="50px" smsimg="flex-col"  />
                 </Slider>
             </div>
             {/* messages ID end */}
@@ -140,18 +143,17 @@ const settings = {
             {/* messages main start */}
             <div className="flex gap-2 mt-1">
                 <div className="w-full lg:w-1/4 lg:h-screen overflow-scroll flex flex-col lg:gap-2 gap-1 ">
-                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
-                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
-                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
-                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
-                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
-                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
-                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
-                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
-                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
-                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
-                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
-                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" nameWidth='fit' bg="ok" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" nameWidth='fit' bg="ok" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" nameWidth='fit' bg="ok" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" nameWidth='fit' bg="ok" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" nameWidth='fit' bg="ok" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" nameWidth='fit' bg="ok" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" nameWidth='fit' bg="ok" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" nameWidth='fit' bg="ok" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" nameWidth='fit' bg="ok" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" nameWidth='fit' bg="ok" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" nameWidth='fit' bg="ok" />
                 </div>
                 <div className="lg:w-3/4 lg:block hidden rounded-md shadow relative   ">
                     <div className="flex p-2 justify-between items-center shadow border-clrthird/10   ">
@@ -201,7 +203,7 @@ const settings = {
 
 
             {/* messages option bottom start */}
-            <div className="flex justify-between">
+            <div className="flex lg:hidden justify-between fixed bottom-0 left-0 w-full border-t bg-primarytxt p-2  ">
                 <button type='button' className='flex items-center gap-2 text-lg font-ubuntu font-medium capitalize text-clrthird  ' ><PiChats/><span>Chats</span></button>
                 <button type='button' className='flex items-center gap-2 text-lg font-ubuntu font-medium capitalize text-clrthird  ' ><BsPeople/><span>groups</span></button>
                 <button type='button' className='flex items-center gap-2 text-lg font-ubuntu font-medium capitalize text-clrthird  ' ><TbMessageCircleUp/>requests</button>

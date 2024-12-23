@@ -1,11 +1,11 @@
 import React from 'react'
 
-const ChatID = ({profile , name , chatSMS , smsNumber}) => {
+const ChatID = ({profile , name , chatSMS , smsNumber , nameWidth , smsimg , bg}) => {
   return (
-    <div className=' flex w-auto h-auto items-center gap-2 relative bg-clrthird/10 hover:bg-transparent p-1 rounded-md duration-[.2s] cursor-pointer '>
+    <div className={`flex  h-auto items-center gap-2 relative  ${bg && 'bg-clrthird/10' } hover:bg-transparent p-1 rounded-md duration-[.2s] ${smsimg} cursor-pointer lg:mr-0 mr-1`}>
         <img src={profile} alt="profile" className='w-[50px] h-[50px] rounded-full object-cover  ' />
         <div className="">
-          <p className="truncate text-[12px] lg:text-[16px] font-ubuntu text-clrthird w-[50px] lg:w-fit " >{name }</p>
+          <p className={`truncate text-[12px] lg:text-[16px] font-ubuntu text-clrthird w-[${nameWidth}] `} >{name }</p>
           <p className='text-clrthird/60  text-[12px] '>{chatSMS}</p>
           {
             smsNumber &&
