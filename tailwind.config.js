@@ -65,6 +65,9 @@ module.exports = withMT({
         // Simple 16 column grid
         'gridMenu': '1fr 1fr',
         'story': 'repeat(9 , 1fr)',
+      },
+      backgroundImage: {
+        // 'Chatbg': "url('./src/assets/images/ctbg.jpg')",
       }
     },
     fontFamily: {

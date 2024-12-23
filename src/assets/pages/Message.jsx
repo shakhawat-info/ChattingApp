@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick.css";
 import Nav from './Components/Nav';
 import Menu from './Components/Menu';
 import ChatID from './Components/ChatID';
-import ChatBubbles from './Components/ChatBubbles';
 
 
 
@@ -21,10 +20,16 @@ import { FiPhoneCall } from "react-icons/fi";
 import { BsCameraVideo } from "react-icons/bs";
 import { FcInfo } from "react-icons/fc";
 import { IoIosArrowForward } from "react-icons/io";
-
+import { GoPlusCircle } from "react-icons/go";
+import { CiCamera } from "react-icons/ci";
+import { CiImageOn } from "react-icons/ci";
+import { BsEmojiWink } from "react-icons/bs";
+import { RiMic2Line } from "react-icons/ri";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { CiLocationArrow1 } from "react-icons/ci";
 
 // Images 
-import profile from '../images/profile.jpg'
+import profile from '../images/profile.jpg';
 
 const Message = () => {
   // variables
@@ -35,6 +40,19 @@ const Message = () => {
   let MenuVisiblity = () => {
     setMenu((prevState) => !prevState);
   };
+
+
+  // message input box
+  let [type , setType] = useState(false);
+  let typing = (e)=>{
+    if(e.target.value){
+      setType(true);
+    }
+    else{
+      setType(false);
+    }
+  }
+
 
 //   messages ID slider
 const settings = {
@@ -82,6 +100,7 @@ const settings = {
   };
 
 
+
   return (
     <>
       <Nav menu={MenuVisiblity} friends={()=> navigate('/friends')} home={()=> navigate('/home')} message={()=> navigate('/message')} />
@@ -102,64 +121,40 @@ const settings = {
             {/* messages ID start */}
             <div className="lg:hidden">
                 <Slider {...settings}>
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatBubbles profile={profile} name="Md. Shakhawat Hossain" />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
+                <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="" smsNumber="13" />
                 </Slider>
             </div>
             {/* messages ID end */}
 
             {/* messages main start */}
-            <div className="flex gap-2">
-                <div className="w-full lg:w-1/4 lg:h-screen overflow-scroll flex flex-col gap-2">
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
-                    <ChatID profile={profile} name="Md. Shakhawat Hossain" />
+            <div className="flex gap-2 mt-1">
+                <div className="w-full lg:w-1/4 lg:h-screen overflow-scroll flex flex-col lg:gap-2 gap-1 ">
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
+                     <ChatID profile={profile} name="Md. Shakhawat Hossain" chatSMS="Hello Sir?" smsNumber="13" />
                 </div>
-                <div className="lg:w-3/4 p-2 bg-clrthird/10 rounded-md">
-                    <div className="flex justify-between items-center border-b-2 border-clrthird/10  ">
+                <div className="lg:w-3/4 lg:block hidden rounded-md shadow relative   ">
+                    <div className="flex p-2 justify-between items-center shadow border-clrthird/10   ">
                         <div className="flex gap-2">
                            <img src={profile} alt="profile" className='w-[40px] h-[40px] object-cover rounded-full   ' />
                            <div>
@@ -168,11 +163,36 @@ const settings = {
                            </div>
                         </div>
                         <div className="flex gap-5">
-                            <FiPhoneCall className='text-lg' />
-                            <BsCameraVideo className='text-lg' />
+                            <FiPhoneCall className='text-lg text-brand ' />
+                            <BsCameraVideo className='text-lg text-brand ' />
                             <FcInfo className='text-lg' />
-                            <IoIosArrowForward className='text-lg' />
+                            <IoIosArrowForward className='text-lg text-brand ' />
                         </div>
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-full flex  items-center pb-1 gap-2 px-2 ">
+                      <div className="flex w-fit gap-3 items-center">
+                        {type ?
+                        <MdOutlineKeyboardArrowRight className='text-lg text-brand cursor-pointer  ' onClick={()=> setType(false)} />
+                         :
+                        <>
+                          <GoPlusCircle className='text-lg text-brand  cursor-pointer ' />
+                          <CiCamera className='text-[20px] text-brand  cursor-pointer ' />
+                          <CiImageOn className='text-lg text-brand  cursor-pointer ' />
+                          <RiMic2Line className='text-lg text-brand cursor-pointer  ' />
+                        </>
+                        }
+
+                      </div>
+                      <div className="w-full relative">
+                        <input type="text" className='w-full bg-clrthird/10 rounded-[20px] outline-none px-2 ' placeholder='Message' onChange={typing} />
+                      </div>
+                      <div className="w-fit">
+                        {type ?
+                        <CiLocationArrow1 className='text-brand text-lg cursor-pointer  ' />
+                        :
+                        <BsEmojiWink className='text-brand text-lg cursor-pointer  ' />
+                        }
+                      </div>
                     </div>
                 </div>
             </div>
@@ -182,9 +202,9 @@ const settings = {
 
             {/* messages option bottom start */}
             <div className="flex justify-between">
-                <button type='button'><PiChats/></button>
-                <button type='button'><BsPeople/></button>
-                <button type='button'><TbMessageCircleUp/></button>
+                <button type='button' className='flex items-center gap-2 text-lg font-ubuntu font-medium capitalize text-clrthird  ' ><PiChats/><span>Chats</span></button>
+                <button type='button' className='flex items-center gap-2 text-lg font-ubuntu font-medium capitalize text-clrthird  ' ><BsPeople/><span>groups</span></button>
+                <button type='button' className='flex items-center gap-2 text-lg font-ubuntu font-medium capitalize text-clrthird  ' ><TbMessageCircleUp/>requests</button>
             </div>
             {/* messages option bottom end */}
         </div>
