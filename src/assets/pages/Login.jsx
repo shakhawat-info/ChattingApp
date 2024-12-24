@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword , signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { Link , Navigate, useNavigate } from "react-router";
 // icons
 import { FaUser } from "react-icons/fa";
@@ -88,6 +88,31 @@ const Login = () => {
        });
     }
   };
+
+  // Google Login
+  let GoogleLogin = ()=>{
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+    navigate('/home')
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+  }
   return (
     <>
       <section className="overflow-x-hidden absolute top-0 right-0 w-full animate-showLogin">
@@ -187,7 +212,7 @@ const Login = () => {
                     sign in with
                   </h5>
                   <ul className="flex justify-center gap-x-10 mt-10  ">
-                    <li className="signInwith">
+                    <li className="signInwith" onClick={GoogleLogin}>
                       <FcGoogle />
                     </li>
                     <li className="signInwith text-[#1564ef]">
