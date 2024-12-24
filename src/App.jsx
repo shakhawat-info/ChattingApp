@@ -5,6 +5,7 @@ import Home from "./assets/pages/Home";
 import Friends from "./assets/pages/Friends";
 import Message from "./assets/pages/Message";
 import Search from "./assets/pages/Search";
+import Profile from "./assets/pages/Profile";
 
 
 import { BrowserRouter, Routes, Route } from "react-router";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/Friends" element={<Friends />} />
         <Route path="/Message" element={<Message />} />
         <Route path="/Search" element={<Search />} />
+        <Route path="/Profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,10 +1,6 @@
 import React, { useState, Component } from "react";
 import { useNavigate } from "react-router";
 
-
-
-
-
 // components
 import Nav from "./Components/Nav";
 import Menu from "./Components/Menu";
@@ -21,11 +17,15 @@ const Home = () => {
     setMenu((prevState) => !prevState);
   };
 
-
   return (
     <>
       {/* Nav Start */}
-        <Nav menu={MenuVisiblity} friends={()=> navigate('/friends')} home={()=> navigate('/home')} message={()=> navigate('/message')} />
+      <Nav
+        menu={MenuVisiblity}
+        friends={() => navigate("/friends")}
+        home={() => navigate("/home")}
+        message={() => navigate("/message")}
+      />
       {/* Nav Start */}
 
       {/* Menu start */}
@@ -33,7 +33,7 @@ const Home = () => {
       {/* Menu end */}
 
       {/* ==== Story Section Start */}
-       <Story/>
+      <Story />
       {/* ==== Story Section End */}
     </>
   );

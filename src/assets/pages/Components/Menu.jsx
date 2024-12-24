@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
 // Icons
 import { IoMdArrowBack } from "react-icons/io";
@@ -63,6 +64,7 @@ const Menu = ({ memu , menuClose  }) => {
     setLogout(prevState => !prevState);
   }
 
+  let navigation = useNavigate()
 
   return (
     <div className={` overflow-y-scroll h-screen absolute top-[52px]  lg:top-[62px] z-[2]  lg:w-[25%] w-full bg-[#f3f4f5] mt-1  ${memu ? "lg:animate-showMenu animate-showMenuSM right-0" : "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "} `}>
@@ -78,7 +80,9 @@ const Menu = ({ memu , menuClose  }) => {
         </div>
         <div className="flex flex-col mt-3  menuBox items-start ">
           <div className="flex justify-between items-center w-full pb-1">
-            <img src={profile} alt="profile" className="w-[40px] h-[40px] rounded-full object-cover cursor-pointer " />
+            <div className="w-3/4" onClick={()=> navigation('/profile')}>
+              <img src={profile} alt="profile" className="w-[40px] h-[40px] rounded-full object-cover cursor-pointer " />
+            </div>
             <IoIosArrowDropdown className="text-3xl cursor-pointer" />
           </div>
           <div className="border-t pt-1">

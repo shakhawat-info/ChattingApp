@@ -16,6 +16,9 @@
   .shadow{
     @apply shadow-[rgba(33,35,38,0.1)_0px_10px_10px_-10px];
   }
+  .shadow2{
+    @apply shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px];
+  }
   /* common css end */
   /* signup lodin page start */
 
@@ -133,7 +136,12 @@
    .frndBtn{
     @apply py-2 px-5 rounded-md bg-clrthird/10 font-ubuntu flex items-center gap-x-2 
    }
-
    /* Friends end */
+
+   /* Profile start */
+   .optnBtn{
+    @apply font-ubuntu text-clrthird font-medium border-b-2 border-b-transparent border-solid;
+   }
+   /* Profile end */
 
 }
