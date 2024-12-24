@@ -26,6 +26,7 @@ import { MdAlignHorizontalLeft } from "react-icons/md";
 import { RxFileText } from "react-icons/rx";
 import { IoLinkOutline } from "react-icons/io5";
 import { LiaPollSolid } from "react-icons/lia";
+import { LiaShareSolid } from "react-icons/lia";
 
 
 
@@ -88,7 +89,7 @@ let [postoptn , setPostoptn] = useState(1);
     {/* Profile */}
     <section className='pb-10'>
         <div className="container">
-            <div className="shadow rounded-md">
+            <div className="shadow rounded-md overflow-hidden">
 
                {/* Profile Image */}
                <div className="relative">
@@ -116,15 +117,15 @@ let [postoptn , setPostoptn] = useState(1);
 
 
                {/* Profile options  */}
-               <div className="flex gap-5 py-2 px-5 mt-10 border-t font-ubuntu   ">
+               <div className="flex gap-5 py-2 px-5 mt-10 border-t font-ubuntu relative   ">
                    <button type='button' onClick={()=> setActivebtn(1)} className={`${activebtn === 1 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Posts</button>
-                   <button type='button' onClick={()=> setActivebtn(2)} className={`${activebtn === 2 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>About</button>
-                   <button type='button' onClick={()=> setActivebtn(3)} className={`${activebtn === 3 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Photos</button>
-                   <button type='button' onClick={()=> setActivebtn(4)} className={`${activebtn === 4 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Videos</button>
-                   <button type='button' onClick={()=> setActivebtn(5)} className={`${activebtn === 5 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Friends</button>
-                   <button type='button' onClick={()=> setActivebtn(6)} className={`${activebtn === 6 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Groups</button>
-                   <button type='button' onClick={()=> setActivebtn(7)} className={`${activebtn === 7 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Musics</button>
-                   <button type='button' onClick={()=> setActivebtn(8)} className={`${activebtn === 8 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Books</button>
+                   <button type='button' onClick={()=> setActivebtn(2)} className={`${activebtn === 2 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Photos</button>
+                   <button type='button' onClick={()=> setActivebtn(3)} className={`${activebtn === 3 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Videos</button>
+                   <button type='button' onClick={()=> setActivebtn(4)} className={`${activebtn === 4 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Friends</button>
+                   <button type='button' onClick={()=> setActivebtn(5)} className={`${activebtn === 5 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Groups</button>
+                   <button type='button' onClick={()=> setActivebtn(6)} className={`${activebtn === 6 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Musics</button>
+                   <button type='button' onClick={()=> setActivebtn(7)} className={`${activebtn === 7 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Books</button>
+                   <button type='button'  className={` optnBtn absolute top-0 right-0 bg-brand text-primarytxt py-1 px-5 h-full flex items-center `}> <span>About</span> <LiaShareSolid className=""/> </button>
                </div>
 
             </div>
