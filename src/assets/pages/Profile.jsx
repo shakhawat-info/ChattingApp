@@ -27,6 +27,14 @@ import { RxFileText } from "react-icons/rx";
 import { IoLinkOutline } from "react-icons/io5";
 import { LiaPollSolid } from "react-icons/lia";
 import { LiaShareSolid } from "react-icons/lia";
+import { FcWorkflow } from "react-icons/fc";
+import { GiBookAura } from "react-icons/gi";
+import { HiOutlineHome } from "react-icons/hi2";
+import { CiLocationOn } from "react-icons/ci";
+import { FcLike } from "react-icons/fc";
+import { IoTimeOutline } from "react-icons/io5";
+import { BsThreeDots } from "react-icons/bs";
+import { FcInfo } from "react-icons/fc";
 
 
 
@@ -125,14 +133,14 @@ let [postoptn , setPostoptn] = useState(1);
                    <button type='button' onClick={()=> setActivebtn(5)} className={`${activebtn === 5 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Groups</button>
                    <button type='button' onClick={()=> setActivebtn(6)} className={`${activebtn === 6 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Musics</button>
                    <button type='button' onClick={()=> setActivebtn(7)} className={`${activebtn === 7 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Books</button>
-                   <button type='button'  className={` optnBtn absolute top-0 right-0 bg-brand text-primarytxt py-1 px-5 h-full flex items-center `}> <span>About</span> <LiaShareSolid className=""/> </button>
+                   <button type='button'  className={` optnBtn absolute top-0 right-0 bg-brand text-primarytxt py-1 px-5 h-full flex items-center gap-2 `}> <span>About</span> <LiaShareSolid className="rotate-[90deg]"/> </button>
                </div>
 
             </div>
 
 
             {/* Profile info & postBox */}
-            <div className="flex mt-2">
+            <div className="flex justify-between mt-2">
 
                 {/* postBox */}
                 <div className="w-[60%]">
@@ -208,6 +216,25 @@ let [postoptn , setPostoptn] = useState(1);
 
 
                 </div>
+
+                {/* about box */}
+                <div className="p-2 shadow2 w-[35%]">
+                  <h2 className=' font-aldrich flex justify-end items-center gap-2  '>About <FcInfo/></h2>
+                  <ul className='w-full mt-5 flex flex-col gap-2'>
+                    <li className="flex items-center gap-2 font-ubuntu"><FcWorkflow/><span className='text-clrthird'>Works at</span> <b className='text-[14px]'>MERN</b></li>
+                    <li className="flex items-center gap-2 font-ubuntu"><FcWorkflow/><span className='text-clrthird'>Works at</span> <b className='text-[14px]'>Creative IT Institute</b></li>
+                    <li className="flex items-center gap-2 font-ubuntu"><GiBookAura/><span className='text-clrthird'>Studied at</span> <b className='text-[14px]'>Jadurchar , Bangladesh</b></li>
+                    <li className="flex items-center gap-2 font-ubuntu"><GiBookAura/><span className='text-clrthird'>Went to</span> <b className='text-[14px]'>Divine pre-cadet and High School</b></li>
+                    <li className="flex items-center gap-2 font-ubuntu"><HiOutlineHome/><span className='text-clrthird'>Lives in</span> <b className='text-[14px]'>Rangpur City</b></li>
+                    <li className="flex items-center gap-2 font-ubuntu"><CiLocationOn/><span className='text-clrthird'>From in</span> <b className='text-[14px]'>Rowmary</b></li>
+                    <li className="flex items-center gap-2 font-ubuntu"><FcLike/><b className='text-[14px]'>Single</b></li>
+                    <li className="flex items-center gap-2 font-ubuntu"><IoTimeOutline/><span className='text-clrthird'>Joined</span><b className='text-[14px]'> December 24 , 2024 </b></li>
+                    <li className="flex items-center gap-2 font-ubuntu"><BsThreeDots/><span className='text-clrthird'>See more</span><b className='text-[14px]'>  </b></li>
+                  </ul>
+                </div>
+
+
+
             </div>
 
 
