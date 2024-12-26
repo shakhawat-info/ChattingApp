@@ -18,15 +18,7 @@ import { RiUserShared2Line } from "react-icons/ri";
 import profile from '../images/profile.jpg'
 
 const Friends = () => {
-    // variables
-    let navigate = useNavigate();
 
-
-    // Menu function
-    let [memu, setMenu] = useState(false);
-    let MenuVisiblity = () => {
-      setMenu((prevState) => !prevState);
-    };
 
     // Request function
     let [request , setRequest] = useState(true);
@@ -56,8 +48,8 @@ const Friends = () => {
 
   return (
     <>
-    <Nav menu={MenuVisiblity} friends={()=> navigate('/friends')} home={()=> navigate('/home')} message={()=> navigate('/message')} />
-    <Menu memu={memu} menuClose={() => setMenu(false)}/>
+    <Nav/>
+    <Menu/>
     {/* Friends Start */}
     <section>
       <div className="container">

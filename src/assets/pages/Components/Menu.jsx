@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState , useContext  } from "react";
 import { useNavigate } from "react-router";
+import { Data } from "../../../Context/Context";
 
 // Icons
 import { IoMdArrowBack } from "react-icons/io";
@@ -40,7 +41,10 @@ import { AiOutlineSafety } from "react-icons/ai";
 // Images
 import profile from '../../images/profile.jpg';
 
-const Menu = ({ memu , menuClose  }) => {
+const Menu = () => {
+  // Context data
+  let info = useContext(Data);
+  
 
   // setting function
   let [settingappear , setSettingappear] = useState(false);
@@ -63,10 +67,10 @@ const Menu = ({ memu , menuClose  }) => {
   let navigation = useNavigate()
 
   return (
-    <div className={` overflow-y-scroll h-screen absolute top-[52px]  lg:top-[62px] z-[2]  lg:w-[25%] w-full bg-[#f3f4f5] mt-1  ${memu ? "lg:animate-showMenu animate-showMenuSM right-0" : "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "} `}>
+    <div className={` overflow-y-scroll h-screen absolute top-[52px]  lg:top-[62px] z-[2]  lg:w-[25%] w-full bg-[#f3f4f5] mt-1  ${info.memu ? "lg:animate-showMenu animate-showMenuSM right-0" : "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "} `}>
       <div className="flex flex-col gap-y-2 p-2">
         <div className="flex justify-between ">
-          <h3 className="flex items-center gap-x-2 border-l font-aldrich font-semibold text-lg cursor-pointer  " onClick={menuClose} >
+          <h3 className="flex items-center gap-x-2 border-l font-aldrich font-semibold text-lg cursor-pointer  " onClick={info.menuClose} >
             <IoMdArrowBack />
             <span>Menu</span>
           </h3>

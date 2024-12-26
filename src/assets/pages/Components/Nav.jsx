@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react';
+import { Data } from '../../../Context/Context';
 
 
 
@@ -13,10 +14,15 @@ import { PiMessengerLogoThin } from "react-icons/pi";
 import { VscBell } from "react-icons/vsc";
 import { PiVideoLight } from "react-icons/pi";
 import { RiStore2Line } from "react-icons/ri";
+import { useNavigate } from 'react-router';
 
 
-const Nav = ({menu , friends , home , message}) => {
+const Nav = () => {
+  // context state
+  let info = useContext(Data)
 
+  // navigation
+  let navigate = useNavigate()
 
   return (
     <nav className="lg:px-5 px-2 lg:py-3 py-2 shadow relative z-[1]">
@@ -32,7 +38,7 @@ const Nav = ({menu , friends , home , message}) => {
           <li className="topIcon hoverEfct relative">
             <BsSearch />
           </li>
-          <li className="topIcon hoverEfct relative" onClick={menu} >
+          <li className="topIcon hoverEfct relative" onClick={info.MenuVisiblity} >
             <CgMenuRight />
           </li>
         </ul>
@@ -41,9 +47,9 @@ const Nav = ({menu , friends , home , message}) => {
         <div className=" w-full mt-2 lg:mt-0">
           <div className="w-full">
              <ul className="flex justify-between">        
-              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={home}><GoHome /></li>
-              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={friends}><GoPeople /></li>
-              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={message}><PiMessengerLogoThin /></li>
+              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={()=>navigate('/home')}><GoHome /></li>
+              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={()=>navigate('/friends')}><GoPeople /></li>
+              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={()=>navigate('/message')}><PiMessengerLogoThin /></li>
               <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><VscBell /></li>
               <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><PiVideoLight /></li>
               <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><RiStore2Line /></li>

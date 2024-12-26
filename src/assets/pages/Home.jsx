@@ -11,8 +11,6 @@ import Post from "./Components/Post";
 import profile from '../images/profile.jpg'
 import profilecover from '../images/profilecover.jpg'
 const Home = () => {
-  // variables
-  let navigate = useNavigate();
 
   // Menu function
   let [memu, setMenu] = useState(false);
@@ -23,16 +21,11 @@ const Home = () => {
   return (
     <>
       {/* Nav Start */}
-      <Nav
-        menu={MenuVisiblity}
-        friends={() => navigate("/friends")}
-        home={() => navigate("/home")}
-        message={() => navigate("/message")}
-      />
+      <Nav/>
       {/* Nav Start */}
 
       {/* Menu start */}
-      <Menu memu={memu} menuClose={() => setMenu(false)} />
+      <Menu />
       {/* Menu end */}
 
       {/* ==== Story Section Start */}
