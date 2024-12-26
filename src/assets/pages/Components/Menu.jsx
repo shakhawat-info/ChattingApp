@@ -57,12 +57,8 @@ const Menu = ({ memu , menuClose  }) => {
     setSupport(prevState => !prevState);
   }
 
-  // logout function
-  let [logout , setLogout] = useState(false);
 
-  let logoutfn = ()=>{
-    setLogout(prevState => !prevState);
-  }
+
 
   let navigation = useNavigate()
 
@@ -166,11 +162,9 @@ const Menu = ({ memu , menuClose  }) => {
             </div>
           </div>
         </div>
-        <div className={`border-t py-2 ${!logout ? 'h-[30px] overflow-hidden ' : 'h-[100px]'} `} onClick={logoutfn} >
+        <div className={`border-t py-2 `} >
           <div className="cursor-pointer w-full">
             <h3 className="flex items-center gap-x-2 font-ubuntu text-clrthird "><AiOutlineLogout className="text-xl"/><span>Log out</span></h3>
-          </div>
-          <div className="menuBox">
           </div>
         </div>
       </div>
