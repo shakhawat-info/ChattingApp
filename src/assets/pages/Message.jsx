@@ -32,14 +32,6 @@ import { CiLocationArrow1 } from "react-icons/ci";
 import profile from '../images/profile.jpg';
 
 const Message = () => {
-  // variables
-  let navigate = useNavigate();
-
-  // Menu function
-  let [memu, setMenu] = useState(false);
-  let MenuVisiblity = () => {
-    setMenu((prevState) => !prevState);
-  };
 
 
   // message input box
@@ -106,8 +98,8 @@ const ChatBobbles = {
 
   return (
     <>
-      <Nav menu={MenuVisiblity} friends={()=> navigate('/friends')} home={()=> navigate('/home')} message={()=> navigate('/message')} />
-      <Menu memu={memu} menuClose={() => setMenu(false)} />
+      <Nav />
+      <Menu />
     
     <section className='h-screen overflow-scroll'>
         <div className="container relative">

@@ -143,7 +143,7 @@
     @apply font-ubuntu text-clrthird font-medium border-b-2 border-b-transparent border-solid;
    }
    .postOption{
-    @apply flex items-center gap-2 w-[30%] py-1 pl-3 font-ubuntu hover:bg-clrthird/10 rounded-md
+    @apply flex items-center gap-2 md:w-[30%] py-1 pl-3 font-ubuntu hover:bg-clrthird/10 rounded-md
    }
    .postFilter{
     @apply flex items-center gap-2 bg-clrthird/10 py-1 px-5 rounded-md font-ubuntu capitalize font-medium text-clrthird
