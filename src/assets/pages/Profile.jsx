@@ -43,7 +43,19 @@ import { MdMoreHoriz } from "react-icons/md";
 // components
 import Nav from './Components/Nav';
 import Menu from './Components/Menu'
-import { button } from '@material-tailwind/react';
+
+
+
+
+// let [memu, setMenu] = useState(false);
+// let MenuVisiblity = () => {
+//   setMenu((prevState) => !prevState);
+// };
+// let menuClose = ()=>{
+//   setMenu(false)
+// }
+
+
 
 const Profile = () => {
       // variables

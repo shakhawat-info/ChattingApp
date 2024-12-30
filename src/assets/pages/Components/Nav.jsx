@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { Data } from '../../../Context/Context';
-
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggle } from '../../Redux/Features/MenuModal/MenuModalSlice';
 
 
 // Icons
@@ -17,9 +17,18 @@ import { RiStore2Line } from "react-icons/ri";
 import { useNavigate } from 'react-router';
 
 
+
+
 const Nav = () => {
-  // context state
-  let info = useContext(Data)
+  // Redux 
+let dispatch = useDispatch();
+
+
+  
+  let menuVisiblity = ()=>{
+    dispatch(toggle())
+  }
+
 
   // navigation
   let navigate = useNavigate()
@@ -38,7 +47,7 @@ const Nav = () => {
           <li className="topIcon hoverEfct relative">
             <BsSearch />
           </li>
-          <li className="topIcon hoverEfct relative" onClick={info.MenuVisiblity} >
+          <li className="topIcon hoverEfct relative" onClick={menuVisiblity} >
             <CgMenuRight />
           </li>
         </ul>
