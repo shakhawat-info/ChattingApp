@@ -21,7 +21,8 @@ module.exports = withMT({
     },
     extend: {
       colors: {
-        'bodybg': '#1D1D1D',
+        'PrimaryDark': '#2d2d30',
+        'SeconderyDark': '#3e3e42',
         'bgsecondery': '#262626',
         'clrthird': '#626262',
         'primarytxt': '#ffffff',

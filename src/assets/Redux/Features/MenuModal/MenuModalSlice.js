@@ -10,7 +10,6 @@ export const menuModalSlice = createSlice({
   reducers: {
     toggle: (state) => {
         state.value = !state.value;
-        // console.log(state.value);
     },
   },
 })

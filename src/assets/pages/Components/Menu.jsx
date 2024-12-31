@@ -2,6 +2,7 @@ import React, { useState   } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { toggle } from "../../Redux/Features/MenuModal/MenuModalSlice";
+import { theme } from "../../Redux/Features/Theme/ThemeSlice";
 
 
 
@@ -40,6 +41,7 @@ import { CiInboxIn } from "react-icons/ci";
 import { FcAbout } from "react-icons/fc";
 import { GoReport } from "react-icons/go";
 import { AiOutlineSafety } from "react-icons/ai";
+import { IoIosMoon } from "react-icons/io";
 
 // Images
 import profile from '../../images/profile.jpg';
@@ -50,14 +52,18 @@ import profile from '../../images/profile.jpg';
 
 const Menu = () => {
 
-  // Redux
+  // Redux menu toggle
   let istoggle = useSelector((state)=> state.menuToggle.value);
   let dispatch = useDispatch();
   let hideMenu = ()=>{
     dispatch(toggle(false))
   }
-  console.log(istoggle);
+  // console.log(istoggle);
   
+// Redux theme toggle
+let istheme = useSelector((state)=>state.themeToggle.value);
+let themeDispatch = useDispatch();
+console.log(istheme);
 
   
 
@@ -82,7 +88,7 @@ const Menu = () => {
   let navigation = useNavigate()
 
   return (
-    <div className={` overflow-y-scroll h-screen absolute top-[52px]  lg:top-[62px] z-[2]  lg:w-[25%] w-full bg-[#f3f4f5] mt-1    ${istoggle ? "lg:animate-showMenu animate-showMenuSM right-0" :  "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "}    `}>
+    <div className={` overflow-y-scroll h-screen absolute top-[52px]  lg:top-[62px] z-[2]  lg:w-[25%] w-full  mt-1 ${istheme ? 'bg-[#f3f4f5]' : 'bg-PrimaryDark'}   ${istoggle ? "lg:animate-showMenu animate-showMenuSM right-0" :  "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "}    `}>
       <div className="flex flex-col gap-y-2 p-2">
         <div className="flex justify-between ">
           <h3 className="flex items-center gap-x-2 border-l font-aldrich font-semibold text-lg cursor-pointer  " onClick={hideMenu} >
@@ -147,8 +153,13 @@ const Menu = () => {
             <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
               <FaRegCreditCard className="text-xl "/><span>Orders & payments</span>
             </div>
-            <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
-              <AiOutlineSun className="text-xl "/><span>Dark mode</span>
+            <div className="menuBox gap-x-2 text-clrthird font-ubuntu" onClick={()=>themeDispatch(theme())}>
+              {istheme ? 
+              <div className="flex items-center gap-x-2"><IoIosMoon className="text-xl "/><span>Dark mode</span></div>
+              :
+              <div className="flex items-center gap-x-2"><AiOutlineSun className="text-xl  "/><span>Light mode</span></div>
+
+              }
             </div>
             <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
               <GiLargePaintBrush className="text-xl "/><span>Clear space</span>

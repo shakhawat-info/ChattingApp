@@ -129,10 +129,10 @@ const Login = () => {
                 alt="loginsignupIMG"
                 className="w-[60%] mx-auto rounded-md "
               />
-              <h1 className="font-aldrich text-primarytxt md:text-bodybg font-black text-center md:text-xl text-3xl md:mt-5 mt-[50px]  ">
+              <h1 className="font-aldrich text-PrimaryDark font-black text-center md:text-xl text-3xl md:mt-5 mt-[50px]  ">
                 Welcome to the <span className="text-brand">'Ochigram'</span> (professional community).
               </h1>
-              <p className="font-ubuntu text-primarytxt md:text-bodybg text-md md:text-sm text-center font-semibold mt-2  ">
+              <p className="font-ubuntu text-SeconderyDark  text-md md:text-sm text-center font-semibold mt-2  ">
                 Enjoy your life with your family and friends. Thank you for
                 choosing us
               </p>
@@ -140,7 +140,7 @@ const Login = () => {
             <div className="md:w-3/5 w-full bg-[rgba(29,29,29,0.99)] md:bg-transparent h-screen overflow-y-scroll md:shadow-[rgba(0,0,0,0.16)_0px_1px_4px]">
               <div className="h-full flex flex-col justify-around animate-showLogin ">
                 <div className="p-5">
-                  <h2 className="font-aldrich capitalize font-bold text-[36px] text-primarytxt md:text-bodybg   ">
+                  <h2 className="font-aldrich capitalize font-bold text-[36px] lg:text-PrimaryDark text-primarytxt    ">
                     welcome back!
                   </h2>
                   <form
@@ -191,7 +191,7 @@ const Login = () => {
                       Forgot Password?
                     </h4>
                     <div className="flex items-center justify-between ">
-                      <span className="font-aldrich text-primarytxt md:text-bodybg text-[24px] font-semibold capitalize ">
+                      <span className="font-aldrich text-primarytxt lg:text-PrimaryDark text-[24px] font-semibold capitalize ">
                         sign in
                       </span>
                       <button
