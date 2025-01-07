@@ -36,7 +36,7 @@ const Logout = () => {
 
   return (
     <div className='h-full bg-clrthird/70 absolute top-0 left-0 w-full z-[9999] grid place-items-center '>
-      <div className="p-2 bg-primarytxt rounded-md w-[90%]     ">
+      <div className="px-3 bg-primarytxt rounded-md w-[90%] py-5     ">
         <h3 className='font-aldrich font-medium    '>Are you sure to Log Out?</h3>
         <div className="flex justify-between mt-4">
           <button type='button' className='p-2 w-[40%] bg-clrthird/30 rounded-md font-ubuntu font-medium  ' onClick={()=> dispatch(modalLogout(false))} >No</button>
