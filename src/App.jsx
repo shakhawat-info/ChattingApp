@@ -29,11 +29,14 @@ function App() {
       <Routes>
         <Route path="/" element={ userInfo ? <Home /> : <Login />} />
         <Route path="/Signup" element={<Signup />} />
-        {/* <Route path="/Home" element={<Home />} /> */}
-        <Route path="/Friends" element={<Friends />} />
-        <Route path="/Message" element={<Message />} />
-        <Route path="/Search" element={<Search />} />
-        <Route path="/Profile" element={<Profile />} />
+        {userInfo && 
+        <Route>
+          <Route path="/Friends" element={<Friends />} />
+          <Route path="/Message" element={<Message />} />
+          <Route path="/Search" element={<Search />} />
+          <Route path="/Profile" element={<Profile />} />
+        </Route>
+        }
       </Routes>
     </BrowserRouter>
   );
