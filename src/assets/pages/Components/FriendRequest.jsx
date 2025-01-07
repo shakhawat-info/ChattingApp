@@ -1,14 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 
 
-const FriendRequest = ({profile , name , time , mutual}) => {
+
+
+
+const FriendRequest = ({profile , time , mutual}) => {
+  let fdrequests = useSelector((state)=>state.userInfo.value);
+  // console.log(fdrequests.displayName);
   return (
     <div className='flex gap-x-4 items-center relative bg-clrthird/10 hover:bg-clrthird/20 p-2 rounded-md'>
         <p className="absolute top-1 right-1 text-clrthird">{time} ago</p>
         <img src={profile} alt="profile" className='lg:w-[80px] lg:h-[80px] w-[60px] h-[60px] rounded-full object-cover  '/>
         <div className="">
-          <h5 className='font-aldrich  '>{name}</h5>
+          <h5 className='font-aldrich  '>{fdrequests.displayName}</h5>
           <p className="font-ubuntu text-clrthird ">{mutual} <span>mutual</span></p>
           <div className="flex gap-x-3">
             <button type='button' className='font-ubuntu duration-[.4s]  py-1 lg:px-5 px-2 lg:text-lg text-[15px] rounded-md bg-brand text-primarytxt capitalize font-medium   '>confirm</button>

@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router';
 
 
 
+
 const Nav = () => {
   // Redux 
 let dispatch = useDispatch();
@@ -33,8 +34,10 @@ let dispatch = useDispatch();
   // navigation
   let navigate = useNavigate()
 
+  
+
   return (
-    <nav className="lg:px-5 px-2 lg:py-3 py-2 shadow relative z-[1]">
+    <nav className="lg:px-5 px-2 lg:py-3 py-2 shadow fixed z-[1] top-0 left-0 w-full">
       <div className="container">
       <div className="flex justify-between items-center  ">
         <span className="font-aldrich lg:text-3xl text-lg font-black capitalize text-brand   ">
@@ -56,7 +59,7 @@ let dispatch = useDispatch();
         <div className=" w-full mt-2 lg:mt-0">
           <div className="w-full">
              <ul className="flex justify-between">        
-              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={()=>navigate('/home')}><GoHome /></li>
+              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={()=>navigate('/')}><GoHome /></li>
               <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={()=>navigate('/friends')}><GoPeople /></li>
               <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={()=>navigate('/message')}><PiMessengerLogoThin /></li>
               <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><VscBell /></li>

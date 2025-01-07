@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword , signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { Link , Navigate, useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { userinfo } from "../Redux/Features/User/UserSlice";
+
+
 // icons
 import { FaUser } from "react-icons/fa";
 import { MdLockPerson } from "react-icons/md";
@@ -19,9 +23,14 @@ import { CiMail } from "react-icons/ci";
 import loginsignupIMG2 from "../images/cting.jpg";
 
 
+
 const Login = () => {
   // Database
   const auth = getAuth();
+  // console.log(auth);
+  
+  const dispatch = useDispatch();
+  const provider = new GoogleAuthProvider();
 
   // Navigation
   let navigate = useNavigate()
@@ -59,7 +68,6 @@ const Login = () => {
   // login/signup Form Submition
   let FormSubmit = (event) => {
     event.preventDefault();
-    console.log("form submited");
   };
 
   // Login function
@@ -75,15 +83,20 @@ const Login = () => {
        .then((userCredential) => {
          // Signed in 
          const user = userCredential.user;
-         // ...
-         navigate('/Home')
-         console.log('successful');
+         
+         console.log(user);
+
+         localStorage.setItem("userinfo" , JSON.stringify(user));
+         
+         dispatch(userinfo({user}));
+         
+         
          
        })
        .catch((error) => {
          const errorCode = error.code;
          const errorMessage = error.message;
-         console.log(errorCode);
+        //  console.log(errorCode);
          
        });
     }
@@ -91,27 +104,20 @@ const Login = () => {
 
   // Google Login
   let GoogleLogin = ()=>{
-    const provider = new GoogleAuthProvider();
+    
+
     signInWithPopup(auth, provider)
   .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-    navigate('/home')
+    console.log(result)
+    
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
+    console.log(errorCode);
+    
   });
+    
   }
   return (
     <>
@@ -201,9 +207,6 @@ const Login = () => {
                       >
                         <BiLogInCircle />
                       </button>
-                      {/* <IconButton className="w-[100px] h-[100px] grid place-items-center bg-brand text-[20px] rounded-full text-primarytxt ">
-              <BiLogInCircle />
-            </IconButton> */}
                     </div>
                   </form>
                 </div>

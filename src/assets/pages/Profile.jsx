@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 
 
 // images
@@ -47,14 +48,6 @@ import Menu from './Components/Menu'
 
 
 
-// let [memu, setMenu] = useState(false);
-// let MenuVisiblity = () => {
-//   setMenu((prevState) => !prevState);
-// };
-// let menuClose = ()=>{
-//   setMenu(false)
-// }
-
 
 
 const Profile = () => {
@@ -100,6 +93,12 @@ let postbtnFn = (e)=>{
 let [postoptn , setPostoptn] = useState(1);
 
 
+// userdata
+
+let userInfo = useSelector((state)=>state.userInfo.value);
+console.log(userInfo);
+
+
   return (
     <>
     {/* nav and menu */}
@@ -120,8 +119,8 @@ let [postoptn , setPostoptn] = useState(1);
 
                {/* Profile Name & username */}
                <div className="text-right lg:pr-[170px] pr-[110px] lg:py-5 py-2">
-                <h2 className='font-aldrich font-bold lg:text-xl text-[16px]    '>Md. Shakhawat Hossain</h2>
-                <p className='font-ubuntu text-clrthird  '>@shakhawat.dev</p>
+                <h2 className='font-aldrich font-bold lg:text-xl text-[16px]    '>{userInfo.displayName}</h2>
+                <p className='font-ubuntu text-clrthird  '>@{Math.random(5)}</p>
                </div>
 
 

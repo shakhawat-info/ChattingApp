@@ -1,5 +1,4 @@
-import React, { useState, Component } from "react";
-import { useNavigate } from "react-router";
+import React from "react";
 
 // components
 import Nav from "./Components/Nav";
@@ -8,15 +7,14 @@ import Story from "./Components/Story";
 import Post from "./Components/Post";
 
 // Images
-import profile from '../images/profile.jpg'
-import profilecover from '../images/profilecover.jpg'
+import profile from '../images/profile.jpg';
+import profilecover from '../images/profilecover.jpg';
+
+
+
 const Home = () => {
 
-  // Menu function
-  let [memu, setMenu] = useState(false);
-  let MenuVisiblity = () => {
-    setMenu((prevState) => !prevState);
-  };
+
 
   return (
     <>

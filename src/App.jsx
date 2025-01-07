@@ -8,15 +8,28 @@ import Search from "./assets/pages/Search";
 import Profile from "./assets/pages/Profile";
 
 
+
+
+
+
 import { BrowserRouter, Routes, Route } from "react-router";
+import { useSelector } from "react-redux";
 
 function App() {
+  
+  let userInfo = useSelector((state)=>state.userInfo.value);
+
+  // console.log(userInfo);
+  
+  
+
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={ userInfo ? <Home /> : <Login />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/Home" element={<Home />} />
+        {/* <Route path="/Home" element={<Home />} /> */}
         <Route path="/Friends" element={<Friends />} />
         <Route path="/Message" element={<Message />} />
         <Route path="/Search" element={<Search />} />

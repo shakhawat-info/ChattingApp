@@ -71,26 +71,26 @@ const Friends = () => {
           <div className="p-2">
             {request &&
             <div className="flex flex-col gap-y-2">
-              <FriendRequest profile={profile} name='Md. Shakhawat' mutual='12' time='2d'   />
-              <FriendRequest profile={profile} name='Md. Shakhawat' mutual='12' time='2d'   />
-              <FriendRequest profile={profile} name='Md. Shakhawat' mutual='12' time='2d'   />
-              <FriendRequest profile={profile} name='Md. Shakhawat' mutual='12' time='2d'   />
+              <FriendRequest profile={profile} mutual='12' time='2d'   />
+              <FriendRequest profile={profile} mutual='12' time='2d'   />
+              <FriendRequest profile={profile} mutual='12' time='2d'   />
+              <FriendRequest profile={profile} mutual='12' time='2d'   />
             </div>
             }
             {add &&
               <div className="flex flex-col gap-y-2">
-                <AddFriend profile={profile} name='Md. Shakhawat' mutual='12' time='2d'/>
-                <AddFriend profile={profile} name='Md. Shakhawat' mutual='12' time='2d'/>
-                <AddFriend profile={profile} name='Md. Shakhawat' mutual='12' time='2d'/>
-                <AddFriend profile={profile} name='Md. Shakhawat' mutual='12' time='2d'/>
+                <AddFriend profile={profile} mutual='12' time='2d'/>
+                <AddFriend profile={profile} mutual='12' time='2d'/>
+                <AddFriend profile={profile} mutual='12' time='2d'/>
+                <AddFriend profile={profile} mutual='12' time='2d'/>
               </div> 
             }
             {viewsent && 
               <div className="flex flex-col gap-y-2">
-                <ViewSent profile={profile} name='Md. Shakhawat' mutual='12' time='2d'/>
-                 <ViewSent profile={profile} name='Md. Shakhawat' mutual='12' time='2d'/>
-                <ViewSent profile={profile} name='Md. Shakhawat' mutual='12' time='2d'/>
-                <ViewSent profile={profile} name='Md. Shakhawat' mutual='12' time='2d'/>
+                <ViewSent profile={profile}  mutual='12' time='2d'/>
+                <ViewSent profile={profile}  mutual='12' time='2d'/>
+                <ViewSent profile={profile}  mutual='12' time='2d'/>
+                <ViewSent profile={profile}  mutual='12' time='2d'/>
               </div> 
             }
           </div>

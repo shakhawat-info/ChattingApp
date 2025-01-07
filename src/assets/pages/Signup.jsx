@@ -6,6 +6,10 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
+import { Link, useNavigate } from "react-router";
+
+
+
 // icons
 import { FaUser } from "react-icons/fa";
 import { MdLockPerson } from "react-icons/md";
@@ -26,12 +30,13 @@ import { IoCalendarNumberOutline } from "react-icons/io5";
 // images
 // import loginsignupIMG from "../images/chatting.jpg";
 import loginsignupIMG2 from "../images/cting.jpg";
-import { Link, useNavigate } from "react-router";
+
 
 const Signup = () => {
   let navigate = useNavigate();
   const auth = getAuth();
   const db = getDatabase();
+  
 
   // Name
   let [name, setName] = useState("");
@@ -143,6 +148,7 @@ const Signup = () => {
                 set(ref(db, 'users/' + user.uid), {
                   Name: name,
                   Email: email,
+                  Password: passVal,
                   Birth: birth ,
                   profile_picture : "https://ibb.co.com/yQGMQF7"
                 }).then(()=>{
@@ -229,7 +235,7 @@ const Signup = () => {
                       <input
                         onChange={mailFunc}
                         type="email"
-                        placeholder="Username or Email"
+                        placeholder="Email"
                         className={`sign-InUp ${
                           mailerr && "placeholder:text-red-600"
                         }`}

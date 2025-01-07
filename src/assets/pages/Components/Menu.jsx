@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { toggle } from "../../Redux/Features/MenuModal/MenuModalSlice";
 import { theme } from "../../Redux/Features/Theme/ThemeSlice";
+import { modalLogout } from "../../Redux/Features/Logout/LogoutSlice";
 
 
 
@@ -47,6 +48,9 @@ import { IoIosMoon } from "react-icons/io";
 import profile from '../../images/profile.jpg';
 
 
+// components
+import Logout from '../Components/Logout'
+
 
 
 
@@ -62,8 +66,9 @@ const Menu = () => {
   
 // Redux theme toggle
 let istheme = useSelector((state)=>state.themeToggle.value);
-let themeDispatch = useDispatch();
-console.log(istheme);
+// console.log(istheme);
+
+
 
   
 
@@ -82,13 +87,18 @@ console.log(istheme);
     setSupport(prevState => !prevState);
   }
 
-
-
-
+  // navigate
   let navigation = useNavigate()
 
+
+
+  // logout 
+  let isLogout = useSelector((state)=>state.modalLogout.value)
+  // console.log(isLogout);
+
   return (
-    <div className={` overflow-y-scroll h-screen absolute top-[52px]  lg:top-[62px] z-[2]  lg:w-[25%] w-full  mt-1 ${istheme ? 'bg-[#f3f4f5]' : 'bg-PrimaryDark'}   ${istoggle ? "lg:animate-showMenu animate-showMenuSM right-0" :  "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "}    `}>
+    <div className={` overflow-y-scroll h-screen fixed top-[52px]  lg:top-[62px] z-[2]  lg:w-[25%] w-full  mt-1 ${istheme ? ' bg-PrimaryDark' : 'bg-[#f3f4f5]'}   ${istoggle ? "lg:animate-showMenu animate-showMenuSM right-0" :  "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "}    `}>
+      {isLogout && <Logout></Logout>} 
       <div className="flex flex-col gap-y-2 p-2">
         <div className="flex justify-between ">
           <h3 className="flex items-center gap-x-2 border-l font-aldrich font-semibold text-lg cursor-pointer  " onClick={hideMenu} >
@@ -153,7 +163,7 @@ console.log(istheme);
             <div className="menuBox gap-x-2 text-clrthird font-ubuntu">
               <FaRegCreditCard className="text-xl "/><span>Orders & payments</span>
             </div>
-            <div className="menuBox gap-x-2 text-clrthird font-ubuntu" onClick={()=>themeDispatch(theme())}>
+            <div className="menuBox gap-x-2 text-clrthird font-ubuntu" onClick={()=>dispatch(theme())}>
               {istheme ? 
               <div className="flex items-center gap-x-2"><IoIosMoon className="text-xl "/><span>Dark mode</span></div>
               :
@@ -192,7 +202,7 @@ console.log(istheme);
             </div>
           </div>
         </div>
-        <div className={`border-t py-2 `} >
+        <div className={`border-t py-2 `} onClick={()=>dispatch(modalLogout())}>
           <div className="cursor-pointer w-full">
             <h3 className="flex items-center gap-x-2 font-ubuntu text-clrthird "><AiOutlineLogout className="text-xl"/><span>Log out</span></h3>
           </div>
