@@ -37,7 +37,7 @@ let dispatch = useDispatch();
   
 
   return (
-    <nav className="lg:px-5 px-2 lg:py-3 py-2 shadow fixed z-[1] top-0 left-0 w-full">
+    <nav className="lg:px-5 px-2 lg:py-3 py-2 shadow fixed z-50 top-0 left-0 w-full bg-primarytxt">
       <div className="container">
       <div className="flex justify-between items-center  ">
         <span className="font-aldrich lg:text-3xl text-lg font-black capitalize text-brand   ">

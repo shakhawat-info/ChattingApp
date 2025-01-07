@@ -106,7 +106,7 @@ console.log(userInfo);
     <Menu/>
 
     {/* Profile */}
-    <section className='pb-10'>
+    <section className='pb-10 lg:mt-[75px] mt-[120px]'>
         <div className="container">
             <div className="shadow rounded-md">
 

@@ -101,7 +101,7 @@ const ChatBobbles = {
       <Nav />
       <Menu />
     
-    <section className='h-screen overflow-scroll'>
+    <section className='h-screen overflow-scroll lg:mt-[75px] mt-[120px]'>
         <div className="container relative">
             {/* message option setting start */}
             <div className="flex justify-between ">

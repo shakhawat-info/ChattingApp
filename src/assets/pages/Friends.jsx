@@ -51,7 +51,7 @@ const Friends = () => {
     <Nav/>
     <Menu/>
     {/* Friends Start */}
-    <section>
+    <section className="lg:mt-[75px] mt-[120px]">
       <div className="container">
         <div className="lg:mx-[20%] mx-0 p-2">
           <h2 className="font-aldrich font-semibold lg:text-2xl text-lg   ">Friends</h2>
