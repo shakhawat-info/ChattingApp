@@ -20,8 +20,7 @@ const Logout = () => {
       console.log('Sign-out successful');
       dispatch(modalLogout(false))
       dispatch(toggle(false))
-      // navigate('/')
-      // location.reload();
+      navigate('/')
       dispatch(userinfo(null))
       
     }).catch((error) => {
