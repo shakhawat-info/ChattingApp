@@ -70,20 +70,10 @@ const Friends = () => {
           <h3 className="font-aldrich text-lg  ">People you may know</h3>
           <div className="p-2">
             {request &&
-            <div className="flex flex-col gap-y-2">
               <FriendRequest profile={profile} mutual='12' time='2d'   />
-              <FriendRequest profile={profile} mutual='12' time='2d'   />
-              <FriendRequest profile={profile} mutual='12' time='2d'   />
-              <FriendRequest profile={profile} mutual='12' time='2d'   />
-            </div>
             }
             {add &&
-              <div className="flex flex-col gap-y-2">
-                <AddFriend profile={profile} mutual='12' time='2d'/>
-                <AddFriend profile={profile} mutual='12' time='2d'/>
-                <AddFriend profile={profile} mutual='12' time='2d'/>
-                <AddFriend profile={profile} mutual='12' time='2d'/>
-              </div> 
+                <AddFriend/>
             }
             {viewsent && 
               <div className="flex flex-col gap-y-2">

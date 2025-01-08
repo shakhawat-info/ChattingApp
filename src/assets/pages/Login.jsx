@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword , signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getDatabase, ref, set , push } from "firebase/database";
 import { Link , Navigate, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { userinfo } from "../Redux/Features/User/UserSlice";
@@ -26,6 +27,7 @@ import loginsignupIMG2 from "../images/cting.jpg";
 
 const Login = () => {
   // Database
+  const db = getDatabase();
   const auth = getAuth();
   // console.log(auth);
   
@@ -89,9 +91,6 @@ const Login = () => {
          localStorage.setItem("userinfo" , JSON.stringify(user));
          
          dispatch(userinfo({user}));
-         
-         
-         
        })
        .catch((error) => {
          const errorCode = error.code;
@@ -106,9 +105,23 @@ const Login = () => {
   let GoogleLogin = ()=>{
     
 
-    signInWithPopup(auth, provider)
+  signInWithPopup(auth, provider)
   .then((result) => {
-    console.log(result)
+  console.log(result.user)
+// DataBase Setting
+   set(ref(db, 'users/' + result.user.uid) , {
+     name: result.user.displayName,
+     email: result.user.email,
+     creationTime: result.user.metadata.creationTime,
+     userName: result.user.metadata.createdAt,
+     profile: result.user.photoURL
+   });
+  //  localstorage setting
+   localStorage.setItem("userinfo" , JSON.stringify(result.user));
+
+  //  redux userdata setting
+  dispatch(userinfo(result.user))
+
     
   }).catch((error) => {
     // Handle Errors here.

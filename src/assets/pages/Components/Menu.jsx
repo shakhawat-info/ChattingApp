@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggle } from "../../Redux/Features/MenuModal/MenuModalSlice";
 import { theme } from "../../Redux/Features/Theme/ThemeSlice";
 import { modalLogout } from "../../Redux/Features/Logout/LogoutSlice";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 
 
@@ -95,6 +96,11 @@ let istheme = useSelector((state)=>state.themeToggle.value);
   // logout 
   let isLogout = useSelector((state)=>state.modalLogout.value)
   // console.log(isLogout);
+
+
+  // DataBase
+  const db = getDatabase();
+  
 
   return (
     <div className={` overflow-y-scroll h-screen fixed top-[52px]  lg:top-[62px] z-[2]  lg:w-[25%] w-full  mt-1 ${istheme ? ' bg-PrimaryDark' : 'bg-[#f3f4f5]'}   ${istoggle ? "lg:animate-showMenu animate-showMenuSM right-0" :  "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "}    `}>

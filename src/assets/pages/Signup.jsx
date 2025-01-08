@@ -148,7 +148,6 @@ const Signup = () => {
                 set(ref(db, 'users/' + user.uid), {
                   Name: name,
                   Email: email,
-                  Password: passVal,
                   Birth: birth ,
                   profile_picture : "https://ibb.co.com/yQGMQF7"
                 }).then(()=>{
