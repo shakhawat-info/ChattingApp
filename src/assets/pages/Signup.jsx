@@ -146,10 +146,10 @@ const Signup = () => {
               sendEmailVerification(auth.currentUser).then(() => {
                 // Send Signup data to Firebase Realtime database
                 set(ref(db, 'users/' + user.uid), {
-                  Name: name,
-                  Email: email,
+                  displayName: name,
+                  email: email,
                   Birth: birth ,
-                  profile_picture : "https://ibb.co.com/yQGMQF7"
+                  photoURL : "https://ibb.co.com/yQGMQF7"
                 }).then(()=>{
                   setCreated('Account created Successfull')
                   navigate('/')

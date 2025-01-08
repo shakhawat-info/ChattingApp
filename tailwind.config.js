@@ -30,10 +30,6 @@ export default {
       animation: {
         showLogin: "showLogin .4s linear ",
         showReg: "showReg .4s linear ",
-        showMenu: "showMenu .4s linear ",
-        showMenuSM: "showMenuSM .4s linear ",
-        hideMenu: "hideMenu .4s linear ",
-        hideMenuSM: "hideMenuSM .4s linear ",
       },
       keyframes: {
         showLogin: {
@@ -43,22 +39,6 @@ export default {
         showReg: {
           "0%": { left: "-3%", opacity: "0" },
           "100%": { left: "0%", opacity: "1" },
-        },
-        showMenu: {
-          "0%": { right: "-30%" },
-          "100%": { right: "0%" },
-        },
-        showMenuSM: {
-          "0%": { right: "-110%" },
-          "100%": { right: "0%" },
-        },
-        hideMenu: {
-          "0%": { right: "0%" },
-          "100%": { right: "-30%" },
-        },
-        hideMenuSM: {
-          "0%": { right: "0%" },
-          "100%": { right: "-110%" },
         },
       },
       gridTemplateColumns: {

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggle } from "../../Redux/Features/MenuModal/MenuModalSlice";
 import { theme } from "../../Redux/Features/Theme/ThemeSlice";
 import { modalLogout } from "../../Redux/Features/Logout/LogoutSlice";
-import { getDatabase, ref, onValue } from "firebase/database";
 
 
 
@@ -45,8 +44,7 @@ import { GoReport } from "react-icons/go";
 import { AiOutlineSafety } from "react-icons/ai";
 import { IoIosMoon } from "react-icons/io";
 
-// Images
-import profile from '../../images/profile.jpg';
+
 
 
 // components
@@ -98,12 +96,15 @@ let istheme = useSelector((state)=>state.themeToggle.value);
   // console.log(isLogout);
 
 
-  // DataBase
-  const db = getDatabase();
+
+
+  let userinfo = useSelector((state)=>state.userInfo.value);
+  console.log(userinfo);
+  
   
 
   return (
-    <div className={` overflow-y-scroll h-screen fixed top-[52px]  lg:top-[62px] z-[2]  lg:w-[25%] w-full  mt-1 ${istheme ? ' bg-PrimaryDark' : 'bg-[#f3f4f5]'}   ${istoggle ? "lg:animate-showMenu animate-showMenuSM right-0" :  "lg:animate-hideMenu animate-hideMenuSM lg:right-[-30%] right-[-110%] "}    `}>
+    <div className={` overflow-y-scroll h-screen fixed top-[52px]  lg:top-[62px] z-[2]  lg:w-[25%] w-full  mt-1 ${istheme ? ' bg-PrimaryDark' : 'bg-[#f3f4f5]'}   ${istoggle ? " right-0  " :  " lg:right-[-30%] right-[-110%] "} duration-[.6s]    `}>
       {isLogout && <Logout></Logout>} 
       <div className="flex flex-col gap-y-2 p-2">
         <div className="flex justify-between ">
@@ -115,29 +116,29 @@ let istheme = useSelector((state)=>state.themeToggle.value);
             <BsSearch />
           </button>
         </div>
+
+        {/* profile */}
         <div className="flex flex-col mt-3  menuBox items-start ">
           <div className="flex justify-between items-center w-full pb-1">
             <div className="w-3/4" onClick={()=> navigation('/profile')}>
-              <img src={profile} alt="profile" className="w-[40px] h-[40px] rounded-full object-cover cursor-pointer " />
+              <img src={userinfo.photoURL} alt="profile" className="w-[40px] h-[40px] rounded-full object-cover cursor-pointer " />
             </div>
             <IoIosArrowDropdown className="text-3xl cursor-pointer" />
           </div>
-          <div className="border-t pt-1">
+          <div className="border-t pt-1 w-full mt-1">
             <button type="button" className="flex gap-x-2 items-center menutxt   "   ><BsPatchPlus className="text-xl" /> <span>Create another profile</span> </button>
           </div>
         </div>
+
+        {/* switch account */}
         <div className="menuBox ">
           <div className="flex justify-between w-full ">
-            <div className="flex items-center gap-x-2  ">
-              <div className="flex">
-                <img src={profile} alt="profile" className="w-[20px] h-[20px] rounded-full   "/>
-                <img src={profile} alt="profile" className="w-[20px] h-[20px] rounded-full   "/>
-              </div>
-              <span className="menutxt">Switch account</span>
-            </div>
+            <span className="menutxt">Switch account</span>
             <IoIosArrowDropdown className="text-3xl text-clrthird" />
           </div>
         </div>
+
+
         <div className="menuBox items-center gap-x-2 ">
           <FcLike />
           <span className="menutxt">Invite friends</span>

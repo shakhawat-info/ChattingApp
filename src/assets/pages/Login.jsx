@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { getAuth, signInWithEmailAndPassword , signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword , signInWithPopup, GoogleAuthProvider , FacebookAuthProvider} from "firebase/auth";
 import { getDatabase, ref, set , push } from "firebase/database";
+
 import { Link , Navigate, useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { userinfo } from "../Redux/Features/User/UserSlice";
@@ -110,11 +111,11 @@ const Login = () => {
   console.log(result.user)
 // DataBase Setting
    set(ref(db, 'users/' + result.user.uid) , {
-     name: result.user.displayName,
+     displayName: result.user.displayName,
      email: result.user.email,
      creationTime: result.user.metadata.creationTime,
      userName: result.user.metadata.createdAt,
-     profile: result.user.photoURL
+     photoURL: result.user.photoURL
    });
   //  localstorage setting
    localStorage.setItem("userinfo" , JSON.stringify(result.user));
@@ -131,6 +132,40 @@ const Login = () => {
     
   });
     
+  }
+  
+  
+  // Facebook Login
+  const FBprovider = new FacebookAuthProvider();
+
+  let FacebookLogin = ()=>{
+    signInWithPopup(auth, FBprovider)
+  .then((result) => {
+    // The signed-in user info.
+    const user = result.user;
+
+    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    const credential = FacebookAuthProvider.credentialFromResult(result);
+    const accessToken = credential.accessToken;
+
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+    console.log(user);
+    
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = FacebookAuthProvider.credentialFromError(error);
+
+    console.log(error);
+    
+    // ...
+  });
   }
   return (
     <>
@@ -231,7 +266,7 @@ const Login = () => {
                     <li className="signInwith" onClick={GoogleLogin}>
                       <FcGoogle />
                     </li>
-                    <li className="signInwith text-[#1564ef]">
+                    <li className="signInwith text-[#1564ef]" onClick={FacebookLogin}>
                       <FaFacebookF />
                     </li>
                     <li className="signInwith text-[#fff] ">
