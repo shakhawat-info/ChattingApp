@@ -14,6 +14,8 @@ import { GoEyeClosed } from "react-icons/go";
 import { GoEye } from "react-icons/go";
 import { BiLogInCircle } from "react-icons/bi";
 import { BiMessageSquareError } from "react-icons/bi";
+import { IoCallOutline } from "react-icons/io5";
+import { FiGithub } from "react-icons/fi";
 
 // sign in/up with icons
 import { FcGoogle } from "react-icons/fc";
@@ -270,10 +272,10 @@ const Login = () => {
                       <FaFacebookF />
                     </li>
                     <li className="signInwith text-[#fff] ">
-                      <FaApple />
+                      <FiGithub />
                     </li>
                     <li className="signInwith text-brand ">
-                      <CiMail />
+                      <IoCallOutline />
                     </li>
                   </ul>
                   <h3 className="text-center font-ubuntu text-clrthird font-bold mt-10  ">
