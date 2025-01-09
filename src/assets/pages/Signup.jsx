@@ -149,7 +149,7 @@ const Signup = () => {
                   displayName: name,
                   email: email,
                   Birth: birth ,
-                  photoURL : "https://ibb.co.com/yQGMQF7"
+                  photoURL : "https://picsum.photos/200"
                 }).then(()=>{
                   setCreated('Account created Successfull')
                   navigate('/')
