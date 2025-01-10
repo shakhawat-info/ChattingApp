@@ -96,7 +96,7 @@ let [postoptn , setPostoptn] = useState(1);
 // userdata
 
 let userInfo = useSelector((state)=>state.userInfo.value);
-console.log(userInfo);
+// console.log(userInfo);
 
 
   return (
@@ -113,15 +113,15 @@ console.log(userInfo);
                {/* Profile Image */}
                <div className="relative">
                 <img src={cover} alt="cover" className='w-full h-[170px] lg:h-[400px] object-cover   ' />
-                <img src={userInfo.photoURL} alt="profile" className='lg:w-[150px] w-[100px] lg:h-[150px] h-[100px]  rounded-full object-cover absolute lg:bottom-[-100px] bottom-[-50px] right-0 border-2 border-brand     ' />
+                <img src={userInfo.user.photoURL} alt="profile" className='lg:w-[150px] w-[100px] lg:h-[150px] h-[100px]  rounded-full object-cover absolute lg:bottom-[-100px] bottom-[-50px] right-0 border-2 border-brand     ' />
                </div>
 
 
                {/* Profile Name & username */}
                <div className="text-right lg:pr-[170px] pr-[110px] lg:py-5 py-2">
-                <h2 className='font-aldrich font-bold lg:text-xl text-[16px]    '>{userInfo.displayName}</h2>
-                <p className='font-ubuntu text-clrthird  '>@{Math.random()}</p>
-                {userInfo.createdAt}
+                <h2 className='font-aldrich font-bold lg:text-xl text-[16px]    '>{userInfo.user.displayName}</h2>
+                <p className='font-ubuntu text-clrthird  '>@{userInfo.userName}</p>
+                
                </div>
 
 
@@ -243,7 +243,7 @@ console.log(userInfo);
                     <li className="flex items-center gap-2 font-ubuntu"><HiOutlineHome/><span className='text-clrthird'>Lives in</span> <b className='text-[14px]'>Rangpur City</b></li>
                     <li className="flex items-center gap-2 font-ubuntu"><CiLocationOn/><span className='text-clrthird'>From in</span> <b className='text-[14px]'>Rowmary</b></li>
                     <li className="flex items-center gap-2 font-ubuntu"><FcLike/><b className='text-[14px]'>Single</b></li>
-                    <li className="flex items-center gap-2 font-ubuntu"><IoTimeOutline/><span className='text-clrthird'>Joined</span><b className='text-[14px]'> </b></li>
+                    <li className="flex items-center gap-2 font-ubuntu"><IoTimeOutline/><span className='text-clrthird'>Joined</span><b className='text-[14px]'>{userInfo.creationTime}</b></li>
                     {/* {userInfo.metadata.creationTime}  */}
                     <li className="flex items-center gap-2 font-ubuntu"><BsThreeDots/><span className='text-clrthird'>See more</span><b className='text-[14px]'>  </b></li>
                   </ul>

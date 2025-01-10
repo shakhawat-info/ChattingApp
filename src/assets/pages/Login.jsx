@@ -107,7 +107,6 @@ const Login = () => {
   // Google Login
   let GoogleLogin = ()=>{
     
-
   signInWithPopup(auth, provider)
   .then((result) => {
   console.log(result.user)
@@ -120,10 +119,10 @@ const Login = () => {
      photoURL: result.user.photoURL
    });
   //  localstorage setting
-   localStorage.setItem("userinfo" , JSON.stringify(result.user));
+   localStorage.setItem("userinfo" , JSON.stringify({user: result.user , creationTime: result.user.metadata.creationTime , userName: result.user.metadata.createdAt}));
 
   //  redux userdata setting
-  dispatch(userinfo(result.user))
+  dispatch(userinfo({user: result.user , creationTime: result.user.metadata.creationTime , userName: result.user.metadata.createdAt}))
 
     
   }).catch((error) => {

@@ -46,6 +46,7 @@ const Friends = () => {
     }
 
 
+
   return (
     <>
     <Nav/>
@@ -76,12 +77,7 @@ const Friends = () => {
                 <AddFriend/>
             }
             {viewsent && 
-              <div className="flex flex-col gap-y-2">
-                <ViewSent profile={profile}  mutual='12' time='2d'/>
-                <ViewSent profile={profile}  mutual='12' time='2d'/>
-                <ViewSent profile={profile}  mutual='12' time='2d'/>
-                <ViewSent profile={profile}  mutual='12' time='2d'/>
-              </div> 
+                <ViewSent/>
             }
           </div>
         </div>
