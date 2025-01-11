@@ -16,6 +16,8 @@ import { BiLogInCircle } from "react-icons/bi";
 import { BiMessageSquareError } from "react-icons/bi";
 import { IoCallOutline } from "react-icons/io5";
 import { FiGithub } from "react-icons/fi";
+import { GoAlert } from "react-icons/go";
+import { TbAlertHexagon } from "react-icons/tb";
 
 // sign in/up with icons
 import { FcGoogle } from "react-icons/fc";
@@ -36,6 +38,7 @@ const Login = () => {
   
   const dispatch = useDispatch();
   const provider = new GoogleAuthProvider();
+  let [err , setErr] = useState(null)
 
   // Navigation
   let navigate = useNavigate()
@@ -99,7 +102,7 @@ const Login = () => {
          const errorCode = error.code;
          const errorMessage = error.message;
         //  console.log(errorCode);
-         
+        setErr(errorCode)
        });
     }
   };
@@ -129,8 +132,8 @@ const Login = () => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(errorCode);
-    
+    // console.log(errorCode);
+    setErr(errorCode)
   });
     
   }
@@ -171,6 +174,11 @@ const Login = () => {
   return (
     <>
       <section className="overflow-x-hidden absolute top-0 right-0 w-full animate-showLogin">
+         <div className={` ${err ? 'scale-100' : 'scale-0'} duration-[.4s]    h-auto w-fit pb-5 px-10 bg-[#f9e4e1] text-center rounded-md border-red-500 border-[1px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[2]  font-aldrich `}>
+          <TbAlertHexagon className='absolute top-[-22px] left-[50%] translate-x-[-50%] text-[40px] text-red-500   '/>
+          <h2 className='flex items-center gap-2 text-xl mt-7 font-medium '><span>Something went wrong</span> <GoAlert /></h2>
+          <p className="mt-2">{err}</p>
+        </div>
         <div className="container">
           <div className=" flex justify-between h-screen md:px-[10px] px-0 lg:flex-row-reverse ">
             <div id="stars-container md:hidden">

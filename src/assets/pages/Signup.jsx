@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -26,9 +26,10 @@ import { FaApple } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 import { SiNamecheap } from "react-icons/si";
 import { IoCalendarNumberOutline } from "react-icons/io5";
+import { GoAlert } from "react-icons/go";
+import { TbAlertHexagon } from "react-icons/tb";
 
 // images
-// import loginsignupIMG from "../images/chatting.jpg";
 import loginsignupIMG2 from "../images/cting.jpg";
 
 
@@ -106,7 +107,15 @@ const Signup = () => {
   };
 
   // Form values
+  let [err , setErr] = useState(null);
+  useEffect(()=>{
+    setTimeout(()=>{
 
+    } , 2000)
+
+  },[])
+  
+ 
   let [created, setCreated] = useState("");
   // SignupSubmit Function
   let SignupSubmit = () => {
@@ -159,22 +168,32 @@ const Signup = () => {
               });
             }).catch((error) => {
               // An error occurred
-              // ...
+              setErr(error)
+              setTimeout(()=>{
+                setErr(null)
+              } , 4000)
             });
 
           // ...
           console.log(user);
         }).catch((error) => {
-          const errorCode = error.code;
           const errorMessage = error.message;
-          // ..
-          console.log(errorCode);
+          // An error occurred
+          setErr(error.code)
+          setTimeout(()=>{
+            setErr(null)
+          } , 4000)
         });
     }
   };
   return (
     <>
       <section className="overflow-x-hidden absolute top-0 left-0 w-full animate-showReg">
+        <div className={` ${err ? 'scale-100' : 'scale-0'} duration-[.4s]    h-auto w-fit pb-5 px-10 bg-[#f9e4e1] text-center rounded-md border-red-500 border-[1px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[2]  font-aldrich `}>
+          <TbAlertHexagon className='absolute top-[-22px] left-[50%] translate-x-[-50%] text-[40px] text-red-500   '/>
+          <h2 className='flex items-center gap-2 text-xl mt-7 font-medium '><span>Something went wrong</span> <GoAlert /></h2>
+          <p className="mt-2">{err}</p>
+        </div>
         <div className="container">
           <div className=" flex justify-between h-screen md:px-[10px] px-0 lg:flex-row-reverse ">
             <div id="stars-container md:hidden">
@@ -188,11 +207,11 @@ const Signup = () => {
                 alt="loginsignupIMG"
                 className="w-[60%] mx-auto rounded-md "
               />
-              <h1 className="font-aldrich text-primarytxt md:text-bodybg font-black text-center md:text-xl text-3xl md:mt-5 mt-[50px]  ">
+              <h1 className="font-aldrich lg:text-bgsecondery text-primarytxt md:text-bodybg font-black text-center md:text-xl text-3xl md:mt-5 mt-[50px]  ">
                 Welcome to the <span className="text-brand">'Ochigram'</span>{" "}
                 (professional community).
               </h1>
-              <p className="font-ubuntu text-primarytxt md:text-bodybg text-md md:text-sm text-center font-semibold mt-2  ">
+              <p className="font-ubuntu lg:text-bgsecondery text-primarytxt md:text-bodybg text-md md:text-sm text-center font-semibold mt-2  ">
                 Enjoy your life with your family and friends. Thank you for
                 choosing us
               </p>

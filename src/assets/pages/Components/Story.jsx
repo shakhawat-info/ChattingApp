@@ -10,7 +10,13 @@ import profile from "../../images/profile.jpg";
 
 // component
 import StoryItem from "./StoryItem";
+import { useSelector } from "react-redux";
 const Story = () => {
+
+  //  user data
+  let userInfo = useSelector((state)=>state.userInfo.value)
+  console.log(userInfo.user);
+  
 
   // Story slider function
   const settings = {
@@ -64,7 +70,7 @@ const Story = () => {
         <div className="flex lg:h-[200px] h-[150px] gap-x-2 ">
           <div className="lg:min-w-[150px] min-w-[100px] lg:max-w-[150px] max-w-[100px]  rounded-md overflow-hidden relative  shadow-[rgba(99,99,99,0.2)_0px_2px_8px_0px] ">
             <img
-              src={profile}
+              src={userInfo.user.photoURL}
               alt="profile"
               className="w-full h-full object-cover "
             />
