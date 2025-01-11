@@ -34,9 +34,33 @@ const AddFriend = () => {
               (requestItem) => requestItem.receiver.uid === userItem.uid
             )
         );
+
+
+        // Filter who requested Currentuser
+        // console.log(requestArr);
+        let senderArr = [];
+        requestArr.map((item)=>{
+          if(item.receiver.uid == currentUser.user.uid){
+            senderArr.push(item.sender);
+          }
+        })
+        // console.log(filteredUsers);
+        
+        const updatedUser = filteredUsers.filter(
+          (filteredUse)=> 
+            !senderArr.some(
+            (finalArr) => finalArr.uid == filteredUse.uid
+          )
+        )
+        // console.log(updatedUser);
+        
         // Update the user list
-        setUserList(filteredUsers); 
+        setUserList(updatedUser); 
       });
+
+      
+
+
     });
   }, [currentUser]);
 
