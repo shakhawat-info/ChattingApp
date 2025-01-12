@@ -22,8 +22,6 @@ import { TbAlertHexagon } from "react-icons/tb";
 // sign in/up with icons
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
-import { FaApple } from "react-icons/fa";
-import { CiMail } from "react-icons/ci";
 
 // images
 import loginsignupIMG2 from "../images/cting.jpg";

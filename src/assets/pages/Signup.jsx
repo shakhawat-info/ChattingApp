@@ -33,6 +33,7 @@ import { TbAlertHexagon } from "react-icons/tb";
 import loginsignupIMG2 from "../images/cting.jpg";
 
 
+
 const Signup = () => {
   let navigate = useNavigate();
   const auth = getAuth();
@@ -107,14 +108,8 @@ const Signup = () => {
   };
 
   // Form values
-  let [err , setErr] = useState(null);
-  useEffect(()=>{
-    setTimeout(()=>{
+  let [errmsg , setErrmsg] = useState(null);
 
-    } , 2000)
-
-  },[])
-  
  
   let [created, setCreated] = useState("");
   // SignupSubmit Function
@@ -168,20 +163,19 @@ const Signup = () => {
               });
             }).catch((error) => {
               // An error occurred
-              setErr(error)
+              setErrmsg(error.code)
               setTimeout(()=>{
-                setErr(null)
+                setErrmsg(null)
               } , 4000)
             });
 
           // ...
-          console.log(user);
         }).catch((error) => {
           const errorMessage = error.message;
           // An error occurred
-          setErr(error.code)
+          setErrmsg(error.code)
           setTimeout(()=>{
-            setErr(null)
+            setErrmsg(null)
           } , 4000)
         });
     }
@@ -189,11 +183,18 @@ const Signup = () => {
   return (
     <>
       <section className="overflow-x-hidden absolute top-0 left-0 w-full animate-showReg">
-        <div className={` ${err ? 'scale-100' : 'scale-0'} duration-[.4s]    h-auto w-fit pb-5 px-10 bg-[#f9e4e1] text-center rounded-md border-red-500 border-[1px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[2]  font-aldrich `}>
+        {/* Error Message */}
+            <div className={` ${errmsg ? 'scale-100 ' : 'scale-0'}  duration-[.4s]    h-auto w-fit pb-5 px-10 bg-[#f9e4e1] text-center rounded-md border-red-500 border-[1px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[2]  font-aldrich `}>
+              <TbAlertHexagon className='absolute top-[-22px] left-[50%] translate-x-[-50%] text-[40px] text-red-500   '/>
+              <h2 className='flex items-center gap-2 text-xl mt-7 font-medium '><span>Something went wrong</span> <GoAlert /></h2>
+              <p className="mt-2">{errmsg}</p>
+            </div>
+        {/* SuccessFull Message */}
+        {/* <div className={`  duration-[.4s]    h-auto w-fit pb-5 px-10 bg-[#d5ecde] text-center rounded-md border-green-500 border-[1px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[2]  font-aldrich `}>
           <TbAlertHexagon className='absolute top-[-22px] left-[50%] translate-x-[-50%] text-[40px] text-red-500   '/>
           <h2 className='flex items-center gap-2 text-xl mt-7 font-medium '><span>Something went wrong</span> <GoAlert /></h2>
           <p className="mt-2">{err}</p>
-        </div>
+        </div> */}
         <div className="container">
           <div className=" flex justify-between h-screen md:px-[10px] px-0 lg:flex-row-reverse ">
             <div id="stars-container md:hidden">

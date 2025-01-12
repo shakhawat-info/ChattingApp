@@ -1,20 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: localStorage.getItem("userinfo") ?  JSON.parse(localStorage.getItem("userinfo")) : null,
-}
+  value: localStorage.getItem("userinfo")
+    ? JSON.parse(localStorage.getItem("userinfo"))
+    : null,
+};
 
 export const userSlice = createSlice({
-  name: 'userinfo',
+  name: "userinfo",
   initialState,
   reducers: {
-    userinfo: (state , action) => {
-      state.value = action.payload
+    userinfo: (state, action) => {
+      state.value = action.payload;
     },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { userinfo } = userSlice.actions
+export const { userinfo } = userSlice.actions;
 
-export default userSlice.reducer
+export default userSlice.reducer;

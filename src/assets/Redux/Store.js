@@ -8,7 +8,6 @@ import  modalLogout  from './Features/Logout/LogoutSlice';
 
 
 
-
 export const store = configureStore({
   reducer: {
     menuToggle: menuModal,
