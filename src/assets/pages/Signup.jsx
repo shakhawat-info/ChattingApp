@@ -28,6 +28,8 @@ import { SiNamecheap } from "react-icons/si";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { GoAlert } from "react-icons/go";
 import { TbAlertHexagon } from "react-icons/tb";
+import { CiCircleCheck } from "react-icons/ci";
+import { RxCrossCircled } from "react-icons/rx";
 
 // images
 import loginsignupIMG2 from "../images/cting.jpg";
@@ -40,12 +42,17 @@ const Signup = () => {
   const db = getDatabase();
   
 
+
+  // Signup Buttons
+  let [process , setProcess] = useState(false);
+
   // Name
   let [name, setName] = useState("");
   let [nameerr, setNameerr] = useState(false);
   let nameFunc = (e) => {
     setNameerr(false);
     setName(e.target.value);
+    setProcess(false)
   };
   // Username
   let [email, setEmail] = useState("");
@@ -54,6 +61,7 @@ const Signup = () => {
   let mailFunc = (e) => {
     setMailerr(false);
     setEmail(e.target.value);
+    setProcess(false)
   };
   // Birth Date
   let [birth, setBirth] = useState("");
@@ -61,6 +69,7 @@ const Signup = () => {
   let birthFunc = (e) => {
     setBirtherr(false);
     setBirth(e.target.value);
+    setProcess(false)
   };
 
   // Password Show/Hide
@@ -79,6 +88,7 @@ const Signup = () => {
   let passFunc = (e) => {
     setPasserr(false);
     setPassVal(e.target.value);
+    setProcess(false)
   };
 
   // Confirm Password Show/Hide
@@ -90,6 +100,7 @@ const Signup = () => {
     } else {
       setConfirmPass(true);
     }
+    setProcess(false)
   };
 
   let [confpassVal, setConfpassVal] = useState("");
@@ -98,6 +109,7 @@ const Signup = () => {
   let confirmPassFunc = (e) => {
     setConfirmpasserr(false);
     setConfpassVal(e.target.value);
+    setProcess(false)
   };
 
   // signup Form Submition
@@ -111,7 +123,10 @@ const Signup = () => {
   let [errmsg , setErrmsg] = useState(null);
 
  
-  let [created, setCreated] = useState("");
+  let [success, setSuccess] = useState(null);
+  
+
+
   // SignupSubmit Function
   let SignupSubmit = () => {
     if (!name) {
@@ -138,6 +153,7 @@ const Signup = () => {
       setConfirmpasserr(true);
     }
     if (name && email && birth && passVal && confpassVal) {
+      setProcess(true)
       createUserWithEmailAndPassword(auth, email, passVal)
         .then((userCredential) => {
           // Update Profile
@@ -155,10 +171,16 @@ const Signup = () => {
                   Birth: birth ,
                   photoURL : "https://picsum.photos/200"
                 }).then(()=>{
-                  setCreated('Account created Successfull')
-                  navigate('/')
+                  setSuccess('Account Created Successfull')
+                  setTimeout(()=>{
+                    setSuccess(null)
+                    navigate('/')
+                  } , 2000)
                 }).catch(()=>{
-                  setCreated('Account creation error!')
+                  setErrmsg(error.code)
+                  setTimeout(()=>{
+                    setErrmsg(null)
+                  } , 4000)
                 })
               });
             }).catch((error) => {
@@ -182,23 +204,26 @@ const Signup = () => {
   };
   return (
     <>
-      <section className="overflow-x-hidden absolute top-0 left-0 w-full animate-showReg">
+      <section className="overflow-x-hidden absolute top-0 left-0 w-full animate-showReg  bg-[rgba(29,29,29,0.99)] md:bg-transparent">
+
         {/* Error Message */}
             <div className={` ${errmsg ? 'scale-100 ' : 'scale-0'}  duration-[.4s]    h-auto w-fit pb-5 px-10 bg-[#f9e4e1] text-center rounded-md border-red-500 border-[1px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[2]  font-aldrich `}>
               <TbAlertHexagon className='absolute top-[-22px] left-[50%] translate-x-[-50%] text-[40px] text-red-500   '/>
               <h2 className='flex items-center gap-2 text-xl mt-7 font-medium '><span>Something went wrong</span> <GoAlert /></h2>
               <p className="mt-2">{errmsg}</p>
             </div>
+
         {/* SuccessFull Message */}
-        {/* <div className={`  duration-[.4s]    h-auto w-fit pb-5 px-10 bg-[#d5ecde] text-center rounded-md border-green-500 border-[1px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[2]  font-aldrich `}>
-          <TbAlertHexagon className='absolute top-[-22px] left-[50%] translate-x-[-50%] text-[40px] text-red-500   '/>
-          <h2 className='flex items-center gap-2 text-xl mt-7 font-medium '><span>Something went wrong</span> <GoAlert /></h2>
-          <p className="mt-2">{err}</p>
-        </div> */}
+        <div className={` ${success ? 'scale-100' : 'scale-0'}  duration-[.4s]   h-auto w-fit pb-5 px-10 bg-[#d5ecde] text-center rounded-md border-green-500 border-[1px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[2]  font-aldrich `}>
+          <CiCircleCheck className='absolute top-[-22px] left-[50%] translate-x-[-50%] text-[40px] text-green-500   '/>
+          <h2 className='flex items-center justify-center gap-2 text-xl mt-7 font-medium '><span>Congratulations</span> <GoAlert /></h2>
+          <p className="mt-2 flex items-center gap-1 ">{success}<CiCircleCheck /></p>
+        </div>
+
+        {/* main sign up */}
         <div className="container">
           <div className=" flex justify-between h-screen md:px-[10px] px-0 lg:flex-row-reverse ">
             <div id="stars-container md:hidden">
-              <div id="stars"></div>
               <div id="stars2"></div>
               <div id="stars3"></div>
             </div>
@@ -217,7 +242,7 @@ const Signup = () => {
                 choosing us
               </p>
             </div>
-            <div className="md:w-3/5 w-full bg-[rgba(29,29,29,0.99)] md:bg-transparent h-screen overflow-y-scroll md:shadow-[rgba(0,0,0,0.16)_0px_1px_4px]">
+            <div className="md:w-3/5 w-full  h-screen overflow-y-scroll md:shadow-[rgba(0,0,0,0.16)_0px_1px_4px]">
               <div className="h-full flex flex-col justify-around ">
                 <div className="p-5  ">
                   <h2 className="font-aldrich font-bold text-[36px] text-primarytxt md:text-bodybg  ">
@@ -375,9 +400,6 @@ const Signup = () => {
                         )}
                       </button>
                     </div>
-                    <h5 className="text-green-500 flex items-center gap-x-1 font-ubuntu ">
-                      {created}{" "}
-                    </h5>
                     <h4 className="font-aldrich text-clrthird mt-[-20px] text-[18px] ">
                       By clicking the{" "}
                       <span className="link hover:after:w-full ">Register</span>{" "}
@@ -391,7 +413,7 @@ const Signup = () => {
                       </span>{" "}
                     </h4>
                     <div className="flex justify-between ">
-                      <span className="font-aldrich text-primarytxt md:text-bodybg text-[24px] font-semibold capitalize ">
+                      <span className="font-aldrich text-primarytxt lg:text-bgsecondery md:text-bodybg text-[24px] font-semibold capitalize ">
                         register
                       </span>
                       <button
@@ -399,30 +421,15 @@ const Signup = () => {
                         type="submit"
                         className="w-[50px] h-[50px] grid place-items-center bg-brand text-[25px] rounded-full text-primarytxt "
                       >
-                        <BiLogInCircle />
+                        {errmsg && !success && <RxCrossCircled/>}
+                        {!errmsg && !success && !process && <BiLogInCircle />}
+                        {process && <span className="loader"></span>}
                       </button>
                     </div>
                   </form>
                 </div>
                 <div className="">
-                  <h5 className="font-aldrich text-clrthird text-xl text-center   ">
-                    sign up with
-                  </h5>
-                  <ul className="flex justify-center gap-x-10 mt-10  ">
-                    <li className="signInwith">
-                      <FcGoogle />
-                    </li>
-                    <li className="signInwith text-[#1564ef]">
-                      <FaFacebookF />
-                    </li>
-                    <li className="signInwith text-[#fff] ">
-                      <FaApple />
-                    </li>
-                    <li className="signInwith text-brand ">
-                      <CiMail />
-                    </li>
-                  </ul>
-                  <h3 className="text-center font-ubuntu text-clrthird font-bold mt-10 ">
+                  <h3 className="text-center font-ubuntu text-clrthird font-bold  ">
                     Do you have an account already? Please{" "}
                     <Link
                       to="/"

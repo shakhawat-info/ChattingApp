@@ -30,6 +30,7 @@ export default {
       animation: {
         showLogin: "showLogin .4s linear ",
         showReg: "showReg .4s linear ",
+        animloader: "animloader 1s linear infinite",
       },
       keyframes: {
         showLogin: {
@@ -39,6 +40,10 @@ export default {
         showReg: {
           "0%": { left: "-3%", opacity: "0" },
           "100%": { left: "0%", opacity: "1" },
+        },
+        animloader: {
+          '0%' : { transform: 'scale(0)', opacity: '1' },
+          '100%' : { transform: 'scale(1.5)', opacity: '0'}
         },
       },
       gridTemplateColumns: {

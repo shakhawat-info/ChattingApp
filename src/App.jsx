@@ -6,6 +6,7 @@ import Friends from "./assets/pages/Friends";
 import Message from "./assets/pages/Message";
 import Search from "./assets/pages/Search";
 import Profile from "./assets/pages/Profile";
+import Notfound from "./assets/pages/Components/Notfound";
 
 
 
@@ -29,7 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={ userInfo ? <Home /> : <Login />} />
         <Route path="/Signup" element={<Signup />} />
-        
+        <Route path="/*" element={<Notfound/>}/>
         {userInfo && 
         <Route>
           <Route path="/Friends" element={<Friends />} />

@@ -171,7 +171,7 @@ const Login = () => {
   }
   return (
     <>
-      <section className="overflow-x-hidden absolute top-0 right-0 w-full animate-showLogin">
+      <section className="overflow-x-hidden absolute top-0 right-0 w-full animate-showLogin  bg-[rgba(29,29,29,0.99)] md:bg-transparent">
          <div className={` ${err ? 'scale-100' : 'scale-0'} duration-[.4s]    h-auto w-fit pb-5 px-10 bg-[#f9e4e1] text-center rounded-md border-red-500 border-[1px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[2]  font-aldrich `}>
           <TbAlertHexagon className='absolute top-[-22px] left-[50%] translate-x-[-50%] text-[40px] text-red-500   '/>
           <h2 className='flex items-center gap-2 text-xl mt-7 font-medium '><span>Something went wrong</span> <GoAlert /></h2>
@@ -198,7 +198,7 @@ const Login = () => {
                 choosing us
               </p>
             </div>
-            <div className="md:w-3/5 w-full bg-[rgba(29,29,29,0.99)] md:bg-transparent h-screen overflow-y-scroll md:shadow-[rgba(0,0,0,0.16)_0px_1px_4px]">
+            <div className="md:w-3/5 w-full  h-screen overflow-y-scroll md:shadow-[rgba(0,0,0,0.16)_0px_1px_4px]">
               <div className="h-full flex flex-col justify-around animate-showLogin ">
                 <div className="p-5">
                   <h2 className="font-aldrich capitalize font-bold text-[36px] lg:text-PrimaryDark text-primarytxt    ">
