@@ -9,7 +9,8 @@ const AddFriend = () => {
 
   useEffect(() => {
     const userListRef = ref(db, "users/");
-    const FriendRef = ref(db, "FriendRequests/");
+    const FriendrequestsRef = ref(db, "FriendRequests/");
+    const friendsRef = ref(db, "Friends/");
 
     // Fetch users
     onValue(userListRef, (snapshot) => {
@@ -20,47 +21,42 @@ const AddFriend = () => {
         }
       });
 
-      // Fetch friend requests
-      onValue(FriendRef, (snapshot) => {
-        const requestArr = [];
-        snapshot.forEach((item) => {
-          requestArr.push(item.val());
-        });
-
-        // Filter users who haven't been sent friend requests
-        const filteredUsers = listedUsers.filter(
-          (userItem) =>
-            !requestArr.some(
-              (requestItem) => requestItem.receiver.uid === userItem.uid
-            )
-        );
-
-
-        // Filter who requested Currentuser
-        // console.log(requestArr);
-        let senderArr = [];
-        requestArr.map((item)=>{
-          if(item.receiver.uid == currentUser.user.uid){
-            senderArr.push(item.sender);
-          }
-        })
-        // console.log(filteredUsers);
-        
-        const updatedUser = filteredUsers.filter(
-          (filteredUse)=> 
-            !senderArr.some(
-            (finalArr) => finalArr.uid == filteredUse.uid
-          )
-        )
-        // console.log(updatedUser);
-        
-        // Update the user list
-        setUserList(updatedUser); 
+    // Fetch friend requests
+    onValue(FriendrequestsRef, (snapshot) => {
+      const requestArr = [];
+      snapshot.forEach((item) => {
+        requestArr.push(item.val());
       });
 
+    // Filter users who haven't been sent friend requests
+    const filteredUsers = listedUsers.filter(
+      (userItem) =>
+        !requestArr.some(
+          (requestItem) => requestItem.receiver.uid === userItem.uid
+        )
+    );
+
+
+    // Filter who requested Currentuser
+    // console.log(requestArr);
+    let senderArr = [];
+    requestArr.map((item)=>{
+      if(item.receiver.uid == currentUser.user.uid){
+        senderArr.push(item.sender);
+      }
+    })
+    // console.log(filteredUsers);
+        
+    const updatedUsers = filteredUsers.filter(
+      (filteredUse)=> 
+        !senderArr.some(
+        (finalArr) => finalArr.uid == filteredUse.uid
+      )
+    )
+    // Update the user list
+    setUserList(updatedUsers); 
+    });
       
-
-
     });
   }, [currentUser]);
 

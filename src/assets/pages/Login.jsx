@@ -117,7 +117,7 @@ const Login = () => {
      email: result.user.email,
      creationTime: result.user.metadata.creationTime,
      userName: result.user.metadata.createdAt,
-     photoURL: result.user.photoURL
+     photoURL: result.user.photoURL,
    });
   //  localstorage setting
    localStorage.setItem("userinfo" , JSON.stringify({user: result.user , creationTime: result.user.metadata.creationTime , userName: result.user.metadata.createdAt}));
