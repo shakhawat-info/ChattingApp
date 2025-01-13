@@ -35,7 +35,8 @@ const FriendRequest = () => {
 
     // add to friend
     set(push(ref(db, 'Friends/')), {
-      friend: item.val()
+      friend: item.val(),
+      friendWithID: item.val().receiver.uid + item.val().sender.uid
     });
 
     // remove from request list
@@ -43,8 +44,9 @@ const FriendRequest = () => {
     
     
     // remove from user list
-    remove(ref(db, 'users/' + item.val().receiver.uid))
-    remove(ref(db, 'users/' + item.val().sender.uid))
+    // console.log(item.val().sender.uid + item.val().receiver.uid);
+    
+    
     
     
   }

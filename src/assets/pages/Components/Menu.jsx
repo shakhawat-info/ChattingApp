@@ -121,7 +121,7 @@ let istheme = useSelector((state)=>state.themeToggle.value);
         <div className="flex flex-col mt-3  menuBox items-start ">
           <div className="flex justify-between items-center w-full pb-1">
             <div className="w-3/4" onClick={()=> navigation('/profile')}>
-              <img src={userinfo.user.photoURL} alt="profile" className="w-[40px] h-[40px] rounded-full object-cover cursor-pointer " />
+              <img src={userinfo.user?.photoURL} alt="profile" className="w-[40px] h-[40px] rounded-full object-cover cursor-pointer " />
             </div>
             <IoIosArrowDropdown className="text-3xl cursor-pointer" />
           </div>

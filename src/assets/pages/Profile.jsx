@@ -43,7 +43,8 @@ import { MdMoreHoriz } from "react-icons/md";
 
 // components
 import Nav from './Components/Nav';
-import Menu from './Components/Menu'
+import Menu from './Components/Menu';
+import FriendList from './Components/FriendList';
 
 
 
@@ -53,6 +54,7 @@ import Menu from './Components/Menu'
 const Profile = () => {
       // variables
   let navigate = useNavigate();
+  
 
 
 
@@ -99,6 +101,15 @@ let userInfo = useSelector((state)=>state.userInfo.value);
 // console.log(userInfo);
 
 
+// view functions
+let [view , setView] = useState('post');
+let showPost = ()=>{
+  setView('post')
+}
+
+let showFriends =()=>{
+  setView('friends')
+}
   return (
     <>
     {/* nav and menu */}
@@ -138,13 +149,13 @@ let userInfo = useSelector((state)=>state.userInfo.value);
 
                {/* Profile options  */}
                <div className="flex gap-5 py-2 px-5 mt-10 border-t font-ubuntu relative  ">
-                   <button type='button' onClick={()=> setActivebtn(1)} className={`${activebtn === 1 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Posts</button>
+                   <button type='button' onClick={showPost} className={`${view === 'post' ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Posts</button>
                    <button type='button' onClick={()=> setActivebtn(8)}  className={`${activebtn === 8 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn lg:absolute top-0 right-0 lg:bg-brand lg:text-primarytxt lg:py-1 lg:px-5 lg:h-full flex items-center gap-2 lg:rounded-br-[5px] `}> <span>About</span> <LiaShareSolid className="rotate-[90deg] hidden lg:inline-block "/> </button>
                    <button type='button' onClick={()=> setActivebtn(2)} className={`${activebtn === 2 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Photos</button>
                    <button onClick={moreView} type='button' className='optnBtn flex items-center gap-2 lg:hidden '><MdMoreHoriz/><span>See more</span></button>
                    <div className={`gap-5 ${!more ? 'hidden lg:flex' : 'flex flex-col lg:flex-row absolute lg:relative z-[1] top-[100%] left-[240px] p-2 shadow2 '} bg-primarytxt `}>
                    <button type='button' onClick={()=> setActivebtn(3)} className={`${activebtn === 3 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Videos</button>
-                     <button type='button' onClick={()=> setActivebtn(4)} className={`${activebtn === 4 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Friends</button>
+                     <button type='button' onClick={showFriends} className={`${view === 'friends' ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Friends</button>
                      <button type='button' onClick={()=> setActivebtn(5)} className={`${activebtn === 5 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Groups</button>
                      <button type='button' onClick={()=> setActivebtn(6)} className={`${activebtn === 6 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Musics</button>
                      <button type='button' onClick={()=> setActivebtn(7)} className={`${activebtn === 7 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Books</button>
@@ -155,7 +166,8 @@ let userInfo = useSelector((state)=>state.userInfo.value);
 
 
             {/* Profile info & postBox */}
-            <div className={`flex lg:flex-row flex-col-reverse justify-between mt-2`}>
+            {view === 'post' &&
+              <div className={`flex lg:flex-row flex-col-reverse justify-between mt-2`}>
 
                 {/* postBox */}
                 <div className="lg:w-[60%] lg:mt-0 mt-2">
@@ -251,7 +263,11 @@ let userInfo = useSelector((state)=>state.userInfo.value);
 
 
 
-            </div>
+              </div>
+            }
+            {view === 'friends' &&
+            <FriendList/>
+            }
 
 
 

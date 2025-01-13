@@ -47,12 +47,26 @@ const AddFriend = () => {
     })
     // console.log(filteredUsers);
         
-    const updatedUsers = filteredUsers.filter(
+    const expectFriends = filteredUsers.filter(
       (filteredUse)=> 
         !senderArr.some(
         (finalArr) => finalArr.uid == filteredUse.uid
       )
     )
+
+    // remove who is friend
+    let removeFriendArr = [];
+    onValue(friendsRef, (snapshot) => {
+      snapshot.forEach((item)=>{
+        removeFriendArr.push(item)
+      })
+    });
+    // console.log(expectFriends[0].uid);
+
+    
+
+    const updatedUsers = expectFriends.filter((filtItem)=> removeFriendArr.some((rmFriend)=> !rmFriend.val().friendWithID.includes(filtItem.uid)))
+    
     // Update the user list
     setUserList(updatedUsers); 
     });
