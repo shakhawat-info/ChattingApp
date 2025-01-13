@@ -90,17 +90,31 @@ const Login = () => {
          // Signed in 
          const user = userCredential.user;
          
-        //  console.log(user);
+         console.log(user);
+         set(ref(db, 'users/' + user.uid) , {
+          displayName: user.displayName,
+          email: user.email,
+          creationTime: user.metadata.creationTime,
+          userName: user.metadata.createdAt,
+          photoURL: user.photoURL,
+        });
 
-         localStorage.setItem("userinfo" , JSON.stringify(user));
-         
-         dispatch(userinfo({user}));
+        //  localstorage setting
+       localStorage.setItem("userinfo" , JSON.stringify({user: user , creationTime: user.metadata.creationTime , userName: user.metadata.createdAt}));
+
+       //  redux userdata setting
+       dispatch(userinfo({user: user , creationTime: user.metadata.creationTime , userName: user.metadata.createdAt}))
+        
        })
        .catch((error) => {
          const errorCode = error.code;
          const errorMessage = error.message;
         //  console.log(errorCode);
         setErr(errorCode)
+        setTimeout(() => {
+          setErr(null)
+          
+        }, 2000);
        });
     }
   };

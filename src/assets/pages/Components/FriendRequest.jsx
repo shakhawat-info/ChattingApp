@@ -3,9 +3,6 @@ import { useSelector } from 'react-redux';
 import { getDatabase, ref, set , onValue , push , remove } from "firebase/database";
 
 
-
-
-
 const FriendRequest = () => {
   // Database
   const db = getDatabase();
@@ -16,18 +13,18 @@ const FriendRequest = () => {
 
   useEffect(()=>{
     // Fetch requests
-    const FriendRequestsRef = ref(db, 'FriendRequests/');
+    const requestsRef = ref(db, 'Requests/');
     const requestArr = [];
-    onValue(FriendRequestsRef, (snapshot) => {
+    onValue(requestsRef, (snapshot) => {
       snapshot.forEach((item)=>{
-        // console.log(item.val());
         if(item.val().receiver.uid === currentUser.user.uid) requestArr.push(item)
       })
     });
-    setRequests(requestArr)
-    // console.log(requestArr[0].val());
     
-  },[])
+    
+    setRequests(requestArr)
+    
+  },[currentUser])
 
 
   // confirm requests
@@ -40,12 +37,11 @@ const FriendRequest = () => {
     });
 
     // remove from request list
-    remove(ref(db, 'FriendRequests/' + item.key))
+    remove(ref(db, 'Requests/' + item.key))
     
     
     // remove from user list
-    // console.log(item.val().sender.uid + item.val().receiver.uid);
-    
+    setRequests((prevList) => prevList.filter((prevItem) => prevItem.val().sender.uid !== item.val().sender.uid));
     
     
     

@@ -98,7 +98,6 @@ let [postoptn , setPostoptn] = useState(1);
 // userdata
 
 let userInfo = useSelector((state)=>state.userInfo.value);
-// console.log(userInfo);
 
 
 // view functions

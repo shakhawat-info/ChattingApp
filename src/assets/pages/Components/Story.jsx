@@ -15,7 +15,6 @@ const Story = () => {
 
   //  user data
   let userInfo = useSelector((state)=>state.userInfo.value)
-  console.log(userInfo.user);
   
 
   // Story slider function

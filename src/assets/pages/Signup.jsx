@@ -158,10 +158,12 @@ const Signup = () => {
         .then((userCredential) => {
           // Update Profile
           const user = userCredential.user;
+          
           updateProfile(auth.currentUser, {
             displayName: name,
-            photoURL: "https://ibb.co.com/yQGMQF7",
-          }).then(() => {
+            photoURL: "https://picsum.photos/200",
+          })
+          .then(() => {
               // send Email
               sendEmailVerification(auth.currentUser).then(() => {
                 // Send Signup data to Firebase Realtime database
@@ -169,6 +171,8 @@ const Signup = () => {
                   displayName: name,
                   email: email,
                   Birth: birth ,
+                  creationTime: user.metadata.creationTime,
+                  userName: user.metadata.createdAt,
                   photoURL : "https://picsum.photos/200"
                 }).then(()=>{
                   setSuccess('Account Created Successfull')

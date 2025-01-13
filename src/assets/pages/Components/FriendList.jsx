@@ -23,7 +23,6 @@ const FriendList = () => {
   // current user
   let currentUser = useSelector((state)=>state.userInfo.value);
   let [friends , setFriends] = useState([])
-  // console.log(friends);
   
   
   
@@ -34,9 +33,8 @@ const FriendList = () => {
     let friendsArr = [];
     onValue(friendsRef, (snapshot) => {
       snapshot.forEach((item)=>{
-        // console.log(item.val().friend.receiver);
         if(item.val().friend.sender.uid == currentUser.user.uid){
-          friendsArr.push({uid: item.val().friend.receiver.uid , ...item.val().friend.receiver.user })
+          friendsArr.push(item.val().friend.receiver)
         }
         else{
           friendsArr.push(item.val().friend.sender)
@@ -92,9 +90,9 @@ const FriendList = () => {
         {/* friend list */}
         {viewstatus === 'friend' &&
         <div className="w-full">
-          {friends.map((item)=>{
+          {friends.map((item , index)=>{
             return(
-              <div key={item.uid} className="flex justify-between items-center bg-clrthird/5 p-2 rounded-md hover:bg-clrthird/10">
+              <div key={index} className="flex mt-2 justify-between items-center bg-clrthird/5 p-2 rounded-md hover:bg-clrthird/10">
                 <div className="flex gap-5 w-[80%]">
                   <img src={item.photoURL} alt="friendPIC" className="w-[55px] h-[55px] rounded-full  "/>
                   <div className="">
