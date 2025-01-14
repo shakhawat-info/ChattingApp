@@ -29,20 +29,22 @@ const FriendList = () => {
   useEffect(() => {
 
     // Fatch friends from dataBase
-    const friendsRef = ref(db, "Friends/" );
-    let friendsArr = [];
-    onValue(friendsRef, (snapshot) => {
+    let FriendsList = [];
+    const friendRef = ref(db, 'Friends');
+    onValue(friendRef, (snapshot) => {
       snapshot.forEach((item)=>{
-        if(item.val().friend.sender.uid == currentUser.user.uid){
-          friendsArr.push(item.val().friend.receiver)
-        }
-        else{
-          friendsArr.push(item.val().friend.sender)
+        
+        if(item.val().receiver.uid === currentUser.user.uid){
+          FriendsList.push(item.val().sender)
+        }else{
+          FriendsList.push(item.val().receiver)
         }
       })
     });
+    
+    
     // update friends
-    setFriends(friendsArr)
+    setFriends(FriendsList)
   },[]);
 
 
@@ -90,9 +92,9 @@ const FriendList = () => {
         {/* friend list */}
         {viewstatus === 'friend' &&
         <div className="w-full">
-          {friends.map((item , index)=>{
+          {friends.map((item)=>{
             return(
-              <div key={index} className="flex mt-2 justify-between items-center bg-clrthird/5 p-2 rounded-md hover:bg-clrthird/10">
+              <div key={item.uid} className="flex mt-2 justify-between items-center bg-clrthird/5 p-2 rounded-md hover:bg-clrthird/10">
                 <div className="flex gap-5 w-[80%]">
                   <img src={item.photoURL} alt="friendPIC" className="w-[55px] h-[55px] rounded-full  "/>
                   <div className="">

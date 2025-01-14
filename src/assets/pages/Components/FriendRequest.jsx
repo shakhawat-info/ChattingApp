@@ -32,8 +32,9 @@ const FriendRequest = () => {
 
     // add to friend
     set(push(ref(db, 'Friends/')), {
-      friend: item.val(),
-      friendWithID: item.val().receiver.uid + item.val().sender.uid
+      PlusID: item.val().receiver.uid + item.val().sender.uid,
+      receiver: {...item.val().receiver  , friendWith: item.val().sender.uid},
+      sender: {...item.val().sender , friendWith: item.val().receiver.uid}
     });
 
     // remove from request list
@@ -41,12 +42,11 @@ const FriendRequest = () => {
     
     
     // remove from user list
-    setRequests((prevList) => prevList.filter((prevItem) => prevItem.val().sender.uid !== item.val().sender.uid));
+    // setRequests((prevList) => prevList.filter((prevItem) => prevItem.val().sender.uid !== item.val().sender.uid));
     
     
     
   }
-
   return (
       <div className="flex flex-col-reverse gap-y-2">
         {requests.map((item)=>{

@@ -12,7 +12,7 @@ const AddFriend = () => {
   useEffect(() => {
     const allUsersRef = ref(db, "users/");
     const requestsRef = ref(db, "Requests/");
-    const friendsRef = ref(db, "Friends/");
+    const FriendsRef = ref(db, "Friends/");
 
     // Fetch users without current user
     let allUsers = [];
@@ -23,20 +23,40 @@ const AddFriend = () => {
     });
 
     // remove who has got my request
-    let RemoveSentAccount = []
+    let RemoveSentAccount = [];
+    let RemoveReqIN = [];
     onValue(requestsRef, (snapshot) => {
-      snapshot.forEach((item)=> RemoveSentAccount.push(item))
+      snapshot.forEach((item)=> {
+        if(item.val().sender.uid === currentUser.user.uid){
+          RemoveSentAccount.push(item.val().receiver)
+        }
+        if(item.val().receiver.uid === currentUser.user.uid){
+          RemoveReqIN.push(item.val().sender)
+        }
+      })
     });
-    const sentReceivedRemoved = allUsers.filter((alUser)=> !RemoveSentAccount.some((RSA)=>  (RSA.val().receiver.uid+RSA.val().sender.uid).includes(alUser.key)  ))
-
-
-    
-    
+    const sendRemoved = allUsers.filter((alU)=> !RemoveSentAccount.some((rsm)=> alU.key == rsm.uid))
+    let removedInReq = sendRemoved.filter((srm)=> !RemoveReqIN.some((rri)=> srm.key == rri.uid))
+    // console.log(RemoveReqIN);
     
 
+    // Remove who is friend
+    let receiverRemove = [];
+    onValue(FriendsRef, (snapshot) => {
+      snapshot.forEach((item)=>{
+        if(item.val().receiver.friendWith === currentUser.user.uid ){
+          receiverRemove.push(item.val().receiver)
+        }
+        if(item.val().sender.friendWith === currentUser.user.uid ){
+          receiverRemove.push(item.val().sender)
+        }
+      })
+    });
+    
+    const Updatedusers = removedInReq.filter((rir)=> !receiverRemove.some((recRm)=> rir.key == recRm.uid))
     
     // Update the user list
-    setUserList(sentReceivedRemoved)
+    setUserList(Updatedusers)
   }, [currentUser]);
 
 
@@ -61,12 +81,12 @@ const AddFriend = () => {
         >
           <p className="absolute top-1 right-1 text-clrthird"> ago</p>
           <img
-            src={item?.photoURL}
+            src={item.val().photoURL}
             alt="profile"
             className="lg:w-[80px] w-[60px] lg:h-[80px] h-[60px] rounded-full object-cover"
           />
           <div>
-            <h5 className="font-aldrich">{item?.displayName}</h5>
+            <h5 className="font-aldrich">{item.val().displayName}</h5>
             <p className="font-ubuntu text-clrthird">
               <span>mutual</span>
             </p>
