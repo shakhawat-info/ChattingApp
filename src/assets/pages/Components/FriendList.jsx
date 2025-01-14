@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getDatabase, ref, onValue , push , remove} from "firebase/database";
+import { getDatabase, ref, onValue , set , push , remove , update} from "firebase/database";
 import { useSelector } from "react-redux";
 
 
@@ -76,6 +76,24 @@ const FriendList = () => {
     setFriends((prevList) => prevList.filter((prevItem) => prevItem.uid !== item.uid));
     
   }
+
+  // Block User
+  let block = (item)=>{
+
+    // store bloked id into block ID
+    set(push(ref(db, `users/${currentUser.user.uid}/BlokedIDs`)), {
+      
+    });
+
+    // remove blocked id from friendList
+    remove(ref(db, 'Friends/' + item.unfriendID));
+    
+    // update friendList
+    setFriends((prevList) => prevList.filter((prevItem) => prevItem.uid !== item.uid));
+
+    
+
+  }
   return (
     <div className="p-5 shadow">
       {/* Search Bar */}
@@ -113,7 +131,7 @@ const FriendList = () => {
                   </div>
                 </div>
                 <div className="flex gap-10 ">
-                  <button type="button" className="text-lg flex items-center gap-2 cursor-pointer bg-clrthird/10 py-1 px-2 rounded-md hover:text-primarytxt hover:bg-brand duration-[.4s]   "><RiUserForbidLine/><span>block</span></button>
+                  <button type="button" onClick={()=> block(item)} className="text-lg flex items-center gap-2 cursor-pointer bg-clrthird/10 py-1 px-2 rounded-md hover:text-primarytxt hover:bg-brand duration-[.4s]   "><RiUserForbidLine/><span>block</span></button>
                   <button type="button" onClick={()=>Unfriend(item)} className="text-lg flex items-center gap-2 cursor-pointer bg-clrthird/10 py-1 px-2 rounded-md hover:text-primarytxt hover:bg-brand duration-[.4s]   "><RiUserMinusLine/><span>Unfriend</span></button>
                 </div>
               </div>

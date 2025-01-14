@@ -16,11 +16,20 @@ const AddFriend = () => {
 
     // Fetch users without current user
     let allUsers = [];
+    let Blocked = [];
     onValue(allUsersRef, (snapshot) => {
-      snapshot.forEach((item)=>{
-        if(item.key !== currentUser.user.uid) allUsers.push(item)
-        })
+      snapshot.forEach((item) => {
+        if (item.key !== currentUser.user.uid) {
+          allUsers.push(item);
+        }
+        if (item.key === currentUser.user.uid) {
+
+
+        }
+      });
     });
+    
+    
 
     // remove who has got my request
     let RemoveSentAccount = [];
@@ -53,10 +62,18 @@ const AddFriend = () => {
       })
     });
     
-    const Updatedusers = removedInReq.filter((rir)=> !receiverRemove.some((recRm)=> rir.key == recRm.uid))
+    const FriendRemoved = removedInReq.filter((rir)=> !receiverRemove.some((recRm)=> rir.key == recRm.uid));
+
     
+    // remove Blocked users
+    let removebloked = FriendRemoved.filter((friendRM)=> !Blocked.some((blc)=> friendRM.key == blc))
+
+    // remove blocker
+
+
+
     // Update the user list
-    setUserList(Updatedusers)
+    setUserList(removebloked)
   }, [currentUser]);
 
 

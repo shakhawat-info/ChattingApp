@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggle } from "../../Redux/Features/MenuModal/MenuModalSlice";
 import { theme } from "../../Redux/Features/Theme/ThemeSlice";
 import { modalLogout } from "../../Redux/Features/Logout/LogoutSlice";
-
+import { Link } from "react-router";
 
 
 // Icons
@@ -25,7 +25,7 @@ import { RiMemoriesFill } from "react-icons/ri";
 import { BsCalendar4Event } from "react-icons/bs";
 import { GoVerified } from "react-icons/go";
 import { FaEarthEurope } from "react-icons/fa6";
-import { CiInstagram } from "react-icons/ci";
+import { MdOutlineDoNotDisturbOn } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { GoQuestion } from "react-icons/go";
 import { AiOutlineLogout } from "react-icons/ai";
@@ -156,7 +156,7 @@ let istheme = useSelector((state)=>state.themeToggle.value);
           <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< BsCalendar4Event className="text-xl text-brand/60 " /><span>events</span></div>
           <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< GoVerified className="text-xl text-[#436850] " /><span>varified</span></div>
           <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< FaEarthEurope className="text-xl text-[#1ab14f] " /><span>public</span></div>
-          <div className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< CiInstagram className="text-xl text-brand " /><span>instagram lite</span></div>
+          <Link to="/blockList" className="menuBox gap-x-2 capitalize font-ubuntu text-clrthird ">< MdOutlineDoNotDisturbOn className="text-xl text-brand " /><span>Block List</span></Link>
         </div>
         <div className={`border-t py-2 ${!settingappear ? 'h-[30px] overflow-hidden ' : 'h-auto'}`} >
           <div className="flex justify-between items-center w-full" onClick={appearSetting}>

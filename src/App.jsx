@@ -7,7 +7,8 @@ import Message from "./assets/pages/Message";
 import Search from "./assets/pages/Search";
 import Profile from "./assets/pages/Profile";
 import Notfound from "./assets/pages/Components/Notfound";
-
+import Nav from "./assets/pages/Components/Nav";
+import BlockList from "./assets/pages/Components/BlockList";
 
 
 
@@ -37,9 +38,9 @@ function App() {
           <Route path="/Message" element={<Message />} />
           <Route path="/Search" element={<Search />} />
           <Route path="/Profile" element={<Profile />} />
+          <Route path="/blocklist" element={<BlockList />} />
         </Route>
         }
-
       </Routes>
     </BrowserRouter>
   );
