@@ -6,83 +6,67 @@ const AddFriend = () => {
   const db = getDatabase();
   const currentUser = useSelector((state) => state.userInfo.value);
   const [userList, setUserList] = useState([]);
+  // console.log(currentUser.user.uid);
+  
 
   useEffect(() => {
     const allUsersRef = ref(db, "users/");
     const requestsRef = ref(db, "Requests/");
     const friendsRef = ref(db, "Friends/");
+
     // Fetch users without current user
+    let allUsers = [];
     onValue(allUsersRef, (snapshot) => {
-      const allUsers = [];
-      snapshot.forEach((item) => {
-        if (item.key !== currentUser.user.uid) allUsers.push({ ...item.val(), uid: item.key });
-      });
-      
-      
-    // Fetch friend requested users
-    onValue(requestsRef, (snapshot) => {
-      const requestArr = [];
-      snapshot.forEach((item) => {
-        requestArr.push(item.val());
-    });
-    
-    
-    // Filter users to remove requested users
-    const reqRemoved = allUsers.filter((allUsers) => !requestArr.some((requestItem) => requestItem.receiver.uid === allUsers.uid));
-
-
-    // Filter who requested Currentuser
-    let requSenderArr = [];
-    requestArr.map((item)=>{
-      if(item.receiver.uid == currentUser.user.uid){
-        requSenderArr.push(item.sender);
-      }
-    })
-    const withoutReqSender = reqRemoved.filter((reqRm)=> !requSenderArr.some((reqSender) => reqSender.uid == reqRm.uid));
-    
-    // remove who is friend
-    let removeFriendArr = [];
-    onValue(friendsRef, (snapshot) => {
       snapshot.forEach((item)=>{
-        removeFriendArr.push(item)
-      })
+        if(item.key !== currentUser.user.uid) allUsers.push(item)
+        })
     });
+
+    // remove who has got my request
+    let RemoveSentAccount = []
+    onValue(requestsRef, (snapshot) => {
+      snapshot.forEach((item)=> RemoveSentAccount.push(item))
+    });
+    const sentReceivedRemoved = allUsers.filter((alUser)=> !RemoveSentAccount.some((RSA)=>  (RSA.val().receiver.uid+RSA.val().sender.uid).includes(alUser.key)  ))
+
+
     
-    const updatedUsers = withoutReqSender.filter((whoutReqSndr)=> removeFriendArr.some((rmFriend)=> !rmFriend.val().friendWithID.includes(whoutReqSndr.uid)))
+    
+    
+
     
     // Update the user list
-    setUserList(updatedUsers); 
-    });
-      
-    });
+    setUserList(sentReceivedRemoved)
   }, [currentUser]);
 
+
+
   const add = (item) => {
-    
+
     set(push(ref(db, "Requests/")), {
       sender: currentUser.user,
-      receiver: item,
+      receiver: {...item.val() , uid: item.key},
     });
-
+    
     // remove the added user
-    setUserList((prevList) => prevList.filter((userItem) => userItem.uid !== item.uid));
+    setUserList((prevList) => prevList.filter((userItem) => userItem.key !== item.key));
   };
 
   return (
     <div className="flex flex-col gap-y-2">
       {userList.map((item) => (
         <div
-          key={item.uid}
+          key={item?.key}
           className="flex gap-x-4 items-center relative bg-clrthird/10 hover:bg-clrthird/20 p-2 rounded-md"
         >
           <p className="absolute top-1 right-1 text-clrthird"> ago</p>
           <img
-            src={item.photoURL}
+            src={item?.photoURL}
             alt="profile"
             className="lg:w-[80px] w-[60px] lg:h-[80px] h-[60px] rounded-full object-cover"
           />
           <div>
-            <h5 className="font-aldrich">{item.displayName}</h5>
+            <h5 className="font-aldrich">{item?.displayName}</h5>
             <p className="font-ubuntu text-clrthird">
               <span>mutual</span>
             </p>
