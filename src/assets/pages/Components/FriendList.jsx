@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getDatabase, ref, onValue , push} from "firebase/database";
+import { getDatabase, ref, onValue , push , remove} from "firebase/database";
 import { useSelector } from "react-redux";
 
 
@@ -33,14 +33,14 @@ const FriendList = () => {
     const friendRef = ref(db, 'Friends');
     onValue(friendRef, (snapshot) => {
       snapshot.forEach((item)=>{
-        
         if(item.val().receiver.uid === currentUser.user.uid){
-          FriendsList.push(item.val().sender)
+          FriendsList.push({...item.val().sender , unfriendID: item.key})
         }else{
-          FriendsList.push(item.val().receiver)
+          FriendsList.push({...item.val().receiver , unfriendID: item.key})
         }
       })
     });
+    
     
     
     // update friends
@@ -65,6 +65,16 @@ const FriendList = () => {
   let add = ()=>{
     setViewstatus('add');
 
+  }
+
+  // Unfriend Function
+  let Unfriend = (item)=>{
+    // remove from friends
+    remove(ref(db, 'Friends/' + item.unfriendID));
+
+    // update friendList
+    setFriends((prevList) => prevList.filter((prevItem) => prevItem.uid !== item.uid));
+    
   }
   return (
     <div className="p-5 shadow">
@@ -104,7 +114,7 @@ const FriendList = () => {
                 </div>
                 <div className="flex gap-10 ">
                   <button type="button" className="text-lg flex items-center gap-2 cursor-pointer bg-clrthird/10 py-1 px-2 rounded-md hover:text-primarytxt hover:bg-brand duration-[.4s]   "><RiUserForbidLine/><span>block</span></button>
-                  <button type="button" className="text-lg flex items-center gap-2 cursor-pointer bg-clrthird/10 py-1 px-2 rounded-md hover:text-primarytxt hover:bg-brand duration-[.4s]   "><RiUserMinusLine/><span>Unfriend</span></button>
+                  <button type="button" onClick={()=>Unfriend(item)} className="text-lg flex items-center gap-2 cursor-pointer bg-clrthird/10 py-1 px-2 rounded-md hover:text-primarytxt hover:bg-brand duration-[.4s]   "><RiUserMinusLine/><span>Unfriend</span></button>
                 </div>
               </div>
             )

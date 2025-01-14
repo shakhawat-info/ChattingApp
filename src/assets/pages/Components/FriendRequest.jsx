@@ -36,15 +36,19 @@ const FriendRequest = () => {
       receiver: {...item.val().receiver  , friendWith: item.val().sender.uid},
       sender: {...item.val().sender , friendWith: item.val().receiver.uid}
     });
-
     // remove from request list
     remove(ref(db, 'Requests/' + item.key))
-    
-    
     // remove from user list
-    // setRequests((prevList) => prevList.filter((prevItem) => prevItem.val().sender.uid !== item.val().sender.uid));
-    
-    
+    setRequests((prevList) => prevList.filter((prevItem) => prevItem.val().sender.uid !== item.val().sender.uid));
+  }
+  
+  // Delete Request
+  
+  let deleteRequ = (item)=>{
+    // console.log(requests);
+    remove(ref(db, 'Requests/' + item.key))
+    // remove the added user
+    setRequests((prevList) => prevList.filter((prevItem) => prevItem.val().sender.uid !== item.val().sender.uid));
     
   }
   return (
@@ -59,7 +63,7 @@ const FriendRequest = () => {
               <p className="font-ubuntu text-clrthird "> <span>mutual</span></p>
               <div className="flex gap-x-3">
                 <button type='button' onClick={()=>comfirm(item)} className='font-ubuntu duration-[.4s]  py-1 lg:px-5 px-2 lg:text-lg text-[15px] rounded-md bg-brand text-primarytxt capitalize font-medium   '>confirm</button>
-                <button type='button' className='font-ubuntu duration-[.4s] text-clrthird py-1 lg:px-5 px-2 lg:text-lg text-[15px] bg-clrthird/10 rounded-md   capitalize font-medium   '>delete</button>
+                <button type='button' onClick={()=> deleteRequ(item)} className='font-ubuntu duration-[.4s] text-clrthird py-1 lg:px-5 px-2 lg:text-lg text-[15px] bg-clrthird/10 rounded-md   capitalize font-medium   '>delete</button>
               </div>
             </div>
           </div>

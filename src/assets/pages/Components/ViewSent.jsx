@@ -30,7 +30,6 @@ const ViewSent = () => {
     // remove the added user
     setRequests((prevList) => prevList.filter((prevItem) => prevItem.val().receiver.uid !== id.val().receiver.uid));
     
-    
   }
   return (
     <div className="flex flex-col-reverse gap-y-2">
