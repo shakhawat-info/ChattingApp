@@ -81,8 +81,15 @@ const FriendList = () => {
   let block = (item)=>{
 
     // store bloked id into block ID
-    set(push(ref(db, `users/${currentUser.user.uid}/BlokedIDs`)), {
-      
+    // set(push(ref(db, `users/${currentUser.user.uid}/BlokedIDs`)), {
+    //   Blocked: item.uid
+    // });
+    // set(push(ref(db, `users/${item.uid}/BlokerIDs`)), {
+    //   Blocker: currentUser.user.uid
+    // });
+    set(push(ref(db, `BlockList` )), {
+      Blocker: {BlockerID: currentUser.user.uid , BlockerName: currentUser.user.displayName , BlockerPic: currentUser.user.photoURL},
+      Blocked: {BlockedID: item.uid , BlockedName: item.displayName , BlockedPic: item.photoURL },
     });
 
     // remove blocked id from friendList

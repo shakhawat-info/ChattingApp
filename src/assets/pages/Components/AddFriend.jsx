@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getDatabase, ref, set, onValue, push } from "firebase/database";
+import { current } from "@reduxjs/toolkit";
 
 const AddFriend = () => {
   const db = getDatabase();
@@ -13,6 +14,7 @@ const AddFriend = () => {
     const allUsersRef = ref(db, "users/");
     const requestsRef = ref(db, "Requests/");
     const FriendsRef = ref(db, "Friends/");
+    const BlockRef = ref(db, "BlockList/");
 
     // Fetch users without current user
     let allUsers = [];
@@ -22,14 +24,33 @@ const AddFriend = () => {
         if (item.key !== currentUser.user.uid) {
           allUsers.push(item);
         }
-        if (item.key === currentUser.user.uid) {
-
-
-        }
+        // else{
+        //   if(item.val().BlokedIDs){
+        //     Object.entries(item.val().BlokedIDs).map((item)=>{
+        //       Blocked.push(item[1].Blocked);
+        //     })
+        //   }
+        //   if(item.val().BlokerIDs){
+        //     Object.entries(item.val().BlokerIDs).map((item)=>{
+        //       Blocked.push(item[1].Blocker);
+        //     })
+        //   }
+        // }
       });
     });
     
     
+    // Remove user who is on blocklist
+    onValue(BlockRef, (snapshot) => {
+      snapshot.forEach((item)=>{
+        // console.log(item.val().Blocker.BlockerID);
+        if(item.val().Blocker.BlockerID === currentUser.user.uid){
+          Blocked.push(item.val().Blocked.BlockedID)
+        }else{
+          Blocked.push(item.val().Blocker.BlockerID)
+        }
+      })
+    });
 
     // remove who has got my request
     let RemoveSentAccount = [];
@@ -63,17 +84,16 @@ const AddFriend = () => {
     });
     
     const FriendRemoved = removedInReq.filter((rir)=> !receiverRemove.some((recRm)=> rir.key == recRm.uid));
-
     
     // remove Blocked users
-    let removebloked = FriendRemoved.filter((friendRM)=> !Blocked.some((blc)=> friendRM.key == blc))
+    let UpdatedUsers = FriendRemoved.filter((friendRM)=> !Blocked.some((blc)=> friendRM.key == blc))
 
     // remove blocker
 
 
 
     // Update the user list
-    setUserList(removebloked)
+    setUserList(UpdatedUsers)
   }, [currentUser]);
 
 
