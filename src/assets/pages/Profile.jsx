@@ -54,13 +54,14 @@ import FriendList from './Components/FriendList';
 const Profile = () => {
       // variables
   let navigate = useNavigate();
+  let [about , setAbout] = useState(false)
   
 
 
 
 //   Profile option function
 
-let [activebtn , setActivebtn] = useState(1);
+
 let [more , setMore] = useState(false);
 let moreView = ()=>{
   setMore(prevState => !prevState)
@@ -104,10 +105,47 @@ let userInfo = useSelector((state)=>state.userInfo.value);
 let [view , setView] = useState('post');
 let showPost = ()=>{
   setView('post')
+  setAbout(false)
 }
 
 let showFriends =()=>{
   setView('friends')
+  setAbout(false)
+  setMore(prevState => !prevState)
+}
+
+let showPhoto = ()=>{
+  setView('photos')
+  setAbout(false)
+}
+
+let showVideo = ()=>{
+  setView('videos')
+  setAbout(false)
+  setMore(prevState => !prevState)
+}
+
+let showGroups = ()=>{
+  setView('groups')
+  setAbout(false)
+  setMore(prevState => !prevState)
+}
+
+let showMusics = ()=>{
+  setView('musics')
+  setAbout(false)
+  setMore(prevState => !prevState)
+}
+
+let showBooks = ()=>{
+  setView('books')
+  setAbout(false)
+  setMore(prevState => !prevState)
+}
+
+
+let showAbout = ()=>{
+  setAbout(true)
 }
   return (
     <>
@@ -149,15 +187,15 @@ let showFriends =()=>{
                {/* Profile options  */}
                <div className="flex gap-5 py-2 px-5 mt-10 border-t font-ubuntu relative  ">
                    <button type='button' onClick={showPost} className={`${view === 'post' ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Posts</button>
-                   <button type='button' onClick={()=> setActivebtn(8)}  className={`${activebtn === 8 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn lg:absolute top-0 right-0 lg:bg-brand lg:text-primarytxt lg:py-1 lg:px-5 lg:h-full flex items-center gap-2 lg:rounded-br-[5px] `}> <span>About</span> <LiaShareSolid className="rotate-[90deg] hidden lg:inline-block "/> </button>
-                   <button type='button' onClick={()=> setActivebtn(2)} className={`${activebtn === 2 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Photos</button>
+                   <button type='button' onClick={showAbout}  className={`${about ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn lg:absolute top-0 right-0 lg:bg-brand lg:text-primarytxt lg:py-1 lg:px-5 lg:h-full flex items-center gap-2 lg:rounded-br-[5px] `}> <span>About</span> <LiaShareSolid className="rotate-[90deg] hidden lg:inline-block "/> </button>
+                   <button type='button' onClick={showPhoto} className={`${view === 'photos' ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Photos</button>
                    <button onClick={moreView} type='button' className='optnBtn flex items-center gap-2 lg:hidden '><MdMoreHoriz/><span>See more</span></button>
-                   <div className={`gap-5 ${!more ? 'hidden lg:flex' : 'flex flex-col lg:flex-row absolute lg:relative z-[1] top-[100%] left-[240px] p-2 shadow2 '} bg-primarytxt `}>
-                   <button type='button' onClick={()=> setActivebtn(3)} className={`${activebtn === 3 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Videos</button>
+                   <div className={`gap-5 ${!more ? 'hidden lg:flex' : 'flex flex-col lg:flex-row absolute lg:relative z-[1] top-[100%] lg:left-[0px] left-[240px] lg:p-0 p-2 lg:shadow-none shadow2 '} bg-primarytxt `}>
+                     <button type='button' onClick={showVideo} className={`${view === 'videos' ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Videos</button>
                      <button type='button' onClick={showFriends} className={`${view === 'friends' ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Friends</button>
-                     <button type='button' onClick={()=> setActivebtn(5)} className={`${activebtn === 5 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Groups</button>
-                     <button type='button' onClick={()=> setActivebtn(6)} className={`${activebtn === 6 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Musics</button>
-                     <button type='button' onClick={()=> setActivebtn(7)} className={`${activebtn === 7 ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Books</button>
+                     <button type='button' onClick={showGroups} className={`${view === 'groups' ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Groups</button>
+                     <button type='button' onClick={showMusics} className={`${view === 'musics' ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Musics</button>
+                     <button type='button' onClick={showBooks} className={`${view === 'books' ? 'text-brand border-b-brand' : 'text-clrthird border-b-transparent'} optnBtn `}>Books</button>
                    </div>
                </div>
 
@@ -244,7 +282,7 @@ let showFriends =()=>{
                 </div>
 
                 {/* about box */}
-                <div className={`p-2 shadow2 lg:w-[35%]  ${activebtn === 8 ? 'block' : 'hidden lg:block'}`}>
+                <div className={`p-2 shadow2 lg:w-[35%]  ${about ? 'block' : 'hidden lg:block'}`}>
                   <h2 className=' font-aldrich flex justify-end items-center gap-2  '>About <FcInfo/></h2>
                   <ul className='w-full mt-5 flex flex-col gap-2'>
                     <li className="flex items-center gap-2 font-ubuntu"><FcWorkflow/><span className='text-clrthird'>Works at</span> <b className='text-[14px]'>MERN</b></li>

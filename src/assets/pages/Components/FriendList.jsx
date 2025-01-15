@@ -28,23 +28,27 @@ const FriendList = () => {
   
   useEffect(() => {
 
-    // Fatch friends from dataBase
     let FriendsList = [];
     const friendRef = ref(db, 'Friends');
     onValue(friendRef, (snapshot) => {
-      snapshot.forEach((item)=>{
-        if(item.val().receiver.uid === currentUser.user.uid){
-          FriendsList.push({...item.val().sender , unfriendID: item.key})
-        }else{
-          FriendsList.push({...item.val().receiver , unfriendID: item.key})
+      // remove previous arr
+      FriendsList = [];
+      
+      snapshot.forEach((item) => {
+        const friendData = item.val();
+        const unfriendID = item.key;
+    
+        if (friendData.receiver.uid === currentUser.user.uid) {
+          FriendsList.push({ ...friendData.sender, unfriendID });
+        } else if (friendData.sender.uid === currentUser.user.uid) {
+          FriendsList.push({ ...friendData.receiver, unfriendID });
         }
-      })
+      });
+    
     });
     
-    
-    
-    // update friends
     setFriends(FriendsList)
+    
   },[]);
 
 
@@ -81,12 +85,6 @@ const FriendList = () => {
   let block = (item)=>{
 
     // store bloked id into block ID
-    // set(push(ref(db, `users/${currentUser.user.uid}/BlokedIDs`)), {
-    //   Blocked: item.uid
-    // });
-    // set(push(ref(db, `users/${item.uid}/BlokerIDs`)), {
-    //   Blocker: currentUser.user.uid
-    // });
     set(push(ref(db, `BlockList` )), {
       Blocker: {BlockerID: currentUser.user.uid , BlockerName: currentUser.user.displayName , BlockerPic: currentUser.user.photoURL},
       Blocked: {BlockedID: item.uid , BlockedName: item.displayName , BlockedPic: item.photoURL },
@@ -127,9 +125,9 @@ const FriendList = () => {
         {/* friend list */}
         {viewstatus === 'friend' &&
         <div className="w-full">
-          {friends.map((item)=>{
+          {friends.map((item , index)=>{
             return(
-              <div key={item.uid} className="flex mt-2 justify-between items-center bg-clrthird/5 p-2 rounded-md hover:bg-clrthird/10">
+              <div key={index} className="flex mt-2 justify-between items-center bg-clrthird/5 p-2 rounded-md hover:bg-clrthird/10">
                 <div className="flex gap-5 w-[80%]">
                   <img src={item.photoURL} alt="friendPIC" className="w-[55px] h-[55px] rounded-full  "/>
                   <div className="">

@@ -53,7 +53,7 @@ export default {
         // 'postoptions': '1fr 1fr 1fr',
       },
       backgroundImage: {
-        // 'Chatbg': "url('./src/assets/images/ctbg.jpg')",
+        'Chatbg': "url('./src/assets/images/Chatbg.jpg')",
       },
     },
     fontFamily: {
