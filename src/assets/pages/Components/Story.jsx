@@ -33,7 +33,7 @@ const Story = () => {
         settings: {
           slidesToShow: 6,
           infinite: true,
-          dots: true,
+          dots: false,
         },
       },
       {

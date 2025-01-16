@@ -33,7 +33,7 @@ function App() {
         <Route path="/Signup" element={<Signup />} />
         <Route path="/*" element={<Notfound/>}/>
         {userInfo && 
-        <Route>
+        <Route >
           <Route path="/Friends" element={<Friends />} />
           <Route path="/Message" element={<Message />} />
           <Route path="/Search" element={<Search />} />
