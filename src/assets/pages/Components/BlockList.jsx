@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { getDatabase, ref, onValue , remove} from "firebase/database";
 import { Link } from 'react-router';
 import Nav from './Nav';
+import { toggle } from '../../Redux/Features/MenuModal/MenuModalSlice';
 
 // icons
 import { RiUserForbidLine } from "react-icons/ri";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const BlockList = () => {
 
+  // Redux menu toggle
+  let istoggle = useSelector((state)=> state.menuToggle.value);
+  let dispatch = useDispatch();
   // current user data
   let currentUser = useSelector((state)=>state.userInfo.value);
   
@@ -53,7 +57,7 @@ const BlockList = () => {
               <h2 className='font-aldrich    '>Your BlockList</h2>
               <p className='font-ubuntu text-clrthird '>If you block someone, you won't be able to see their post or ID, no one on your block list will be able to see your post or ID. You cannot exchange messages with each other.</p>
             </div>
-            <Link to="/friends" className='flex items-center gap-2 text-primarytxt bg-brand py-1 px-3 font-semibold rounded-md     '><RiUserForbidLine className='text-lg'/> <span>Add to block list</span></Link>
+            <Link onClick={()=>dispatch(toggle(false))} to="/friends" className='flex items-center gap-2 text-primarytxt bg-brand py-1 px-3 font-semibold rounded-md     '><RiUserForbidLine className='text-lg'/> <span>Add to block list</span></Link>
           </div>
         </div>
         <div className="flex flex-col gap-1 mt-2  ">

@@ -102,7 +102,11 @@ let istheme = useSelector((state)=>state.themeToggle.value);
   // console.log(userinfo);
   
   
-
+  // profile navigate
+  let profileView = ()=>{
+    navigation('/profile');
+    dispatch(toggle(false))
+  }
   return (
     <div className={` overflow-y-scroll h-screen fixed top-[52px]  lg:top-[62px] z-[2]  lg:w-[25%] w-full  mt-1 ${istheme ? ' bg-PrimaryDark' : 'bg-[#f3f4f5]'}   ${istoggle ? " right-0  " :  " lg:right-[-30%] right-[-110%] "} duration-[.6s]    `}>
       {isLogout && <Logout></Logout>} 
@@ -120,7 +124,7 @@ let istheme = useSelector((state)=>state.themeToggle.value);
         {/* profile */}
         <div className="flex flex-col mt-3  menuBox items-start ">
           <div className="flex justify-between items-center w-full pb-1">
-            <div className="w-3/4" onClick={()=> navigation('/profile')}>
+            <div className="w-3/4" onClick={profileView}>
               <img src={userinfo.user?.photoURL} alt="profile" className="w-[40px] h-[40px] rounded-full object-cover cursor-pointer " />
             </div>
             <IoIosArrowDropdown className="text-3xl cursor-pointer" />

@@ -11,10 +11,13 @@ export const menuModalSlice = createSlice({
     toggle: (state) => {
         state.value = !state.value;
     },
+    menuFalse: (state) =>{
+      state.value = false
+    } 
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { toggle }  = menuModalSlice.actions
+export const { toggle , menuFalse}  = menuModalSlice.actions
 
 export default menuModalSlice.reducer

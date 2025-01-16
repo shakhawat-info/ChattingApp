@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggle } from '../../Redux/Features/MenuModal/MenuModalSlice';
-
+import { toggle ,menuFalse} from '../../Redux/Features/MenuModal/MenuModalSlice';
 
 // Icons
 import { BsPlusSquare } from "react-icons/bs";
@@ -34,8 +33,35 @@ let dispatch = useDispatch();
   // navigation
   let navigate = useNavigate()
 
-  
+  // navigate to home
+  let viewHome = ()=>{
+    navigate('/')
+    dispatch(menuFalse())
+  }
 
+  // navigate to friends
+  let friendsView = ()=>{
+    navigate('/friends')
+    dispatch(menuFalse())
+  }
+
+  // navigate to message
+  let viewMessage =() =>{
+    navigate('/message')
+    dispatch(menuFalse())
+  }
+
+  // navigate to notifucation
+  let viewNotification = ()=>{
+    navigate('/notification')
+    dispatch(menuFalse())
+  }
+
+  // navigate to videos
+  let viewVideos = ()=>{
+    navigate('/videos')
+    dispatch(menuFalse())
+  }
   return (
     <nav className="lg:px-5 px-2 lg:py-3 py-2 shadow fixed z-50 top-0 left-0 w-full bg-primarytxt">
       <div className="container">
@@ -59,11 +85,11 @@ let dispatch = useDispatch();
         <div className=" w-full mt-2 lg:mt-0">
           <div className="w-full">
              <ul className="flex justify-between">        
-              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={()=>navigate('/')}><GoHome /></li>
-              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={()=>navigate('/friends')}><GoPeople /></li>
-              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={()=>navigate('/message')}><PiMessengerLogoThin /></li>
-              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><VscBell /></li>
-              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><PiVideoLight /></li>
+              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={viewHome}><GoHome /></li>
+              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={friendsView}><GoPeople /></li>
+              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={viewMessage}><PiMessengerLogoThin /></li>
+              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={viewNotification}><VscBell /></li>
+              <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden ' onClick={viewVideos}><PiVideoLight /></li>
               <li className='NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden '><RiStore2Line /></li>
              </ul>
            </div>
