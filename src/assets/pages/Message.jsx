@@ -6,8 +6,8 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import "slick-carousel/slick/slick.css";
 import { Link } from 'react-router';
 // components
-import Nav from './Components/Nav';
-import Menu from './Components/Menu';
+// import Nav from './Components/Nav';
+// import Menu from './Components/Menu';
 
 
 
@@ -131,10 +131,6 @@ let openChat = (item)=>{
 } 
 
   return (
-    <>
-      <Nav />
-      <Menu />
-    
     <section className='h-screen overflow-scroll lg:mt-[75px] mt-[120px]'>
         <div className="container relative">
             {/* message option setting start */}
@@ -232,7 +228,6 @@ let openChat = (item)=>{
             {/* messages option bottom end */}
         </div>
     </section>
-    </>
   )
 }
 
