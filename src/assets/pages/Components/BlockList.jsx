@@ -47,8 +47,6 @@ const BlockList = () => {
   }
 
   return (
-    <>
-    <Nav/>
     <div className='lg:mt-[75px] mt-[120px]'>
       <div className="container">
         <div className="shadow p-2">
@@ -73,7 +71,6 @@ const BlockList = () => {
         </div>
       </div>
     </div>
-    </>
   )
 }
 

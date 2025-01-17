@@ -7,9 +7,9 @@ import Message from "./assets/pages/Message";
 import Search from "./assets/pages/Search";
 import Profile from "./assets/pages/Profile";
 import Notfound from "./assets/pages/Components/Notfound";
-import Nav from "./assets/pages/Components/Nav";
 import BlockList from "./assets/pages/Components/BlockList";
-
+import Groups from "./assets/pages/Groups";
+import Layout from "./assets/pages/Components/Layout";
 
 
 
@@ -24,23 +24,24 @@ function App() {
   // console.log(userInfo);
   
   
-
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={ userInfo ? <Home /> : <Login />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/*" element={<Notfound/>}/>
-        {userInfo && 
-        <Route >
-          <Route path="/Friends" element={<Friends />} />
-          <Route path="/Message" element={<Message />} />
-          <Route path="/Search" element={<Search />} />
-          <Route path="/Profile" element={<Profile />} />
-          <Route path="/blocklist" element={<BlockList />} />
+        <Route path="" element={<Layout/>}>
+          <Route path="/" element={ userInfo ? <Home /> : <Login />} />
+          {userInfo &&
+          <Route>
+            <Route path="/Friends" element={<Friends />} />
+            <Route path="/Message" element={<Message />} />
+            <Route path="/Search" element={<Search />} />
+            <Route path="/Profile" element={<Profile />} />
+            <Route path="/Groups" element={<Groups />} />
+            <Route path="/blocklist" element={<BlockList />} />
+          </Route>
+          }
         </Route>
-        }
       </Routes>
     </BrowserRouter>
   );

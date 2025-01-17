@@ -117,7 +117,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
   /* home page start */
   .topIcon {
-    @apply w-[45px] h-[45px] bg-clrthird/10 grid place-items-center rounded-full text-xl cursor-pointer hover:text-primarytxt duration-[.4s] overflow-hidden;
+    @apply w-[45px] h-[45px] bg-clrthird/10 grid place-items-center rounded-full text-xl cursor-pointer hover:text-primarytxt hover:bg-brand duration-[.4s] overflow-hidden;
   }
   .hoverEfct {
     @apply after:absolute after:top-0 after:left-0 after:w-[0] after:h-[0] after:bg-brand after:z-[-1] after:duration-[.4s] after:rounded-full hover:after:w-full hover:after:h-full;

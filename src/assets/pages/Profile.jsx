@@ -42,8 +42,6 @@ import { MdMoreHoriz } from "react-icons/md";
 
 
 // components
-import Nav from './Components/Nav';
-import Menu from './Components/Menu';
 import FriendList from './Components/FriendList';
 
 
@@ -149,12 +147,8 @@ let showAbout = ()=>{
 }
   return (
     <>
-    {/* nav and menu */}
-    <Nav/>
-    <Menu/>
-
     {/* Profile */}
-    <section className='pb-10 lg:mt-[75px] mt-[120px]'>
+    <section className='pb-10'>
         <div className="container">
             <div className="shadow rounded-md">
 

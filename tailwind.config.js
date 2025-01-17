@@ -25,7 +25,7 @@ export default {
         bgsecondery: "#262626",
         clrthird: "#626262",
         primarytxt: "#ffffff",
-        brand: "#ff045c",
+        brand: "#6200E8",
       },
       animation: {
         showLogin: "showLogin .4s linear ",

@@ -18,14 +18,6 @@ const Home = () => {
 
   return (
     <>
-      {/* Nav Start */}
-      <Nav/>
-      {/* Nav Start */}
-
-      {/* Menu start */}
-      <Menu />
-      {/* Menu end */}
-
       {/* ==== Story Section Start */}
       <Story />
       {/* ==== Story Section End */}

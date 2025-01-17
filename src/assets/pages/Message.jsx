@@ -5,9 +5,6 @@ import Slider from "react-slick";
 import { getDatabase, ref, onValue } from "firebase/database";
 import "slick-carousel/slick/slick.css";
 import { Link } from 'react-router';
-// components
-// import Nav from './Components/Nav';
-// import Menu from './Components/Menu';
 
 
 
@@ -131,10 +128,10 @@ let openChat = (item)=>{
 } 
 
   return (
-    <section className='h-screen overflow-scroll lg:mt-[75px] mt-[120px]'>
+    <section className='h-screen overflow-scroll'>
         <div className="container relative">
             {/* message option setting start */}
-            <div className="flex justify-between shadow px-2">
+            <div className="flex justify-between shadow px-2 ">
                 <h3 className='font-aldrich font-medium text-lg   '>Messages</h3>
                 <div className="flex gap-x-2 ">
                     <button type='button' className='p-2 text-lg '><FcSettings/></button>
