@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react'
-import { Checkbox } from "@material-tailwind/react";
+import React, { useRef, useState } from 'react';
+import { getDatabase, push, ref, set } from "firebase/database";
 
 
 // icons
@@ -7,24 +7,25 @@ import { GoPlusCircle } from "react-icons/go";
 import { FcInvite } from "react-icons/fc";
 import { CiTimer } from "react-icons/ci";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import { useSelector } from 'react-redux';
+
 
 
 const Groups = () => {
   // variables
-  let [group , setGroup] = useState({});
-  let [creategroupModal , setCreategroupModal] = useState(true);
+  const db = getDatabase();
+  let [creategroupModal , setCreategroupModal] = useState(false);
   let [viewGroupname , setViewGroupname] = useState('show');
   let [nameerr , setNameerr] = useState('')
   let [viewGroupPublicity , setViewGroupPublicity] = useState('hide')
   let [publicityErr , setPublicityErr] = useState('')
-  let [viewgroupType , setViewgroupType] = useState('hide')
+  let currentUser = useSelector((state)=>state.userInfo.value);
 
 
   // CloseGroupCreateModal function
   let CloseGroupCreateModal = ()=>{
     setCreategroupModal(false);
     setViewGroupname('show');
-    setViewgroupType('hide');
     setViewGroupPublicity('hide')
     setNameerr('')
     setGroupName('')
@@ -53,21 +54,24 @@ const Groups = () => {
 
   // viewGroupPublicity func
   let PublicRef = useRef();
-  let privateRef = useRef();
 
   let privacyNext = ()=>{
     if(!PublicRef.current.checked && !privateRef.current.checked) setPublicityErr('Please select one.');
-    if(PublicRef.current.checked || privateRef.current.checked){
-      setViewGroupPublicity('hide');
-      setViewgroupType('show')
-    }
+
+    // group object
+    let group = {name: groupName , visiblity: PublicRef.current.checked ? 'public' : 'private' , CreatedBy: currentUser.user.uid  }
+    
+    set(push(ref(db, 'Groups/' )), {
+      group
+    }).then(()=>{
+      setCreategroupModal(false);
+      setViewGroupname('show');
+      setViewGroupPublicity('hide')
+      setNameerr('')
+      setGroupName('')
+    })
   }
 
-  // back to publicity
-  let backTOprivacy = ()=>{
-    setViewgroupType('hide');
-    setViewGroupPublicity('show');
-  }
 
   return (
     <div className='container'>
@@ -125,7 +129,7 @@ const Groups = () => {
           <div className="">
             <h4 className='font-aldrich text-clrthird  '>What is your group publicity?</h4>
             <label for="public" className='flex items-center gap-3 capitalize text-clrthird font-ubuntu cursor-pointer  '><input onChange={()=> setPublicityErr('')} type="radio" name="publicity" id="public" ref={PublicRef}/><span>Public</span></label>
-            <label for="private" className='flex items-center gap-3 capitalize text-clrthird font-ubuntu cursor-pointer  '><input onChange={()=> setPublicityErr('')} type="radio" name="publicity" id="private" ref={privateRef}/> <span>Private</span></label>
+            <label for="private" className='flex items-center gap-3 capitalize text-clrthird font-ubuntu cursor-pointer  '><input onChange={()=> setPublicityErr('')} type="radio" name="publicity" id="private" /> <span>Private</span></label>
             <p className="font-ubuntu text-[14px] text-red-500">{publicityErr}</p>
             <div className="flex justify-between mt-5">
               <button onClick={backTOname} type='button' className='font-ubuntu text-brand bg-clrthird/10 py-1 px-3 font-medium rounded-md'>Back</button>
@@ -134,22 +138,7 @@ const Groups = () => {
           </div>
           }
 
-          {/* group type */}
-          {viewgroupType == 'show' &&
-          <div className="">
-            <h4 className='font-aldrich text-clrthird  '>What type your group is?</h4>
-            <ul className="flex flex-col">
-              <li><Checkbox id="educational" label="Educational" ripple={true} /></li>
-              <li><Checkbox id="fun" label="For Fun" ripple={true} /></li>
-              <li><Checkbox id="science" label="Science" ripple={true} /></li>
-              <li><Checkbox id="info" label="Information" ripple={true} /></li>
-            </ul>
-            <div className="flex justify-between mt-5">
-              <button onClick={backTOprivacy} type='button' className='font-ubuntu text-brand bg-clrthird/10 py-1 px-3 font-medium rounded-md'>Back</button>
-              <button type='button' className=' font-ubuntu text-primarytxt bg-brand py-1 px-3 font-medium rounded-md  '>Next</button>
-            </div>
-          </div>
-          }
+
 
         </div>
       </div>
