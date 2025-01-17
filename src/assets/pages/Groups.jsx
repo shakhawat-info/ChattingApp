@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
+import { Checkbox } from "@material-tailwind/react";
+
+
+// icons
 import { GoPlusCircle } from "react-icons/go";
 import { FcInvite } from "react-icons/fc";
 import { CiTimer } from "react-icons/ci";
@@ -6,13 +10,72 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 
 
 const Groups = () => {
+  // variables
+  let [group , setGroup] = useState({});
+  let [creategroupModal , setCreategroupModal] = useState(true);
+  let [viewGroupname , setViewGroupname] = useState('show');
+  let [nameerr , setNameerr] = useState('')
+  let [viewGroupPublicity , setViewGroupPublicity] = useState('hide')
+  let [publicityErr , setPublicityErr] = useState('')
+  let [viewgroupType , setViewgroupType] = useState('hide')
+
+
+  // CloseGroupCreateModal function
+  let CloseGroupCreateModal = ()=>{
+    setCreategroupModal(false);
+    setViewGroupname('show');
+    setViewgroupType('hide');
+    setViewGroupPublicity('hide')
+    setNameerr('')
+    setGroupName('')
+  }
+
+  // name func
+  let [groupName , setGroupName] = useState('')
+  let nameInput = (e)=>{
+    setNameerr('')
+    setGroupName(e.target.value);
+  }
+  let nameNext = ()=>{
+    if(!groupName) setNameerr('Group name can not be empty!');
+    if(groupName && groupName.length < 4) setNameerr('Name must have 4 carecter');
+    if(groupName && groupName.length >= 4) {
+      setViewGroupname('hide');
+      setViewGroupPublicity('show');
+    }
+  }
+  
+  // back to name
+  let backTOname = ()=>{
+    setViewGroupname('show');
+    setViewGroupPublicity('hide');
+  }
+
+  // viewGroupPublicity func
+  let PublicRef = useRef();
+  let privateRef = useRef();
+
+  let privacyNext = ()=>{
+    if(!PublicRef.current.checked && !privateRef.current.checked) setPublicityErr('Please select one.');
+    if(PublicRef.current.checked || privateRef.current.checked){
+      setViewGroupPublicity('hide');
+      setViewgroupType('show')
+    }
+  }
+
+  // back to publicity
+  let backTOprivacy = ()=>{
+    setViewgroupType('hide');
+    setViewGroupPublicity('show');
+  }
+
   return (
     <div className='container'>
       {/* group top */}
       <div className="flex justify-between items-center py-1 border  px-2 rounded-md ">
         <h2 className="font-aldrich font-semibold text-clrthird text-xl ">Groups</h2>
         <ul className="flex gap-10">
-          <li className='flex flex-col items-center text-clrthird font-ubuntu cursor-pointer '><GoPlusCircle className='text-xl'/><span>Create Group</span></li>
+          <li onClick={()=> setCreategroupModal(true)} className='flex flex-col items-center text-clrthird font-ubuntu cursor-pointer '><GoPlusCircle className='text-xl'/><span>Create Group</span></li>
           <li className='flex flex-col items-center text-clrthird font-ubuntu cursor-pointer '><FcInvite className='text-xl'/><span>Invites</span></li>
           <li className='flex flex-col items-center text-clrthird font-ubuntu cursor-pointer '><CiTimer className='text-xl'/><span>Pending Joins</span></li>
         </ul>
@@ -40,42 +103,57 @@ const Groups = () => {
 
 
       {/* Group create modal */}
+      {creategroupModal && 
       <div className="grid place-items-center w-full h-screen bg-clrthird/20 fixed top-0 left-0 ">
         <div className=" w-[50%] h-fit p-5 bg-primarytxt border rounded-md relative ">
           {/* Close btn */}
-          <button type="button" className='absolute top-0 right-0 text-xl text-clrthird p-2    '><IoCloseCircleOutline/></button>
+          <button onClick={CloseGroupCreateModal} type="button" className='absolute top-0 right-0 text-xl text-clrthird p-2    '><IoCloseCircleOutline/></button>
 
           {/* group name */}
+          {viewGroupname == 'show' &&
           <div className="">
             <h4 className='font-aldrich text-clrthird  '>Enter your group name.</h4>
-            <input type="text" className=' w-full border outline-none py-1 px-3 rounded-[5px] text-clrthird  ' placeholder='Group Name...'/>
-            <div className="flex justify-between mt-5">
-              <button type='button' className='font-ubuntu text-brand bg-clrthird/10 py-1 px-3 font-medium rounded-md'>Back</button>
-              <button type='button' className=' font-ubuntu text-primarytxt bg-brand py-1 px-3 font-medium rounded-md  '>Next</button>
+            <input onChange={nameInput} value={groupName} type="text" className=' w-full border outline-none py-1 px-3 rounded-[5px] text-clrthird  ' placeholder='Group Name...'/>
+            <p className="font-ubuntu text-[14px] text-red-500  ">{nameerr}</p>
+            <div className="flex justify-end mt-5">
+              <button onClick={nameNext} type='button' className=' font-ubuntu text-primarytxt bg-brand py-1 px-3 font-medium rounded-md  '>Next</button>
             </div>
           </div>
+          }
           {/* group privacy */}
+          {viewGroupPublicity == 'show' &&
           <div className="">
             <h4 className='font-aldrich text-clrthird  '>What is your group publicity?</h4>
-            <label for="public" className='flex items-center gap-3 capitalize text-clrthird font-ubuntu cursor-pointer  '><input type="radio" name="publicity" id="public" /><span>Public</span></label>
-            <label for="private" className='flex items-center gap-3 capitalize text-clrthird font-ubuntu cursor-pointer  '><input type="radio" name="publicity" id="private" /> <span>Private</span></label>
+            <label for="public" className='flex items-center gap-3 capitalize text-clrthird font-ubuntu cursor-pointer  '><input onChange={()=> setPublicityErr('')} type="radio" name="publicity" id="public" ref={PublicRef}/><span>Public</span></label>
+            <label for="private" className='flex items-center gap-3 capitalize text-clrthird font-ubuntu cursor-pointer  '><input onChange={()=> setPublicityErr('')} type="radio" name="publicity" id="private" ref={privateRef}/> <span>Private</span></label>
+            <p className="font-ubuntu text-[14px] text-red-500">{publicityErr}</p>
             <div className="flex justify-between mt-5">
-              <button type='button' className='font-ubuntu text-brand bg-clrthird/10 py-1 px-3 font-medium rounded-md'>Back</button>
-              <button type='button' className=' font-ubuntu text-primarytxt bg-brand py-1 px-3 font-medium rounded-md  '>Next</button>
+              <button onClick={backTOname} type='button' className='font-ubuntu text-brand bg-clrthird/10 py-1 px-3 font-medium rounded-md'>Back</button>
+              <button onClick={privacyNext} type='button' className=' font-ubuntu text-primarytxt bg-brand py-1 px-3 font-medium rounded-md  '>Next</button>
             </div>
           </div>
+          }
 
           {/* group type */}
+          {viewgroupType == 'show' &&
           <div className="">
             <h4 className='font-aldrich text-clrthird  '>What type your group is?</h4>
+            <ul className="flex flex-col">
+              <li><Checkbox id="educational" label="Educational" ripple={true} /></li>
+              <li><Checkbox id="fun" label="For Fun" ripple={true} /></li>
+              <li><Checkbox id="science" label="Science" ripple={true} /></li>
+              <li><Checkbox id="info" label="Information" ripple={true} /></li>
+            </ul>
             <div className="flex justify-between mt-5">
-              <button type='button' className='font-ubuntu text-brand bg-clrthird/10 py-1 px-3 font-medium rounded-md'>Back</button>
+              <button onClick={backTOprivacy} type='button' className='font-ubuntu text-brand bg-clrthird/10 py-1 px-3 font-medium rounded-md'>Back</button>
               <button type='button' className=' font-ubuntu text-primarytxt bg-brand py-1 px-3 font-medium rounded-md  '>Next</button>
             </div>
           </div>
+          }
 
         </div>
       </div>
+      }
 
 
     </div>
