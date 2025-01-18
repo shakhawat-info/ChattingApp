@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import Slider from "react-slick";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue ,set , push} from "firebase/database";
 import "slick-carousel/slick/slick.css";
 import { Link } from 'react-router';
 
@@ -36,9 +36,11 @@ const Message = () => {
 
   // message input box
   let [type , setType] = useState(false);
+  let [typed , setTyped ] = useState();
   let typing = (e)=>{
     if(e.target.value){
       setType(true);
+      setTyped(e.target.value);
     }
     else{
       setType(false);
@@ -121,11 +123,24 @@ const ChatBobbles = {
 
 // open chatBox
 let [chat , setChat] = useState(false);
+let [allChat , setAllChat] = useState([]);
+let [chathistory , setChathistory] = useState([])
 let [openChatID , setOpenChatID] = useState([]);
-let openChat = (item)=>{
-  setOpenChatID(null)
-  setOpenChatID([item])
+let openChat = (chatID)=>{
+  setOpenChatID(null);
+  setOpenChatID([chatID]);
+
+
 } 
+
+
+
+
+// SMS send function
+let Send = (receiver)=>{
+
+  
+}
 
   return (
     <section className='h-screen overflow-scroll'>
@@ -151,7 +166,7 @@ let openChat = (item)=>{
             <div className="flex gap-2 mt-1">
                 <div key="root" className="w-full lg:w-1/4  overflow-scroll flex flex-col lg:gap-2 gap-1">
                 {chatID.map((item)=>(
-                  <div onClick={()=>openChat(item)} className={`flex  h-auto items-center gap-2 relative bg-clrthird/10 hover:bg-transparent p-1 rounded-md duration-[.2s] cursor-pointer lg:mr-0 mr-1`}>
+                  <div key={item.key} onClick={()=>openChat(item)} className={`flex  h-auto items-center gap-2 relative bg-clrthird/10 hover:bg-transparent p-1 rounded-md duration-[.2s] cursor-pointer lg:mr-0 mr-1`}>
                     <img src={item.photoURL} alt="profile" className='w-[50px] h-[50px] rounded-full object-cover  ' />
                     <div className="">
                       <p className={`truncate text-[12px] lg:text-[16px] font-ubuntu text-clrthird  `} >{item.displayName }</p>
@@ -185,6 +200,15 @@ let openChat = (item)=>{
                       <p className="font-ubuntu text-darkprimary   ">You are friends on <span className="uppercase ">ochigran</span></p>
                       <Link to="" className='px-5 py-1 bg-brand rounded-md mt-3 text-primarytxt font-semibold inline-block  '>View Profile</Link>
                     </div>
+                    
+
+                    {/* Chat SMS */}
+                    <div className="flex flex-col gap-5 w-full px-3 ">
+                      <div className="flex justify-between w-full">
+                        <p className='font-ubuntu w-full text-left'>Hi</p>
+                        <p className='font-ubuntu w-full text-right'>Hello</p>
+                      </div>
+                    </div>
 
                     <div className=" w-full flex items-center pb-1 gap-2 px-2 bg-primarytxt pt-[4px]">
                       <div className="flex w-fit gap-3 items-center">
@@ -205,7 +229,7 @@ let openChat = (item)=>{
                       </div>
                       <div className="w-fit">
                         {type ?
-                        <CiLocationArrow1 className='text-brand text-lg cursor-pointer  ' />
+                        <CiLocationArrow1 className='text-brand text-lg cursor-pointer  ' onClick={()=> Send(item)}/>
                         :
                         <BsEmojiWink className='text-brand text-lg cursor-pointer  ' />
                         }

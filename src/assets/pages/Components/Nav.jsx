@@ -22,7 +22,6 @@ import { useNavigate } from 'react-router';
 const Nav = () => {
   // Redux 
 let dispatch = useDispatch();
-let [activenav , setActivenav] = useState('home')
 
 
   
@@ -38,42 +37,41 @@ let [activenav , setActivenav] = useState('home')
   let viewHome = ()=>{
     navigate('/')
     dispatch(menuFalse())
-    setActivenav('home')
   }
 
   // navigate to friends
   let friendsView = ()=>{
     navigate('/friends')
     dispatch(menuFalse())
-    setActivenav('friends')
   }
 
   // navigate to message
   let viewMessage =() =>{
     navigate('/message')
     dispatch(menuFalse())
-    setActivenav('message')
   }
 
   // navigate to notifucation
   let viewNotification = ()=>{
     navigate('/notification')
     dispatch(menuFalse())
-    setActivenav('notification')
   }
 
   // navigate to videos
   let viewVideos = ()=>{
     navigate('/videos')
     dispatch(menuFalse())
-    setActivenav('video')
   }
 
   // navigate to groups
   let viewGroups = ()=>{
     navigate('/groups')
     dispatch(menuFalse())
-    setActivenav('groups')
+  }
+
+  // navigate to search
+  let Search = ()=>{
+    navigate('/Search')
   }
 
   return (
@@ -87,7 +85,7 @@ let [activenav , setActivenav] = useState('home')
           <li className="topIcon hoverEfct relative">
             <BsPlusSquare />
           </li>
-          <li className="topIcon hoverEfct relative">
+          <li onClick={Search} className="topIcon hoverEfct relative">
             <BsSearch />
           </li>
           <li className="topIcon hoverEfct relative" onClick={menuVisiblity} >
@@ -99,12 +97,12 @@ let [activenav , setActivenav] = useState('home')
         <div className=" w-full mt-2 lg:mt-0">
           <div className="w-full">
              <ul className="flex justify-between">        
-              <li className={`NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden  ${activenav == 'home' ? 'bg-brand text-primarytxt' : 'bg-clrthird/10 text-clrthird' }`} onClick={viewHome}><GoHome /></li>
-              <li className={`NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden  ${activenav == 'friends' ? 'bg-brand text-primarytxt' : 'bg-clrthird/10 text-clrthird' }`} onClick={friendsView}><GoPeople /></li>
-              <li className={`NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden  ${activenav == 'message' ? 'bg-brand text-primarytxt' : 'bg-clrthird/10 text-clrthird' }`} onClick={viewMessage}><PiMessengerLogoThin /></li>
-              <li className={`NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden  ${activenav == 'notification' ? 'bg-brand text-primarytxt' : 'bg-clrthird/10 text-clrthird' }`} onClick={viewNotification}><VscBell /></li>
-              <li className={`NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden  ${activenav == 'video' ? 'bg-brand text-primarytxt' : 'bg-clrthird/10 text-clrthird' }`} onClick={viewVideos}><PiVideoLight /></li>
-              <li className={`NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden  ${activenav == 'groups' ? 'bg-brand text-primarytxt' : 'bg-clrthird/10 text-clrthird' }`} onClick={viewGroups}><RiUserCommunityFill /></li>
+              <li className={`NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden  `} onClick={viewHome}><GoHome /></li>
+              <li className={`NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden `} onClick={friendsView}><GoPeople /></li>
+              <li className={`NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden  `} onClick={viewMessage}><PiMessengerLogoThin /></li>
+              <li className={`NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden  `} onClick={viewNotification}><VscBell /></li>
+              <li className={`NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden  `} onClick={viewVideos}><PiVideoLight /></li>
+              <li className={`NavbtmIcon hoverEfct relative hover:text-primarytxt overflow-hidden  `} onClick={viewGroups}><RiUserCommunityFill /></li>
              </ul>
            </div>
         </div>
