@@ -138,7 +138,12 @@ let openChat = (chatID)=>{
 
 // SMS send function
 let Send = (receiver)=>{
-
+  
+  set(push(ref(db, `message/${currentUser.user.uid !== receiver.uid ? receiver.uid+567 : receiver.uid+567}`)), {
+    smsID: receiver.uid+currentUser.user.uid,
+    senderSMS: typed,
+    receiverSMS: ''
+  });
   
 }
 
@@ -205,8 +210,8 @@ let Send = (receiver)=>{
                     {/* Chat SMS */}
                     <div className="flex flex-col gap-5 w-full px-3 ">
                       <div className="flex justify-between w-full">
-                        <p className='font-ubuntu w-full text-left'>Hi</p>
-                        <p className='font-ubuntu w-full text-right'>Hello</p>
+                        <p className='font-ubuntu w-[40%] p-2 rounded-md text-left'>Hi</p>
+                        <p className='font-ubuntu w-[40%] py-2 px-5 rounded-md  text-justify bg-primarytxt/20 text-primarytxt      '>Hello Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem quis expedita quibusdam, ipsa veniam id nobis ad atque eligendi delectus.</p>
                       </div>
                     </div>
 

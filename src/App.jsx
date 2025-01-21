@@ -10,7 +10,7 @@ import Notfound from "./assets/pages/Components/Notfound";
 import BlockList from "./assets/pages/Components/BlockList";
 import Groups from "./assets/pages/Groups";
 import Layout from "./assets/pages/Components/Layout";
-
+import { getAuth } from "firebase/auth";
 
 
 
@@ -23,16 +23,17 @@ function App() {
 
   // console.log(userInfo);
   
+  const auth = getAuth();
   
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/Signup" element={<Signup />} />
         <Route path="/*" element={<Notfound/>}/>
+        {userInfo ?
         <Route path="" element={<Layout/>}>
-          <Route path="/" element={ userInfo ? <Home /> : <Login />} />
-          {userInfo &&
           <Route>
+            <Route path="/" element={<Home />} />
             <Route path="/Friends" element={<Friends />} />
             <Route path="/Message" element={<Message />} />
             <Route path="/Search" element={<Search />} />
@@ -40,8 +41,10 @@ function App() {
             <Route path="/Groups" element={<Groups />} />
             <Route path="/blocklist" element={<BlockList />} />
           </Route>
-          }
         </Route>
+        :
+        <Route path="/" element={ <Login />} />
+        }
       </Routes>
     </BrowserRouter>
   );
