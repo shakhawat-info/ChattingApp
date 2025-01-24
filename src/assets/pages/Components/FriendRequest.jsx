@@ -14,15 +14,15 @@ const FriendRequest = () => {
   useEffect(()=>{
     // Fetch requests
     const requestsRef = ref(db, 'Requests/');
-    const requestArr = [];
     onValue(requestsRef, (snapshot) => {
+      const requestArr = [];
       snapshot.forEach((item)=>{
         if(item.val().receiver.uid === currentUser.user.uid) requestArr.push(item)
       })
+    setRequests(requestArr)
     });
     
     
-    setRequests(requestArr)
     
   },[currentUser])
 

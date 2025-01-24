@@ -104,9 +104,9 @@ const ChatBobbles = {
   
   useEffect(()=>{
     // Fatch friends from dataBase
-    let FriendsList = [];
     const friendRef = ref(db, 'Friends');
     onValue(friendRef, (snapshot) => {
+      let FriendsList = [];
       snapshot.forEach((item)=>{
         if(item.val().receiver.uid === currentUser.user.uid){
           FriendsList.push({...item.val().sender })
@@ -114,8 +114,8 @@ const ChatBobbles = {
           FriendsList.push({...item.val().receiver })
         }
       })
+      setChatID(FriendsList);
     });
-    setChatID(FriendsList);
     
     
   },[])
