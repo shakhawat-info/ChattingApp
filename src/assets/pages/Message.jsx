@@ -33,6 +33,10 @@ import ChatBg from '../images/Chatbg.jpg'
 
 const Message = () => {
 
+  let [chat , setChat] = useState(false);
+  let [allChat , setAllChat] = useState([]);
+  let [chathistory , setChathistory] = useState([])
+  let [openChatID , setOpenChatID] = useState({});
 
   // message input box
   let [type , setType] = useState(false);
@@ -119,31 +123,25 @@ const ChatBobbles = {
     
     
   },[])
+  
 
 
 // open chatBox
-let [chat , setChat] = useState(false);
-let [allChat , setAllChat] = useState([]);
-let [chathistory , setChathistory] = useState([])
-let [openChatID , setOpenChatID] = useState([]);
+
 let openChat = (chatID)=>{
-  setOpenChatID(null);
-  setOpenChatID([chatID]);
+
+setOpenChatID(chatID);
+
+console.log(openChatID);
 
 
 } 
 
-
-
-
+useEffect(
+)
 // SMS send function
 let Send = (receiver)=>{
   
-  set(push(ref(db, `message/${currentUser.user.uid !== receiver.uid ? receiver.uid+567 : receiver.uid+567}`)), {
-    smsID: receiver.uid+currentUser.user.uid,
-    senderSMS: typed,
-    receiverSMS: ''
-  });
   
 }
 
@@ -180,14 +178,13 @@ let Send = (receiver)=>{
                   </div>
                 ))}
                 </div>
-                {openChatID.map((item)=>(
-                <div key={item.key} className="lg:w-3/4 h-screen rounded-md shadow flex flex-col justify-between items-center relative  ">
-                  <img src={ChatBg} alt="Chatbg" className='absolute top-0 left-0 opacity-[.5] z-[-1] w-full h-full object-cover   '/>
+                <div  className="lg:w-3/4 h-screen rounded-md shadow flex flex-col justify-between items-center relative  ">
+                  <img src={''} alt="Chatbg" className='absolute top-0 left-0 opacity-[.5] z-[-1] w-full h-full object-cover   '/>
                     <div className="flex p-2 justify-between items-center shadow bg-primarytxt/70 w-full  ">
                         <div className="flex gap-2">
-                           <img src={item.photoURL} alt="profile" className='w-[40px] h-[40px] object-cover rounded-full   ' />
+                           <img src={`item.photoURL`} alt="profile" className='w-[40px] h-[40px] object-cover rounded-full   ' />
                            <div>
-                            <h4 className='font-ubuntu   '>{item.displayName}</h4>
+                            <h4 className='font-ubuntu   '>{`item.displayName`}</h4>
                             <p className='font-ubuntu text-[12px] text-clrthird/70   '><span>active</span> <span>20m</span> <span>ago</span></p>
                            </div>
                         </div>
@@ -200,8 +197,8 @@ let Send = (receiver)=>{
                     </div>
 
                     <div className="text-center">
-                      <img src={item.photoURL} alt="profile" className='w-[150px] h-[150px] rounded-full mx-auto  ' />
-                      <h2 className='text-center font-aldrich font-bold text-xl mt-2 text-primarytxt '>{item.displayName}</h2>
+                      <img src={`item.photoURL`} alt="profile" className='w-[150px] h-[150px] rounded-full mx-auto  ' />
+                      <h2 className='text-center font-aldrich font-bold text-xl mt-2 text-primarytxt '>{`item.displayName`}</h2>
                       <p className="font-ubuntu text-darkprimary   ">You are friends on <span className="uppercase ">ochigran</span></p>
                       <Link to="" className='px-5 py-1 bg-brand rounded-md mt-3 text-primarytxt font-semibold inline-block  '>View Profile</Link>
                     </div>
@@ -241,7 +238,6 @@ let Send = (receiver)=>{
                       </div>
                     </div>
                 </div>
-                ))}
             </div>
             {/* messages main end */}
 

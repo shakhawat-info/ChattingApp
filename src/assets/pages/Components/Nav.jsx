@@ -79,7 +79,7 @@ let dispatch = useDispatch();
       <div className="container">
       <div className="flex justify-between items-center  ">
         <span onClick={()=> navigate('/')} className="font-aldrich lg:text-3xl text-lg font-black capitalize text-brand cursor-pointer  ">
-          ochigram
+          SocioGram
         </span>
         <ul className="flex gap-x-3 ">
           <li className="topIcon hoverEfct relative">

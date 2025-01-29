@@ -1,8 +1,6 @@
 import React from "react";
 
 // components
-import Nav from "./Components/Nav";
-import Menu from "./Components/Menu";
 import Story from "./Components/Story";
 import Post from "./Components/Post";
 

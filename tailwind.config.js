@@ -27,7 +27,7 @@ module.exports = withMT({
         bgsecondery: "#262626",
         clrthird: "#626262",
         primarytxt: "#ffffff",
-        brand: "#6200E8",
+        brand: "#09286a",
       },
       animation: {
         showLogin: "showLogin .4s linear ",

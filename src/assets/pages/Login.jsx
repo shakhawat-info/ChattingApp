@@ -205,7 +205,7 @@ const Login = () => {
                 className="w-[60%] mx-auto rounded-md "
               />
               <h1 className="font-aldrich text-PrimaryDark font-black text-center md:text-xl text-3xl md:mt-5 mt-[50px]  ">
-                Welcome to the <span className="text-brand">'Ochigram'</span> (professional community).
+                Welcome to the <span className="text-brand">'SocioGram'</span> (professional community).
               </h1>
               <p className="font-ubuntu text-SeconderyDark  text-md md:text-sm text-center font-semibold mt-2  ">
                 Enjoy your life with your family and friends. Thank you for

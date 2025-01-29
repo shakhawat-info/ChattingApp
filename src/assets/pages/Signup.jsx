@@ -238,7 +238,7 @@ const Signup = () => {
                 className="w-[60%] mx-auto rounded-md "
               />
               <h1 className="font-aldrich lg:text-bgsecondery text-primarytxt md:text-bodybg font-black text-center md:text-xl text-3xl md:mt-5 mt-[50px]  ">
-                Welcome to the <span className="text-brand">'Ochigram'</span>{" "}
+                Welcome to the <span className="text-brand">'SocioGram'</span>{" "}
                 (professional community).
               </h1>
               <p className="font-ubuntu lg:text-bgsecondery text-primarytxt md:text-bodybg text-md md:text-sm text-center font-semibold mt-2  ">
@@ -249,7 +249,7 @@ const Signup = () => {
             <div className="md:w-3/5 w-full  h-screen overflow-y-scroll md:shadow-[rgba(0,0,0,0.16)_0px_1px_4px]">
               <div className="h-full flex flex-col justify-around ">
                 <div className="p-5  ">
-                  <h2 className="font-aldrich font-bold text-[36px] text-primarytxt md:text-bodybg  ">
+                  <h2 className="font-aldrich font-bold text-[36px] text-primarytxt md:text-black  ">
                     Create an account!
                   </h2>
                   <form
