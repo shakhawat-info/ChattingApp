@@ -113,7 +113,6 @@ const Login = () => {
         setErr(errorCode)
         setTimeout(() => {
           setErr(null)
-          
         }, 2000);
        });
     }
@@ -146,6 +145,9 @@ const Login = () => {
     const errorMessage = error.message;
     // console.log(errorCode);
     setErr(errorCode)
+    setTimeout(() => {
+      setErr(null)
+    }, 2000);
   });
     
   }
