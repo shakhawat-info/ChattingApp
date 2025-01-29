@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import Slider from "react-slick";
-import { getDatabase, ref, onValue ,set , push, remove} from "firebase/database";
+import { getDatabase, ref, onValue ,set , push, remove, update} from "firebase/database";
 import "slick-carousel/slick/slick.css";
 import { Link } from 'react-router';
 import moment from 'moment';
@@ -31,6 +31,7 @@ import { RiShareForwardLine } from "react-icons/ri";
 import { FcDeleteDatabase } from "react-icons/fc";
 import { LiaReplySolid } from "react-icons/lia";
 import { CgClose } from "react-icons/cg";
+import { GoIssueClosed } from "react-icons/go";
 
 
 
@@ -46,6 +47,7 @@ const Message = () => {
   let [type , setType] = useState(false);
   let [typed , setTyped ] = useState('');
   let [sms , setSms] = useState([]);
+  let [isedit , setIsedit] = useState(false)
   let typing = (e)=>{
     if(e.target.value){
       setType(true);
@@ -53,6 +55,8 @@ const Message = () => {
     }
     else{
       setType(false);
+      setTyped('');
+      setIsedit(false)
     }
   }
 
@@ -190,21 +194,42 @@ const smsMenu = (smsItem , index)=>{
 }
 useEffect(()=>{
   setSmsindexmenu(smsindexmenu);
-  console.log(smsindexmenu);
 },[smsindexmenu])
 
 
 // unsendsms
 let unsendsms = (smsItem)=>{
-console.log(smsItem.val());
 remove(ref(db , `messages/${smsItem.key}`))
 .then(()=>{
   setIsSMSmenu(false)
 })
-
 }
 
 
+// editsms
+let [editID , setEditID] = useState('')
+let editsms = (smsItem)=>{
+  setType(true);
+  setTyped(smsItem.val().SMS);
+  setIsSMSmenu(false);
+  setIsedit(true);
+  setEditID(smsItem.key)
+}
+
+// updatesms
+let updatesms = ()=>{
+  
+  update(ref(db , `messages/${editID}`),{
+    SMS: typed
+  })
+  .then(()=>{
+  setType(false);
+  setTyped('');
+  setIsedit(false);
+  setEditID('')
+  })
+  
+}
   return (
     <section className='h-screen overflow-scroll'>
         <div className="container relative">
@@ -278,7 +303,7 @@ remove(ref(db , `messages/${smsItem.key}`))
                               {smsindexmenu === index && isSMSmenu && 
                               <ul className={` absolute bottom-0 overflow-hidden bg-white pb-2 pt-5 rounded-md ${smsItem.val().senderID == currentUser.user.uid ? 'right-0' : 'left-0'}`}>
                                 <CgClose onClick={()=> setIsSMSmenu(false)} className='cursor-pointer absolute top-0 right-0 bg-brand/20 w-[30px] h-[20px] rounded-bl-[10px] '/>
-                                {smsItem.val().senderID == currentUser.user.uid && <li className='flex items-center gap-3 px-5 hover:bg-brand/10 cursor-pointer  '><CiEdit/> <span>edit</span></li>}
+                                {smsItem.val().senderID == currentUser.user.uid && <li onClick={()=> editsms(smsItem)} className='flex items-center gap-3 px-5 hover:bg-brand/10 cursor-pointer  '><CiEdit/> <span>edit</span></li>}
                                 <li className='flex items-center gap-3 px-5 hover:bg-brand/10 cursor-pointer  '><RiShareForwardLine/> <span>forward</span></li>
                                 {smsItem.val().senderID == currentUser.user.uid && <li onClick={()=> unsendsms(smsItem)} className='flex items-center gap-3 px-5 hover:bg-brand/10 cursor-pointer  '><FcDeleteDatabase/> <span>unsend</span></li>}
                                 <li className='flex items-center gap-3 px-5 hover:bg-brand/10 cursor-pointer  '><LiaReplySolid/> <span>reply</span></li>
@@ -310,11 +335,10 @@ remove(ref(db , `messages/${smsItem.key}`))
                         <input type="text" value={typed} className='w-full bg-clrthird/10 rounded-[20px] outline-none px-2 ' placeholder='Message' onChange={typing} />
                       </div>
                       <div className="w-fit">
-                        {type ?
-                        <CiLocationArrow1 className='text-brand text-lg cursor-pointer  ' onClick={()=> Send(item)}/>
-                        :
-                        <BsEmojiWink className='text-brand text-lg cursor-pointer  ' />
-                        }
+                        
+                        {type && isedit && <GoIssueClosed onClick={updatesms}/>}
+                        {type && !isedit && <CiLocationArrow1 className='text-brand text-lg cursor-pointer  ' onClick={()=> Send(item)}/>}
+                        {!type && !isedit && <BsEmojiWink/>}
                       </div>
                     </div>
                 </div>
