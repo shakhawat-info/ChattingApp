@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import Slider from "react-slick";
-import { getDatabase, ref, onValue ,set , push} from "firebase/database";
+import { getDatabase, ref, onValue ,set , push, remove} from "firebase/database";
 import "slick-carousel/slick/slick.css";
 import { Link } from 'react-router';
-
+import moment from 'moment';
 
 
 // icons
@@ -25,22 +25,27 @@ import { BsEmojiWink } from "react-icons/bs";
 import { RiMic2Line } from "react-icons/ri";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { CiLocationArrow1 } from "react-icons/ci";
+import { RiArrowDownSLine } from "react-icons/ri";
+import { CiEdit } from "react-icons/ci";
+import { RiShareForwardLine } from "react-icons/ri";
+import { FcDeleteDatabase } from "react-icons/fc";
+import { LiaReplySolid } from "react-icons/lia";
+import { CgClose } from "react-icons/cg";
+
 
 
 // images
 import ChatBg from '../images/Chatbg.jpg'
+import { current } from '@reduxjs/toolkit';
 
 
 const Message = () => {
 
-  let [chat , setChat] = useState(false);
-  let [allChat , setAllChat] = useState([]);
-  let [chathistory , setChathistory] = useState([])
-  let [openChatID , setOpenChatID] = useState({});
 
   // message input box
   let [type , setType] = useState(false);
-  let [typed , setTyped ] = useState();
+  let [typed , setTyped ] = useState('');
+  let [sms , setSms] = useState([]);
   let typing = (e)=>{
     if(e.target.value){
       setType(true);
@@ -105,6 +110,7 @@ const ChatBobbles = {
   const db = getDatabase();
   const currentUser = useSelector((state)=> state.userInfo.value)
   const [chatID , setChatID] = useState([]) 
+  let [openedID , setOpenedID] = useState('')
   
   useEffect(()=>{
     // Fatch friends from dataBase
@@ -123,27 +129,81 @@ const ChatBobbles = {
     
     
   },[])
-  
 
 
 // open chatBox
-
+let [chat , setChat] = useState(false);
+let [allChat , setAllChat] = useState([]);
+let [chathistory , setChathistory] = useState([])
+let [openChatID , setOpenChatID] = useState([]);
 let openChat = (chatID)=>{
-
-setOpenChatID(chatID);
-
-console.log(openChatID);
-
-
+  setOpenChatID(null);
+  setOpenChatID([chatID]);
+  setOpenedID(chatID.uid);
+  
 } 
 
-useEffect(
-)
+
+
+
 // SMS send function
 let Send = (receiver)=>{
+  setOpenedID(receiver.uid)
+  set(push(ref(db , "messages/")),{
+    senderID: currentUser.user.uid,
+    receiverID: receiver.uid,
+    SMS: typed,
+    time: `${new Date().getFullYear()} - ${new Date().getMonth()+1} - ${new Date().getDate()} - ${new Date().getHours()} - ${new Date().getMinutes()+1} - ${new Date().getSeconds()+1}`
+  })
+  .then(()=>{
+    setTyped('');
+    setType(false);
+  })
+  
+}
+
+useEffect(()=>{
+const messagesRef = ref(db, 'messages/' );
+onValue(messagesRef, (snapshot) => {
+  let smsArr = [];
+  snapshot.forEach((item)=>{
+    
+    if(currentUser.user.uid == item.val().senderID && openedID == item.val().receiverID || 
+       currentUser.user.uid == item.val().receiverID && openedID == item.val().senderID ){
+        smsArr.push(item);
+    }
+  })
+  setSms(smsArr)
+});
+
+},[openedID])
+
+
+// smsMenu
+let [smsindexmenu , setSmsindexmenu] = useState(null);
+let [isSMSmenu , setIsSMSmenu] = useState(false)
+const smsMenu = (smsItem , index)=>{
+  setSmsindexmenu(index);
+  setIsSMSmenu(true)
   
   
 }
+useEffect(()=>{
+  setSmsindexmenu(smsindexmenu);
+  console.log(smsindexmenu);
+},[smsindexmenu])
+
+
+// unsendsms
+let unsendsms = (smsItem)=>{
+console.log(smsItem.val());
+remove(ref(db , `messages/${smsItem.key}`))
+.then(()=>{
+  setIsSMSmenu(false)
+})
+
+}
+
 
   return (
     <section className='h-screen overflow-scroll'>
@@ -178,13 +238,14 @@ let Send = (receiver)=>{
                   </div>
                 ))}
                 </div>
-                <div  className="lg:w-3/4 h-screen rounded-md shadow flex flex-col justify-between items-center relative  ">
-                  <img src={''} alt="Chatbg" className='absolute top-0 left-0 opacity-[.5] z-[-1] w-full h-full object-cover   '/>
+                {openChatID.map((item)=>(
+                <div key={item.key} className="lg:w-3/4 h-screen rounded-md shadow flex flex-col justify-between items-center relative  ">
+                  <img src={ChatBg} alt="Chatbg" className='absolute top-0 left-0 opacity-[.5] z-[-1] w-full h-full object-cover   '/>
                     <div className="flex p-2 justify-between items-center shadow bg-primarytxt/70 w-full  ">
                         <div className="flex gap-2">
-                           <img src={`item.photoURL`} alt="profile" className='w-[40px] h-[40px] object-cover rounded-full   ' />
+                           <img src={item.photoURL} alt="profile" className='w-[40px] h-[40px] object-cover rounded-full border border-brand   ' />
                            <div>
-                            <h4 className='font-ubuntu   '>{`item.displayName`}</h4>
+                            <h4 className='font-ubuntu   '>{item.displayName}</h4>
                             <p className='font-ubuntu text-[12px] text-clrthird/70   '><span>active</span> <span>20m</span> <span>ago</span></p>
                            </div>
                         </div>
@@ -197,19 +258,38 @@ let Send = (receiver)=>{
                     </div>
 
                     <div className="text-center">
-                      <img src={`item.photoURL`} alt="profile" className='w-[150px] h-[150px] rounded-full mx-auto  ' />
-                      <h2 className='text-center font-aldrich font-bold text-xl mt-2 text-primarytxt '>{`item.displayName`}</h2>
-                      <p className="font-ubuntu text-darkprimary   ">You are friends on <span className="uppercase ">ochigran</span></p>
+                      <img src={item.photoURL} alt="profile" className='w-[150px] h-[150px] rounded-full mx-auto border-2 border-brand  ' />
+                      <h2 className='text-center font-aldrich font-bold text-xl mt-2 text-primarytxt '>{item.displayName}</h2>
+                      <p className="font-ubuntu text-darkprimary   ">You are friends on <span className=" ">SocioGram</span></p>
                       <Link to="" className='px-5 py-1 bg-brand rounded-md mt-3 text-primarytxt font-semibold inline-block  '>View Profile</Link>
                     </div>
                     
 
                     {/* Chat SMS */}
-                    <div className="flex flex-col gap-5 w-full px-3 ">
-                      <div className="flex justify-between w-full">
-                        <p className='font-ubuntu w-[40%] p-2 rounded-md text-left'>Hi</p>
-                        <p className='font-ubuntu w-[40%] py-2 px-5 rounded-md  text-justify bg-primarytxt/20 text-primarytxt      '>Hello Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem quis expedita quibusdam, ipsa veniam id nobis ad atque eligendi delectus.</p>
+                    <div className="flex flex-col gap-1 w-full px-3 ">
+                      {sms.map((smsItem , index)=>(
+                      <div className={`flex w-full  ${smsItem.val().senderID == currentUser.user.uid ? 'justify-end ' : 'justify-start'}`}>
+                        <div className={`flex gap-[4px] w-[45%] items-end ${smsItem.val().senderID == currentUser.user.uid ? 'flex-row ' : 'flex-row-reverse '} `}>
+                          <div className={`max-w-[95%] w-fit relative rounded-[20px] py-2 px-5  ${smsItem.val().senderID == currentUser.user.uid ? 'bg-brand rounded-br-none ml-auto' : 'bg-gray-500 rounded-bl-none mr-auto' }`}>
+                            <p className={`font-ubuntu  w-full text-justify text-primarytxt break-words   `}>{smsItem.val().SMS}</p>
+                            <div className={`flex relative ${smsItem.val().senderID == currentUser.user.uid && 'justify-end' }`}>
+                              <p className={` text-primarytxt text-[10px]  font-aldrich font-thin `}>{moment(smsItem.val().time , "YYYYMMDD h:mm:ss ").fromNow()}</p>
+                              <RiArrowDownSLine onClick={()=>smsMenu(smsItem , index)} className={`absolute bottom-[0px] text-primarytxt cursor-pointer ${smsItem.val().senderID == currentUser.user.uid ? 'right-[-15px]' : 'left-[-15px]'}  `}/>
+                              {smsindexmenu === index && isSMSmenu && 
+                              <ul className={` absolute bottom-0 overflow-hidden bg-white pb-2 pt-5 rounded-md ${smsItem.val().senderID == currentUser.user.uid ? 'right-0' : 'left-0'}`}>
+                                <CgClose onClick={()=> setIsSMSmenu(false)} className='cursor-pointer absolute top-0 right-0 bg-brand/20 w-[30px] h-[20px] rounded-bl-[10px] '/>
+                                {smsItem.val().senderID == currentUser.user.uid && <li className='flex items-center gap-3 px-5 hover:bg-brand/10 cursor-pointer  '><CiEdit/> <span>edit</span></li>}
+                                <li className='flex items-center gap-3 px-5 hover:bg-brand/10 cursor-pointer  '><RiShareForwardLine/> <span>forward</span></li>
+                                {smsItem.val().senderID == currentUser.user.uid && <li onClick={()=> unsendsms(smsItem)} className='flex items-center gap-3 px-5 hover:bg-brand/10 cursor-pointer  '><FcDeleteDatabase/> <span>unsend</span></li>}
+                                <li className='flex items-center gap-3 px-5 hover:bg-brand/10 cursor-pointer  '><LiaReplySolid/> <span>reply</span></li>
+                              </ul>
+                              }
+                            </div>
+                          </div>
+                          <img src={smsItem.val().senderID == currentUser.user.uid ? currentUser.user.photoURL : item.photoURL} alt="profile" className='w-[15px] h-[15px] rounded-full object-cover '/>
+                        </div>
                       </div>
+                      ))}
                     </div>
 
                     <div className=" w-full flex items-center pb-1 gap-2 px-2 bg-primarytxt pt-[4px]">
@@ -227,7 +307,7 @@ let Send = (receiver)=>{
 
                       </div>
                       <div className="w-full relative">
-                        <input type="text" className='w-full bg-clrthird/10 rounded-[20px] outline-none px-2 ' placeholder='Message' onChange={typing} />
+                        <input type="text" value={typed} className='w-full bg-clrthird/10 rounded-[20px] outline-none px-2 ' placeholder='Message' onChange={typing} />
                       </div>
                       <div className="w-fit">
                         {type ?
@@ -238,6 +318,10 @@ let Send = (receiver)=>{
                       </div>
                     </div>
                 </div>
+                ))}
+                {openChatID.length == 0 && 
+                <div>asdfasfs</div>
+                }
             </div>
             {/* messages main end */}
 
