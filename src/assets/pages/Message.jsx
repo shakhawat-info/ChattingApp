@@ -36,7 +36,7 @@ import { GoIssueClosed } from "react-icons/go";
 
 
 // images
-import ChatBg from '../images/Chatbg.jpg'
+import messagesBG from '../images/messagesbg.png'
 import { current } from '@reduxjs/toolkit';
 
 
@@ -264,13 +264,12 @@ let updatesms = ()=>{
                 ))}
                 </div>
                 {openChatID.map((item)=>(
-                <div key={item.key} className="lg:w-3/4 h-screen rounded-md shadow flex flex-col justify-between items-center relative  ">
-                  <img src={ChatBg} alt="Chatbg" className='absolute top-0 left-0 opacity-[.5] z-[-1] w-full h-full object-cover   '/>
+                <div key={item.key} className="lg:w-3/4 h-screen rounded-md shadow flex flex-col justify-between items-center  ">
                     <div className="flex p-2 justify-between items-center shadow bg-primarytxt/70 w-full  ">
                         <div className="flex gap-2">
                            <img src={item.photoURL} alt="profile" className='w-[40px] h-[40px] object-cover rounded-full border border-brand   ' />
                            <div>
-                            <h4 className='font-ubuntu   '>{item.displayName}</h4>
+                            <h4 className='font-ubuntu    '>{item.displayName}</h4>
                             <p className='font-ubuntu text-[12px] text-clrthird/70   '><span>active</span> <span>20m</span> <span>ago</span></p>
                            </div>
                         </div>
@@ -282,23 +281,23 @@ let updatesms = ()=>{
                         </div>
                     </div>
 
-                    <div className="text-center">
-                      <img src={item.photoURL} alt="profile" className='w-[150px] h-[150px] rounded-full mx-auto border-2 border-brand  ' />
-                      <h2 className='text-center font-aldrich font-bold text-xl mt-2 text-primarytxt '>{item.displayName}</h2>
-                      <p className="font-ubuntu text-darkprimary   ">You are friends on <span className=" ">SocioGram</span></p>
-                      <Link to="" className='px-5 py-1 bg-brand rounded-md mt-3 text-primarytxt font-semibold inline-block  '>View Profile</Link>
-                    </div>
                     
 
                     {/* Chat SMS */}
-                    <div className="flex flex-col gap-1 w-full px-3 ">
+                    <div className="flex flex-col gap-1 w-full justify-end px-3 h-full overflow-scroll ">
+                    <div className="text-center pb-2">
+                      <img src={item.photoURL} alt="profile" className='w-[150px] h-[150px] rounded-full mx-auto border-2 border-brand  ' />
+                      <h2 className='text-center font-aldrich font-bold text-xl mt-2 text-brand '>{item.displayName}</h2>
+                      <p className="font-ubuntu text-darkprimary   ">You are friends on <span className="text-brandtwo font-aldrich ">SocioGram</span></p>
+                      <Link to="" className='px-5 py-1 bg-brand rounded-md mt-3 text-primarytxt font-semibold inline-block  '>View Profile</Link>
+                    </div>
                       {sms.map((smsItem , index)=>(
-                      <div className={`flex w-full  ${smsItem.val().senderID == currentUser.user.uid ? 'justify-end ' : 'justify-start'}`}>
+                      <div className={`flex w-full pb-2  ${smsItem.val().senderID == currentUser.user.uid ? 'justify-end ' : 'justify-start'}`}>
                         <div className={`flex gap-[4px] w-[45%] items-end ${smsItem.val().senderID == currentUser.user.uid ? 'flex-row ' : 'flex-row-reverse '} `}>
-                          <div className={`max-w-[95%] w-fit relative rounded-[20px] py-2 px-5  ${smsItem.val().senderID == currentUser.user.uid ? 'bg-brand rounded-br-none ml-auto' : 'bg-gray-500 rounded-bl-none mr-auto' }`}>
-                            <p className={`font-ubuntu  w-full text-justify text-primarytxt break-words   `}>{smsItem.val().SMS}</p>
+                          <div className={`max-w-[95%] w-fit relative rounded-[20px] py-2 px-5  ${smsItem.val().senderID == currentUser.user.uid ? 'bg-brand rounded-br-none ml-auto' : 'bg-[#d7dcdd]/60 rounded-bl-none mr-auto' }`}>
+                            <p className={`font-ubuntu  w-full text-justify ${smsItem.val().senderID == currentUser.user.uid ? 'text-primarytxt' : 'text-brand' } break-words   `}>{smsItem.val().SMS}</p>
                             <div className={`flex relative ${smsItem.val().senderID == currentUser.user.uid && 'justify-end' }`}>
-                              <p className={` text-primarytxt text-[10px]  font-aldrich font-thin `}>{moment(smsItem.val().time , "YYYYMMDD h:mm:ss ").fromNow()}</p>
+                              <p className={` ${smsItem.val().senderID == currentUser.user.uid ? 'text-primarytxt' : 'text-brand' } text-[10px]  font-aldrich font-thin `}>{moment(smsItem.val().time , "YYYYMMDD h:mm:ss ").fromNow()}</p>
                               <RiArrowDownSLine onClick={()=>smsMenu(smsItem , index)} className={`absolute bottom-[0px] text-primarytxt cursor-pointer ${smsItem.val().senderID == currentUser.user.uid ? 'right-[-15px]' : 'left-[-15px]'}  `}/>
                               {smsindexmenu === index && isSMSmenu && 
                               <ul className={` absolute bottom-0 overflow-hidden bg-white pb-2 pt-5 rounded-md ${smsItem.val().senderID == currentUser.user.uid ? 'right-0' : 'left-0'}`}>
@@ -336,15 +335,71 @@ let updatesms = ()=>{
                       </div>
                       <div className="w-fit">
                         
-                        {type && isedit && <GoIssueClosed onClick={updatesms}/>}
+                        {type && isedit && <GoIssueClosed onClick={updatesms} className='cursor-pointer'/>}
                         {type && !isedit && <CiLocationArrow1 className='text-brand text-lg cursor-pointer  ' onClick={()=> Send(item)}/>}
-                        {!type && !isedit && <BsEmojiWink/>}
+                        {!type && !isedit && <BsEmojiWink className='cursor-pointer'/>}
                       </div>
                     </div>
                 </div>
                 ))}
                 {openChatID.length == 0 && 
-                <div>asdfasfs</div>
+                <div key={`item.key`} className="lg:w-3/4 h-screen rounded-md shadow flex flex-col justify-between items-center relative  ">
+                     <div className="flex p-2 justify-between items-center shadow bg-primarytxt/70 w-full  ">
+                         <div className="flex gap-2">
+                            <img src={messagesBG} alt="profile" className='w-[40px] h-[40px] object-cover rounded-full border border-brand   ' />
+                            <div>
+                             <h4 className='font-ubuntu   '>Demo Name</h4>
+                             <p className='font-ubuntu text-[12px] text-clrthird/70   '><span>active</span> <span>20m</span> <span>ago</span></p>
+                            </div>
+                         </div>
+                         <div className="flex gap-5">
+                             <FiPhoneCall className='text-lg text-brand ' />
+                             <BsCameraVideo className='text-lg text-brand ' />
+                             <FcInfo className='text-lg' />
+                             <IoIosArrowForward className='text-lg text-brand ' />
+                         </div>
+                     </div>
+              
+                     <div className="text-center">
+                       <img src={messagesBG} alt="profile" className='w-[150px] h-[150px] rounded-full mx-auto border-2 border-brand  ' />
+                       <h2 className='text-center font-aldrich font-bold text-xl mt-2 text-brand '>Demo Name</h2>
+                       <p className="font-ubuntu text-darkprimary   ">You are friends on <span className=" text-brandtwo font-aldrich ">SocioGram</span></p>
+                       <Link to="" className='px-5 py-1 bg-brand rounded-md mt-3 text-primarytxt font-semibold inline-block  '>View Profile</Link>
+                     </div>
+                                  
+              
+                     {/* Chat SMS */}
+                     <div className="flex flex-col gap-1 w-full px-3 ">
+                       <div className={`flex w-full  `}>
+                         <div className={`flex gap-[4px] w-[45%] items-end  `}>
+                           <div className={`max-w-[95%] w-fit relative rounded-[20px] py-2 px-5  `}>
+                             <p className={`font-ubuntu  w-full text-justify text-primarytxt break-words   `}>sfasfa</p>
+                             <div className={`flex relative`}>
+                               <p className={` text-primarytxt text-[10px]  font-aldrich font-thin `}>3333</p>
+                               <RiArrowDownSLine className={`absolute bottom-[0px] text-primarytxt cursor-pointer   `}/>
+                             </div>
+                           </div>
+                           <img src='11' alt="profile" className='w-[15px] h-[15px] rounded-full object-cover '/>
+                         </div>
+                       </div>
+                     </div>
+              
+                     <div className=" w-full flex items-center pb-1 gap-2 px-2 bg-primarytxt pt-[4px]">
+                       <div className="flex w-fit gap-3 items-center">
+                           <GoPlusCircle className='text-lg text-brand  cursor-pointer ' />
+                           <CiCamera className='text-[20px] text-brand  cursor-pointer ' />
+                           <CiImageOn className='text-lg text-brand  cursor-pointer ' />
+                           <RiMic2Line className='text-lg text-brand cursor-pointer  ' />
+              
+                       </div>
+                       <div className="w-full relative">
+                         <input type="text"  className='w-full bg-clrthird/10 rounded-[20px] outline-none px-2 ' placeholder='Message'  />
+                       </div>
+                       <div className="w-fit">
+                       <BsEmojiWink/>
+                       </div>
+                     </div>
+                </div>
                 }
             </div>
             {/* messages main end */}

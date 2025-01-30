@@ -28,6 +28,7 @@ module.exports = withMT({
         clrthird: "#626262",
         primarytxt: "#ffffff",
         brand: "#09286a",
+        brandtwo: "#eb2226",
       },
       animation: {
         showLogin: "showLogin .4s linear ",
