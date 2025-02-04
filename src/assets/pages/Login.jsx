@@ -143,7 +143,7 @@ const Login = () => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-    // console.log(errorCode);
+    console.log(errorCode);
     setErr(errorCode)
     setTimeout(() => {
       setErr(null)
