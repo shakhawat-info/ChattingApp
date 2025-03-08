@@ -24,18 +24,6 @@ const AddFriend = () => {
         if (item.key !== currentUser.user.uid) {
           allUsers.push(item);
         }
-        // else{
-        //   if(item.val().BlokedIDs){
-        //     Object.entries(item.val().BlokedIDs).map((item)=>{
-        //       Blocked.push(item[1].Blocked);
-        //     })
-        //   }
-        //   if(item.val().BlokerIDs){
-        //     Object.entries(item.val().BlokerIDs).map((item)=>{
-        //       Blocked.push(item[1].Blocker);
-        //     })
-        //   }
-        // }
       });
     });
     
@@ -89,6 +77,7 @@ const AddFriend = () => {
     let UpdatedUsers = FriendRemoved.filter((friendRM)=> !Blocked.some((blc)=> friendRM.key == blc))
 
     // remove blocker
+
 
 
 

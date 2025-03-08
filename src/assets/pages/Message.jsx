@@ -252,7 +252,7 @@ let updatesms = ()=>{
 
             {/* messages main start */}
             <div className="flex gap-2 mt-1">
-                <div key="root" className="w-full lg:w-1/4  overflow-scroll flex flex-col lg:gap-2 gap-1">
+                <div className="w-full lg:w-1/4  overflow-scroll flex flex-col lg:gap-2 gap-1">
                 {chatID.map((item)=>(
                   <div key={item.key} onClick={()=>openChat(item)} className={`flex  h-auto items-center gap-2 relative bg-clrthird/10 hover:bg-transparent p-1 rounded-md duration-[.2s] cursor-pointer lg:mr-0 mr-1`}>
                     <img src={item.photoURL} alt="profile" className='w-[50px] h-[50px] rounded-full object-cover  ' />
